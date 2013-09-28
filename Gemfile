@@ -43,7 +43,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'cancan'
 gem 'compass-rails', '~> 2.0.alpha.0'
-gem 'devise'
+gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'figaro'
 gem 'haml-rails'
 gem 'mongoid', '~> 4', :github=>"mongoid/mongoid"

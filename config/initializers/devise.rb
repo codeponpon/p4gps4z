@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = '3e160d2907b55af64ae8bd009e8d57ffa4d41b5f9fa679dea56a3d7fda614af21c2d3cf62d1405030ef548c1c9c50ec8d7b5e8b2752b9e4db7b6a1cbee8a5d9a'
+  config.secret_key = '8098c13100ed5511882222f2dbe60eb7631d2b9bf8e0a3b1b47bce7402d4a8bd09bd1e5ff181088700d2c0d30f7c0cc734ae7174d726f03bd1bfa9dd03ef21e4'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -56,12 +56,9 @@ Devise.setup do |config|
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
-  # given strategies, for example, `config.http_authenticatable = [:token]` will
-  # enable it only for token authentication. The supported strategies are:
+  # given strategies, for example, `config.http_authenticatable = [:database]` will
+  # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  # :token         = Support basic authentication with token authentication key
-  # :token_options = Support token authentication with options as defined in
-  #                  http://api.rubyonrails.org/classes/ActionController/HttpAuthentication/Token.html
   # config.http_authenticatable = false
 
   # If http headers should be returned for AJAX requests. True by default.
@@ -76,7 +73,7 @@ Devise.setup do |config|
   # config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
-  # :http_auth and :token_auth by adding those symbols to the array below.
+  # particular strategies by setting this option.
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing :skip => :sessions to `devise_for` in your config/routes.rb
@@ -98,7 +95,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '9a82ee8faf240929f95648528aaeea006b1fa9ef7da2b5435d9f9d6aed6c6ceea27f7c338f91ab36c6102738fd52931ecf1eaf0c51cd6fe0a6bafc8748155a08'
+  # config.pepper = '538377d715191987998a701cac81a14ea6e1765731602086fab02a089d610eb4b3ae964726373d93de33220e91430d73b01f02af3e839a4ee839e98f881704a9'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -196,10 +193,6 @@ Devise.setup do |config|
   # Require the `devise-encryptable` gem when using anything other than bcrypt
   # config.encryptor = :sha512
 
-  # ==> Configuration for :token_authenticatable
-  # Defines name of the authentication token params key
-  # config.token_authentication_key = :auth_token
-
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
@@ -223,10 +216,10 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ["*/*", :html, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = [:delete, :get]
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

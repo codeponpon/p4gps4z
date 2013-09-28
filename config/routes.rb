@@ -1,10 +1,29 @@
 Pagpos::Application.routes.draw do
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  get "welcome/index"
+  get "welcome/user"
+  # namespace :api, defaults: { format: 'json' } do
+  #   root 'welcome#index'
+  #   resources :packages
+  # end
+
+  # devise_for :users
+
   # root 'welcome#index'
+
+  devise_for :users
+
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+    # get 'user'  => 'devise/sessions#new'
+    # get 'users' => 'devise/sessions#new'
+  end
+
+  namespace :api do
+    namespace :v1  do
+      devise_for :users
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
