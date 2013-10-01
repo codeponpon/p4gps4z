@@ -28,6 +28,14 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'sanitize'
 
+gem "typhoeus"
+
+gem 'curb'
+
+gem 'rest-client'
+
+gem 'mechanize'
+gem 'nokogiri'
   # bundle exec rake doc:rails generates the API under doc/api.
 
 # Use ActiveModel has_secure_password

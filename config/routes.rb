@@ -22,7 +22,7 @@ Pagpos::Application.routes.draw do
   namespace :api do
     namespace :v1  do
       devise_for :users
-      get 'post_to_endpoint' => 'pagpos#post_to_endpoint'
+      get 'track_page' => 'pagpos#track_page'
     end
   end
 
