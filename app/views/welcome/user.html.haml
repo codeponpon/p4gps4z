@@ -9,16 +9,20 @@
 
 
 -# debug @contents_html
--# @contents_html.search('#DataGrid1 tr').each do |tr|
-  -# tr.css('td').each do |td|
-    =# td.content + ' | '
+-# @contents_html.search('#DataGrid1 tr').each_with_index do |tr, index|
+  -# tr.css('td').each_with_index do |td, i|
+    =# td.content + "(#{index} - #{i})|" 
 
-- @recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each do |tr|
-  = tr.text
   <br/>
 
-= @recieve_page.search('#Panel1 table:last #Image1').first.attributes['src'].value
-
+- @recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each_with_index do |tr, i|
+  =# tr.text.squish
+  - if i == 3
+    = tr.text.squish.split(':')[1]
+    
+  <br/>
+-# if @signature.present?
+  =# @signature
 
 :css
   .html { display: none; }

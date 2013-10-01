@@ -28,11 +28,11 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'sanitize'
 
-gem "typhoeus"
+# gem "typhoeus"
 
-gem 'curb'
+# gem 'curb'
 
-gem 'rest-client'
+# gem 'rest-client'
 
 gem 'mechanize'
 gem 'nokogiri'
