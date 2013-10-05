@@ -1,24 +1,7 @@
-class Api::V1::PagposController < ApplicationController
-  before_filter :authenticate_user!
-  # respond_to :json
-
-  def index
-  end
-
-  def show
-    tracking_code = params[:tracking_code]
-    @track = current_user.trackings.new(code: tracking_code)
-    if @track.save
-      Resque.enqueue(PackagePosition, tracking_code)
-      render :status => 200, message: 'OK', :json => { success: true, message: "Add tracking code successfully"}
-    else
-      return render :status => 400, message: 'Bad request', :json => { success: false, errors: @track.errors.full_messages[0]}
-    end
-  end
-
-  def force_get_data
-    tracking_code = params[:tracking_code] #'EK087348335TH'
-    return render status: 400, message: 'Bad request', json: {success: false, message: 'tracking id is null' } if tracking_code.blank?
+class PackagePosition
+  @queue = :pagpos_queue
+  
+  def self.perform(tracking_code)
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
@@ -27,17 +10,6 @@ class Api::V1::PagposController < ApplicationController
     f1.TextBarcode = tracking_code
     post = a.submit(f1, f1.buttons.last)
 
-    @track = current_user.trackings.where(code: tracking_code).first
-    if @track.blank?
-      @track_inserted = false
-      @track = current_user.trackings.new(code: tracking_code)
-      if @track.save
-        @track_inserted = true
-      else
-        return render :status => 400, message: 'Bad request', :json => { success: false, code: tracking_code, errors: @track.errors}
-      end
-    end
-    
     if post.uri.path.scan('Result.aspx').first.nil?
       return render :status => 200, message: 'OK', :json => { success: true, code: tracking_code }
     end
@@ -81,10 +53,10 @@ class Api::V1::PagposController < ApplicationController
 
     recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each_with_index do |tr, i|
       if i == 3
-        tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1].strip
+        tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1]
       end  
     end
-    
+
     tracking_obj = Tracking.where(code: tracking_code).first
     tracking_package = tracking_obj.packages
     if tracking_package.blank?
@@ -103,13 +75,17 @@ class Api::V1::PagposController < ApplicationController
           Dir.mkdir(user_dir) unless File.exists?(user_dir)
           path = File.join(user_dir, upload.original_filename)
           File.open(path, "wb") { |f| f.write(upload.read) }
+
+          if File.exists?(path)
+            pac.signature = path
+          end
         end
         pac.save
       end
     elsif tracking_obj.status != 'done' && tracking_package.last.reciever.blank?
       tracking.each_with_index do |process, index|
-        if (index-1) >tracking_obj.packages.count
-          pac = tracking_obj.packages.new
+        if (index-1) > tracking_obj.packages.countsignature_url
+          pac =tracking_objpackages.new
           pac.process_at = process.last[:process_at]
           pac.department = process.last[:department]
           pac.description = process.last[:description]
@@ -123,22 +99,29 @@ class Api::V1::PagposController < ApplicationController
             Dir.mkdir(user_dir) unless File.exists?(user_dir)
             path = File.join(user_dir, upload.original_filename)
             File.open(path, "wb") { |f| f.write(upload.read) }
+
+            if File.exists?(path)
+              pac.signature = path
+            end
           end
           pac.save
         end
       end
     end
 
-    unless tracking_obj.packages.blank? && tracking_obj.packages.last.reciever.blank?
+    unless tracking_package.blank? && tracking_package.lastracking_obj.reciever.blank?
       if tracking_obj.status != 'done'
         tracking_obj.update_attributes(status: 'done')
       end
-      render :status => 200, message: 'OK', :json => { success: true, message: 'Received successfully', code: tracking_code}
     else
       if tracking_obj.status != 'processing'
         tracking_obj.update_attributes(status: 'processing')
       end
-      render :status => 200, message: 'OK', :json => { success: true, message: 'During delivery', code: tracking_code}
+      Resque.enqueue(self.class.name, tracking_code)
+    end
+    
+    if tracking_obj.user.reminder_when == 'status_change'
+      Resque.enqueue(StatusReminderWorker, tracking_code)
     end
   end
 end

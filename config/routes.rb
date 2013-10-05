@@ -1,30 +1,30 @@
 Pagpos::Application.routes.draw do
 
-  get "welcome/index"
-  get "welcome/user"
-  # namespace :api, defaults: { format: 'json' } do
-  #   root 'welcome#index'
-  #   resources :packages
-  # end
-
-  # devise_for :users
-
-  # root 'welcome#index'
-
+  get "track_positions" => "track_positions#index"
+  get 'welcome' => "welcome#index"
+  get 'users' => "users#index"
+  get 'pagpos/index' => "pagpos#index"
   devise_for :users
 
   devise_scope :user do
-    root to: 'devise/sessions#new'
-    # get 'user'  => 'devise/sessions#new'
-    # get 'users' => 'devise/sessions#new'
+    # root to: 'devise/sessions#new'
+    root to: 'welcome#index'
   end
 
   namespace :api do
     namespace :v1  do
       devise_for :users
-      get 'track_page' => 'pagpos#track_page'
+      post 'add_tracking' => 'trackings#create'
+      get 'force_get_data' => 'pagpos#force_get_data'
+      get 'show' => 'pagpos#show'
     end
   end
+
+  mount Resque::Server, :at => "/resque"
+  # authenticate :user do 
+    # mount Resque::Server, :at => "/resque"
+  # end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

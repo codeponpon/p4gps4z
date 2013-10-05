@@ -1,0 +1,2 @@
+Fabricator(:tracking) do
+end

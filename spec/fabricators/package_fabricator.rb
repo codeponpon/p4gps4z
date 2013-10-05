@@ -1,0 +1,2 @@
+Fabricator(:package) do
+end

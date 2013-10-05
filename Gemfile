@@ -28,14 +28,20 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'sanitize'
 
-# gem "typhoeus"
-
-# gem 'curb'
-
-# gem 'rest-client'
-
 gem 'mechanize'
 gem 'nokogiri'
+
+gem 'sidekiq'
+gem 'redis'
+
+gem 'resque', require: 'resque/server'  
+
+gem 'mailcatcher'
+
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
+
+# gem 'aws-sdk', '~> 1.3.4'
+
   # bundle exec rake doc:rails generates the API under doc/api.
 
 # Use ActiveModel has_secure_password
@@ -48,7 +54,7 @@ gem 'nokogiri'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 gem 'cancan'
 gem 'compass-rails', '~> 2.0.alpha.0'

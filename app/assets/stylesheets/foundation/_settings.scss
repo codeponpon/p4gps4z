@@ -1,0 +1,57 @@
+$fontAccessibility: "fonts/accessibility_foundicons";
+$AccessibilityFoundicons: "AccessibilityFoundicons";
+
+$fontGeneral: "fonts/general_foundicons";
+$GeneralFoundicons: "GeneralFoundicons";
+
+$fontSocial: "fonts/social_foundicons";
+$SocialFoundicons: "SocialFoundicons";
+
+$classPrefix: "foundicon-";
+
+@mixin i-class($name,$pua) {
+  .#{$classPrefix}#{$name}:before { 
+    content: "\f#{$pua}";
+  }
+}
+
+@mixin ie-class($name,$pua) {
+  .#{$classPrefix}#{$name} { 
+    *zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf#{$pua};"); 
+  }
+}
+
+@mixin face {
+  @font-face { 
+    font-family: $GeneralFoundicons;
+    src: url('#{$fontGeneral}.eot');
+    src: url('#{$fontGeneral}.eot?#iefix') format('embedded-opentype'),
+         url('#{$fontGeneral}.woff') format('woff'),
+         url('#{$fontGeneral}.ttf') format('truetype'),
+         url('#{$fontGeneral}.svg##{$fontGeneral}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face { 
+    font-family: $AccessibilityFoundicons;
+    src: url('#{$fontAccessibility}.eot');
+    src: url('#{$fontAccessibility}.eot?#iefix') format('embedded-opentype'),
+         url('#{$fontAccessibility}.woff') format('woff'),
+         url('#{$fontAccessibility}.ttf') format('truetype'),
+         url('#{$fontAccessibility}.svg##{$fontAccessibility}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face { 
+    font-family: $SocialFoundicons;
+    src: url('#{$fontSocial}.eot');
+    src: url('#{$fontSocial}.eot?#iefix') format('embedded-opentype'),
+         url('#{$fontSocial}.woff') format('woff'),
+         url('#{$fontSocial}.ttf') format('truetype'),
+         url('#{$fontSocial}.svg##{$fontSocial}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}

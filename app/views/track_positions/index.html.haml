@@ -1,0 +1,23 @@
+.large-12.columns
+  .large-3.columns
+    &nbsp;
+  .large-6.columns
+    = form_tag api_v1_add_tracking_path, method: 'post' do
+      = text_field_tag :tracking_code, '', placeholder: 'Tracking id', required: true
+      = submit_tag "Find Package", class:"small button radius center"
+  .large-3.columns
+    &nbsp;
+
+.large-12.columns
+  .large-3.columns
+    &nbsp;
+  .large-6.columns
+    - @trackings.each do |t|
+      = t.code
+      - t.packages.each do |p|
+        = p.process_at
+        - unless p.signature.blank?
+          = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)
+  .large-3.columns
+    &nbsp;
+
