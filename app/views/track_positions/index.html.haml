@@ -2,9 +2,11 @@
   .large-3.columns
     &nbsp;
   .large-6.columns
-    = form_tag api_v1_add_tracking_path, method: 'post' do
-      = text_field_tag :tracking_code, '', placeholder: 'Tracking id', required: true
-      = submit_tag "Find Package", class:"small button radius center"
+    = simple_form_for(@tracking, :url => track_positions_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
+      = f.error_notification
+      = f.input :code, placeholder: 'Tracking id', required: true, focus: true, value: '', label: false
+      = f.input :user_id, :as => :hidden, input_html: { value: current_user._id }
+      = submit_tag "Add", class:"small button radius center"
   .large-3.columns
     &nbsp;
 
@@ -12,12 +14,21 @@
   .large-3.columns
     &nbsp;
   .large-6.columns
-    - @trackings.each do |t|
-      = t.code
-      - t.packages.each do |p|
-        = p.process_at
-        - unless p.signature.blank?
-          = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)
+    %table
+      %thead
+        %tr
+          %th{width: "200"} Tracking code
+          %th{width: "150"} Status
+          %th{width: "150"} 
+      %tbody
+      - @trackings.each do |t|
+        %tr
+          %td 
+            = t.code
+          %td
+            - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
+            %span{class: "#{status} radius label"}=t.status
+          %td 
+            = link_to "Details", tracking_details_path(t.code), class: 'button'
   .large-3.columns
     &nbsp;
-

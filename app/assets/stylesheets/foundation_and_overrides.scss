@@ -1325,3 +1325,15 @@ $default-float: left;
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
 @import 'foundation';
+
+table thead tr th, 
+table tfoot tr th, 
+table tbody tr td, 
+table tr td, 
+table tfoot tr td {
+  text-align: center;
+}
+
+table tr td:first-child {
+  text-align: left;
+}

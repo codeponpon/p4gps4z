@@ -1,14 +1,20 @@
 Pagpos::Application.routes.draw do
 
   get "track_positions" => "track_positions#index"
+  post "track_positions" => "track_positions#create"
+  get "track_positions/:code" => "track_positions#show", as: 'tracking_details'
+
   get 'welcome' => "welcome#index"
-  get 'users' => "users#index"
+
   get 'pagpos/index' => "pagpos#index"
   devise_for :users
 
   devise_scope :user do
     # root to: 'devise/sessions#new'
     root to: 'welcome#index'
+    get 'users' => "users#index"
+    put 'users/:id' => 'users#update', as: 'user_update'
+    get 'user_profile' => 'users#edit'
   end
 
   namespace :api do

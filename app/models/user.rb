@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps
 
   has_many :trackings
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,6 +23,8 @@ class User
   ## Reminder 
   field :reminder_when, :type => String, :default => "status_change"
   field :reminder_by, :type => String, :default => "email"
+
+  field :time_zone, :type => String, :default => "UTC"
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0

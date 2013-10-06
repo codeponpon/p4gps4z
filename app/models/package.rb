@@ -2,8 +2,8 @@ class Package
   include Mongoid::Document
   include Mongoid::Timestamps
   belongs_to :tracking
-
   embeds_one :image
+
   field :process_at,  :type => String 
   field :department,  :type => String
   field :description, :type => String

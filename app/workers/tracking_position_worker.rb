@@ -1,25 +1,7 @@
-class Api::V1::PagposController < ApplicationController
-  before_filter :authenticate_user!
-  # respond_to :json
+class TrackingPositionWorker
+  @queue = :tracking_position
 
-  def index
-  end
-
-  def show
-    tracking_code = params[:tracking_code]
-    @track = current_user.trackings.new(code: tracking_code)
-    if @track.save
-      # Resque.enqueue(PackagePosition, tracking_code)
-      PackagePosition.create(tracking_code)
-      render :status => 200, message: 'OK', :json => { success: true, message: "Add tracking code successfully"}
-    else
-      return render :status => 400, message: 'Bad request', :json => { success: false, errors: @track.errors.full_messages[0]}
-    end
-  end
-
-  def force_get_data
-    tracking_code = params[:tracking_code] #'EK087348335TH'
-    return render status: 400, message: 'Bad request', json: {success: false, message: 'tracking id is null' } if tracking_code.blank?    
+  def self.perform(tracking_code)
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
@@ -65,13 +47,14 @@ class Api::V1::PagposController < ApplicationController
         signature_name = signature.match(/[0-9]+/)[0]
         signature_url = url + 'Signatures/' + signature_name + '.jpg'
       end
+
       recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each_with_index do |tr, i|
         if i == 3
-          tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1].strip
-        end  
+          tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1]
+        end
       end
 
-      tracking_obj = Tracking.where(code: tracking_code).first
+      tracking_obj = Tracking.where(code: tracking_code, status: 'pending').first
       tracking_package = tracking_obj.packages
       if tracking_package.blank?
         tracking.each_with_index do |process, index|
@@ -80,20 +63,22 @@ class Api::V1::PagposController < ApplicationController
           pac.department = process.last[:department]
           pac.description = process.last[:description]
           pac.status = process.last[:status]
-          pac.reciever = process.last[:reciever]
-          if signature_url.present? && !process.last[:reciever].blank?
+          pac.reciever = process.last[:reciever].strip
+          if not process.last[:reciever].blank?
             # pac.image = Image.new(attachment: URI.parse(signature_url))
-            upload = UrlUpload.new(signature_url)
-            directory = "public/system/signature/"
-            user_dir = directory + tracking_obj.user._id.to_s
-            Dir.mkdir(user_dir) unless File.exists?(user_dir)
-            path = File.join(user_dir, upload.original_filename)
-            File.open(path, "wb") { |f| f.write(upload.read) }
+            if signature_url.present? 
+              upload = UrlUpload.new(signature_url)
+              directory = "public/system/signature/"
+              user_dir = directory + tracking_obj.user._id.to_s
+              Dir.mkdir(user_dir) unless File.exists?(user_dir)
+              path = File.join(user_dir, upload.original_filename)
+              File.open(path, "wb") { |f| f.write(upload.read) }
 
-            if File.exists?(path)
-              pac.signature = path
+              if File.exists?(path)
+                pac.signature = path
+              end
             end
-            tracking_obj.update_attributes(status: 'done')
+            # tracking_obj.update_attribute(:status, 'done')
           end
           pac.save
         end
@@ -105,32 +90,28 @@ class Api::V1::PagposController < ApplicationController
             pac.department = process.last[:department]
             pac.description = process.last[:description]
             pac.status = process.last[:status]
-            pac.reciever = process.last[:reciever]
-            if signature_url.present? && !process.last[:reciever].blank?
+            pac.reciever = process.last[:reciever].strip
+            if not process.last[:reciever].blank?
               # pac.image = Image.new(attachment: URI.parse(signature_url))
-              upload = UrlUpload.new(signature_url)
-              directory = "public/system/signature/"
-              user_dir = directory + tracking_obj.user._id.to_s
-              Dir.mkdir(user_dir) unless File.exists?(user_dir)
-              path = File.join(user_dir, upload.original_filename)
-              File.open(path, "wb") { |f| f.write(upload.read) }
+              if signature_url.present? 
+                upload = UrlUpload.new(signature_url)
+                directory = "public/system/signature/"
+                user_dir = directory + tracking_obj.user._id.to_s
+                Dir.mkdir(user_dir) unless File.exists?(user_dir)
+                path = File.join(user_dir, upload.original_filename)
+                File.open(path, "wb") { |f| f.write(upload.read) }
 
-              if File.exists?(path)
-                pac.signature = path
+                if File.exists?(path)
+                  pac.signature = path
+                end
               end
-              tracking_obj.update_attributes(status: 'done')
+              # tracking_obj.update_attribute(:status, 'done')
             end
             pac.save
           end
         end
       end
-      tracking_obj.packages_count = tracking.count
-      unless tracking_obj.packages.blank? && tracking_obj.packages.last.reciever.blank?
-        render :status => 200, message: 'OK', :json => { success: true, message: 'Received successfully', code: tracking_code}
-      else
-        render :status => 200, message: 'OK', :json => { success: true, message: 'During delivery', code: tracking_code}
-      end
+      tracking_obj.update_attribute(:packages_count, tracking.count)
     end # end if not
-
   end
 end

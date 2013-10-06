@@ -35,8 +35,7 @@ gem 'sidekiq'
 gem 'redis'
 
 gem 'resque', require: 'resque/server'  
-
-gem 'mailcatcher'
+gem 'whenever', :require => false
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
