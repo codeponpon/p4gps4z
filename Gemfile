@@ -39,6 +39,11 @@ gem 'whenever', :require => false
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+
 # gem 'aws-sdk', '~> 1.3.4'
 
   # bundle exec rake doc:rails generates the API under doc/api.
