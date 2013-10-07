@@ -1,0 +1,18 @@
+.row
+  .large-3.columns
+    %h1
+      %a{ href: "/" }
+        %img{src: "http://placehold.it/400x100&text=Logo"}/
+  .large-9.columns
+    %ul.right.button-group
+      %li
+        - unless current_user.nil?
+          = link_to "Tracking", track_positions_path
+          = link_to "Profile", user_profile_path
+          = link_to "Signout", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Twitter", api_v1_user_omniauth_authorize_path(:twitter)
+          = link_to "Google", api_v1_user_omniauth_authorize_path(:google_oauth2)
+          = link_to "Facebook", api_v1_user_omniauth_authorize_path(:facebook)
+          = link_to "Signin", new_user_session_path
+/ End Header and Nav

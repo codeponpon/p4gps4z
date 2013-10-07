@@ -1,4 +1,4 @@
-class Api::V1::TrackingsController < ApplicationController
+class Api::V1::TrackingsController < Devise::RegistrationsController
   before_filter :authenticate_user!
 
   def create

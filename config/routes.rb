@@ -9,9 +9,9 @@ Pagpos::Application.routes.draw do
   get 'pagpos/index' => "pagpos#index"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  get 'users/auth/facebook' => 'omniauth_callbacks#passthru'
-  get 'users/auth/google' => 'omniauth_callbacks#passthru'
-  get 'users/auth/twitter' => 'omniauth_callbacks#passthru'
+  # get 'users/auth/facebook' => 'omniauth_callbacks#passthru'
+  # get 'users/auth/google' => 'omniauth_callbacks#passthru'
+  # get 'users/auth/twitter' => 'omniauth_callbacks#passthru'
 
   devise_scope :user do
     # root to: 'devise/sessions#new'
@@ -25,10 +25,14 @@ Pagpos::Application.routes.draw do
   namespace :api do
     namespace :v1  do
       devise_for :users
+      root to: 'welcome#index'
       post 'add_tracking' => 'trackings#create'
       get 'force_get_data' => 'pagpos#force_get_data'
       get 'show' => 'pagpos#show'
-      get 'auth/:provider' => 'omniauth_callbacks#passthru'
+      # get 'auth/:provider' => 'omniauth_callbacks#passthru'
+      # get 'auth/facebook' => 'omniauth_callbacks#passthru'
+      # get 'auth/google' => 'omniauth_callbacks#passthru'
+      # get 'auth/twitter' => 'omniauth_callbacks#passthru'
     end
   end
 
