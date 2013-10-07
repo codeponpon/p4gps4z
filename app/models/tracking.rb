@@ -15,18 +15,20 @@ class Tracking
     user = self.user
     if user.reminder_when == 'status_change' && self.prev_packages_count < self.packages_count
       Resque.enqueue(StatusChangeNotificationWorker, self.code)
-      self.update_attribute(:prev_packages_count, self.packages_count)
     elsif user.reminder_when == 'specific_post' && self.last_department != self.packages.last.department
       Resque.enqueue(SpecificPostNotificationWorker, self.code)
       self.update_attribute(:last_department, self.packages.last.department)
-    end
-    
-    if not self.packages.map(&:reciever).reject(&:empty?).blank?
-      self.update_attribute(:status, 'done')
     end
   end
 
   def tracking_position
     Resque.enqueue(TrackingPositionWorker, self.code)
+  end
+
+  def update_status
+    self.update_attribute(:prev_packages_count, self.packages_count)
+    if not self.packages.map(&:reciever).reject(&:empty?).blank?
+      self.update_attribute(:status, 'done')
+    end
   end
 end

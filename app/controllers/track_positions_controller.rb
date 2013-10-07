@@ -10,7 +10,7 @@ class TrackPositionsController < ApplicationController
     tracking = params[:tracking]
     @tracking = Tracking.new(code: tracking[:code], user_id: tracking[:user_id])
     if @tracking.save
-      return render 'index'
+      return redirect_to action: 'index'
     else
       return render 'index'
     end

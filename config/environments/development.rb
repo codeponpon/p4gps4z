@@ -31,13 +31,5 @@ Pagpos::Application.configure do
 
   # these options are only needed if you choose smtp delivery
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
-  # config.action_mailer.smtp_settings = {
-  #   :address        => 'localhost',
-  #   :port           => 1025,
-  #   :domain         => 'localhost',
-  #   :authentication => :login,
-  #   :user_name      => 'www',
-  #   :password       => 'secret'
-  # }
-
+  
 end

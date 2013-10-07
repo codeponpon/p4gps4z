@@ -27,10 +27,15 @@ set :output, File.join(Dir.getwd, 'tmp', 'logs', 'cron_log.log')
 set :environment, 'development'
 
 every :reboot do
+  command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"
+  command "whenever --update-crontab"
   rake "resque:workers COUNT=5 QUEUE=*"
 end
 
 every 1.minute do 
   rake "pagpos:tracking"
+end
+
+every 2.minute do
   rake "pagpos:mail_notification"
 end

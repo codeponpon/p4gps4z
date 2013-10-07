@@ -12,12 +12,12 @@ class EmailNotification < ActionMailer::Base
   def status_change(tracking)
     @tracking = tracking
     @user = @tracking.user
-    mail( subject: 'Package status has changed', to: @user.email)
+    mail( subject: 'Package status has changed', to: @user.email )
   end
 
   def specific_post(tracking)
     @tracking = tracking
     @user = @tracking.user
-    mail( subject: 'Package notifications', to: @user.email)
+    mail( subject: 'Package notifications', to: @user.email )
   end
 end
