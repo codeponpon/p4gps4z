@@ -5,7 +5,7 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: pagposdb1
+      database: pagpos_development
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
@@ -65,7 +65,7 @@ development:
 test:
   sessions:
     default:
-      database: portalvhds3bznc434p61md
+      database: pagpos_test
       hosts:
         - mongodb:27017
       options:
