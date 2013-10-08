@@ -51,6 +51,6 @@ namespace :deploy do
   task :symlink_config, roles: :app do
     # Add database config here
   end
-  after "deploy:finalize_update", "deploy:fix_permissions"
+  # after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy:finalize_update", "deploy:symlink_config"
 end
