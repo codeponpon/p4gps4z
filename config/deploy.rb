@@ -23,7 +23,7 @@ set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-# set :normalize_asset_timestamps, false
+set :normalize_asset_timestamps, false
 
 namespace :deploy do
   # desc "Fix permissions"
@@ -50,6 +50,16 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     # Add database config here
+  end
+
+  namespace :assets do
+    desc "Precompile assets on local machine and upload them to the server."
+    task :precompile, roles: :web, except: {no_release: true} do
+      run_locally "bundle exec rake assets:precompile"
+      find_servers_for_task(current_task).each do |server|
+        run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}/"
+      end
+    end
   end
   # after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy:finalize_update", "deploy:symlink_config"
