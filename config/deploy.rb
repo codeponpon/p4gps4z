@@ -26,10 +26,10 @@ set :default_environment, {
 set :normalize_asset_timestamps, false
 
 namespace :deploy do
-  # desc "Fix permissions"
-  # task :fix_permissions, :roles => [ :app, :db, :web ] do
-  #   run "chmod +x #{release_path}/config/unicorn_init.sh"
-  # end
+  desc "Fix permissions"
+  task :fix_permissions, :roles => [ :app, :db, :web ] do
+    run "chmod +x #{release_path}/config/unicorn_init.sh"
+  end
 
 
   %w[start stop restart].each do |command|
@@ -66,7 +66,6 @@ namespace :deploy do
   #     end
   #   end
   # end
-  # after "deploy:finalize_update", "deploy:fix_permissions"
+  after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy:finalize_update", "deploy:symlink_config"
-  after "deploy:finalize_update", "deploy:cleanup"
 end
