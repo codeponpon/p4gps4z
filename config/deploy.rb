@@ -23,7 +23,7 @@ set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-set :normalize_asset_timestamps, false
+# set :normalize_asset_timestamps, false
 
 namespace :deploy do
   # desc "Fix permissions"
