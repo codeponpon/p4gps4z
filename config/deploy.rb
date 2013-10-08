@@ -52,6 +52,11 @@ namespace :deploy do
     # Add database config here
   end
 
+  namespace :assets do
+    task :update_asset_mtimes, :roles => lambda { assets_role }, :except => { :no_release => true } do
+    end
+  end
+  
   # namespace :assets do
   #   desc "Precompile assets on local machine and upload them to the server."
   #   task :precompile, roles: :web, except: {no_release: true} do
