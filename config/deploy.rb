@@ -67,5 +67,5 @@ namespace :deploy do
   #   end
   # end
   # after "deploy:finalize_update", "deploy:fix_permissions"
-  after "deploy:finalize_update", "deploy:symlink_config", "deploy:cleanup" 
+  after "deploy:finalize_update", "deploy:symlink_config" #, "deploy:cleanup" 
 end
