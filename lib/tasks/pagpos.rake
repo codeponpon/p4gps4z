@@ -18,9 +18,7 @@ namespace :pagpos do
         puts "Added tracking code to queue successfully!"
       rescue Exception => exception
         puts "Adding tracking code to queue failed!"
-        ErrorMailer.error_mail(exception).deliver if (Rails.env.production? or Rails.env.staging?)
         t.update_attribute(:status, "error")
-        ExceptionNotifier::Notifier.background_exception_notification(exception)
       end
     end
 
