@@ -6,7 +6,7 @@ set :user, "pagposazure"
 
 
 set :scm, :git
-set :repository, "git@github.com:codeponpon/p4gps4z.git"
+set :repository, "https://github.com/codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
