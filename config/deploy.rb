@@ -19,6 +19,11 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:port] = 22
 
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
+
+set :normalize_asset_timestamps, false
 
 namespace :deploy do
   desc "Fix permissions"
