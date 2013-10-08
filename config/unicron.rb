@@ -1,4 +1,4 @@
-root = "/home/pagposazure/apps/pagpos/current"
+root = "/home/pagposazure/apps/pagpos/releases"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"

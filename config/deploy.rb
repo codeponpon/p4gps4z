@@ -6,7 +6,7 @@ set :user, "pagposazure"
 
 
 set :scm, :git
-set :repository, "git@example.com:codeponpon/p4gps4z.git"
+set :repository, "git@github.com:codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
@@ -17,7 +17,7 @@ server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
 set :deploy_to, "/home/#{user}/apps/#{application}"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-ssh_options[:port] = SSHPort
+ssh_options[:port] = 22
 
 
 namespace :deploy do
