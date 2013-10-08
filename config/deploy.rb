@@ -28,7 +28,7 @@ set :normalize_asset_timestamps, false
 namespace :deploy do
   desc "Fix permissions"
   task :fix_permissions, :roles => [ :app, :db, :web ] do
-    run "chmod +x #{current_path}/config/unicorn_init.sh"
+    run "chmod +x #{release_path}/config/unicron_init.sh"
   end
 
 
