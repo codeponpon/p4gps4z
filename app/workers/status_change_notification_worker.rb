@@ -17,8 +17,5 @@ class StatusChangeNotificationWorker
     else
       EmailNotification.status_change(tracking).deliver
     end
-
-    Resque.enqueue(PushNotificationWorker, tracking_code)
-    tracking.update_status
   end
 end

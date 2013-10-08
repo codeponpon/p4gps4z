@@ -13,6 +13,9 @@ class EmailNotification < ActionMailer::Base
     @tracking = tracking
     @user = @tracking.user
     mail( subject: 'Package status has changed', to: @user.email )
+
+    Resque.enqueue(PushNotificationWorker, @tracking.code)
+    @tracking.update_tracking_status
   end
 
   def specific_post(tracking)

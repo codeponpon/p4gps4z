@@ -77,4 +77,15 @@ Pagpos::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.delivery_method = :smtp
+
+  # Disable delivery errors, bad email addresses will be ignored
+  config.action_mailer.raise_delivery_errors = true
+  
+  config.action_mailer.default_url_options = { :host => "www.pagpos.com" }
+  
+  # Stripe
+  # Stripe.api_key = ""
+  # STRIPE_PUBLIC_KEY = ""
 end

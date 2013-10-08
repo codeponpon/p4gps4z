@@ -25,7 +25,7 @@ class Tracking
     Resque.enqueue(TrackingPositionWorker, self.code)
   end
 
-  def update_status
+  def update_tracking_status
     self.update_attribute(:prev_packages_count, self.packages_count)
     if not self.packages.map(&:reciever).reject(&:empty?).blank?
       self.update_attribute(:status, 'done')

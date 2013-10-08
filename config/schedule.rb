@@ -28,8 +28,8 @@ set :environment, 'development'
 
 every :reboot do
   command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"
-  command "whenever --update-crontab"
-  rake "resque:workers COUNT=5 QUEUE=*"
+  command "whenever --update-crontab pagpos"
+  rake "resque:workers QUEUE=*"
 end
 
 every 1.minute do 
