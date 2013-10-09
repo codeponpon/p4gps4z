@@ -25,8 +25,6 @@ set :default_environment, {
 
 set :normalize_asset_timestamps, false
 
-before 'deploy', 'deploy:remove_assets'
-
 namespace :deploy do
   desc "Fix permissions"
   task :fix_permissions, :roles => [ :app, :db, :web ] do
@@ -34,7 +32,7 @@ namespace :deploy do
   end
 
 
-  %w[start stop restart].each do |command|
+  %w[restart stop start].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
       run "service unicorn_#{application} #{command}"
@@ -73,6 +71,7 @@ namespace :deploy do
   #   end
   # end
 
+  before 'deploy:assets:precompile', 'deploy:remove_assets'
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
 end
