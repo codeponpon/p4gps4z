@@ -52,9 +52,9 @@ namespace :deploy do
     # Add database config here
   end
 
-  task :remove_assets, roles: :app do 
-    run "bundle exec rake assets:clean"
-  end
+  # task :remove_assets, roles: :app do 
+  #   run "bundle exec rake assets:clean"
+  # end
 
   namespace :assets do
     task :update_asset_mtimes, :roles => lambda { assets_role }, :except => { :no_release => true } do
@@ -73,5 +73,5 @@ namespace :deploy do
 
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
-  after "deploy:finalize_update", "deploy:remove_assets"
+  # after "deploy:finalize_update", "deploy:remove_assets"
 end
