@@ -2,7 +2,7 @@ namespace :pagpos do
   desc 'Tracking package from post and save to DB'
   task :tracking => :environment do
     puts 'Checking tracking code to be add to queue'
-    tracking = Tracking.in(status: ['pending'])
+    tracking = Tracking.where(status: 'pending')
     tracking.each do |t|
       t.tracking_position
     end
@@ -10,7 +10,7 @@ namespace :pagpos do
 
   desc "Send notification by email"
   task :mail_notification => :environment do
-    tracking = Tracking.in(status: ['pending'])
+    tracking = Tracking.where(status: 'pending')
     tracking.each do |t|
       Time.zone = t.user.try(:time_zone) || 'UTC'
       begin
