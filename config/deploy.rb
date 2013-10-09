@@ -71,7 +71,7 @@ namespace :deploy do
   #   end
   # end
 
-  before 'deploy:assets:precompile', 'deploy:remove_assets'
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
+  after "deploy:finalize_update", "deploy:remove_assets"
 end
