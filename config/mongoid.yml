@@ -3,4 +3,4 @@ production:
     default:
       database: pagpos_production
       hosts:
-        - localhost:27017
+        - mongodb://pagposv1.cloudapp.net:27017
