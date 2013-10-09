@@ -3,4 +3,4 @@ production:
     default:
       database: pagpos_production
       hosts:
-        - mongodb://pagposv1.cloudapp.net:27017
+        - pagposv1.cloudapp.net
