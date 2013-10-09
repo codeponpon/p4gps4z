@@ -26,7 +26,6 @@ class Api::V1::PagposController < ApplicationController
     f1 = t.form('Form1')
     f1.TextBarcode = tracking_code
     post = a.submit(f1, f1.buttons.last)
-
     if not post.uri.path.scan('Result.aspx').first.nil?
       html = post.body.gsub!(/signature.aspx/, url + 'signature.aspx').encode("UTF-8", "tis-620")
       tracking = Hash.new({})
@@ -74,7 +73,7 @@ class Api::V1::PagposController < ApplicationController
           end
         end
 
-        tracking_obj = Tracking.where(code: tracking_code, status: 'pending').first
+        tracking_obj = Tracking.where(code: tracking_code).first
         tracking_package = tracking_obj.blank? ? nil : tracking_obj.packages
         if tracking_package.blank? && !tracking_obj.blank?
           tracking.each_with_index do |process, index|
@@ -132,8 +131,8 @@ class Api::V1::PagposController < ApplicationController
           end
         end
         tracking_obj.update_attribute(:packages_count, tracking.count)
+        return render json: {data: tracking}
       end # error data not found
     end # end if not
-
   end
 end

@@ -7,6 +7,9 @@ class TrackingPositionWorker
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
     t = a.get(trackurl)
     f1 = t.form('Form1')
+    if not f1.TextBarcode.present?
+      return render text: 'Page not found input to fillin code'
+    end
     f1.TextBarcode = tracking_code
     post = a.submit(f1, f1.buttons.last)
 
