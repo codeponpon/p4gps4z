@@ -24,6 +24,7 @@
 # every :day, :at => '12:20am', :roles => [:app]
 
 set :output, File.join(Dir.getwd, 'tmp', 'logs', 'cron_log.log')
+set :environment, ENV['RAILS_ENV']
 
 every :reboot do
   command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"

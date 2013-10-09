@@ -10,8 +10,6 @@ set :repository, "https://github.com/codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
-set :whenever_environment, "production"
-set :whenever_identifier, defer { "#{application}_production" }
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
