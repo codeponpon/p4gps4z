@@ -53,7 +53,7 @@ namespace :deploy do
   end
 
   task :remove_assets, roles: :app do 
-    run "rm -rf * #{shared_path}/assets/*"
+    run "RAILS_ENV=production bundle exec rake assets:clean"
   end
 
   namespace :assets do
