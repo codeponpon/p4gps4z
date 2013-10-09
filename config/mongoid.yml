@@ -3,4 +3,4 @@ production:
     default:
       database: pagpos_production
       hosts:
-        - mongodb:27017
+        - localhost:27017
