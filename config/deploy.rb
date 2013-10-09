@@ -32,7 +32,7 @@ namespace :deploy do
   end
 
 
-  %w[restart stop start].each do |command|
+  %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
       run "service unicorn_#{application} #{command}"

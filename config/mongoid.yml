@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - mongodb:27017
+        - mongodb://pagposv1.cloudapp.net:27017/?replicaSet=mongors"
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -67,7 +67,7 @@ test:
     default:
       database: pagpos_test
       hosts:
-        - mongodb:27017
+        - mongodb://pagposv1.cloudapp.net:27017/?replicaSet=mongors"
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
