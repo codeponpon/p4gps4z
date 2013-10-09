@@ -54,8 +54,8 @@ namespace :deploy do
     # Add database config here
   end
 
-  task :run_whenever, roles: :app do
-    run "#{whenever_command}"
+  task :run_whenever, roles: :app, except: {no_release: true} do
+    run "cd #{release_path} && #{whenever_command}"
   end
 
   # task :remove_assets, roles: :app do 
