@@ -54,7 +54,7 @@ namespace :deploy do
     # Add database config here
   end
 
-  task :run_whenever, role: :app do
+  task :run_whenever, roles: :app do
     run "#{whenever_command}"
   end
 
