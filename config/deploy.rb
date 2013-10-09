@@ -10,7 +10,7 @@ set :repository, "https://github.com/codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
-set :whenever_command, "bundle exec whenever"
+set :whenever_command, "RAILS_ENV=production bundle exec whenever"
 require "whenever/capistrano"
 
 server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
