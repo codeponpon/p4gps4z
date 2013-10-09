@@ -28,7 +28,7 @@ set :output, File.join(Dir.getwd, 'tmp', 'logs', 'cron_log.log')
 set :environment, Rails.env || ENV['RAILS_ENV'] || "development"
 
 every :reboot do
-  command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"
+  # command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"
   rake "resque:workers COUNT=5 QUEUE=*"
 end
 

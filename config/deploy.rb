@@ -56,6 +56,7 @@ namespace :deploy do
 
   task :run_whenever, roles: :app, except: {no_release: true} do
     run "cd #{release_path} && #{whenever_command}"
+    run "cd #{release_path} && RAILS_ENV=production bundle exec whenever --update-crontab pagpos"
   end
 
   task :run_workers, roles: :app, except: {no_release: true} do
@@ -84,6 +85,6 @@ namespace :deploy do
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy", "deploy:run_whenever"
-  after "deploy:run_whenever", "deploy:run_workers"
+  # after "deploy:run_whenever", "deploy:run_workers"
   # after "deploy:finalize_update", "deploy:remove_assets"
 end
