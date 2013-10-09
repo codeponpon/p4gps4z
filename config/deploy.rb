@@ -10,7 +10,7 @@ set :repository, "https://github.com/codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
-set :whenever_command, "RAILS_ENV=production bundle exec whenever"
+set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
 server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
@@ -52,6 +52,9 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     # Add database config here
+  end
+
+  task :run_whenever, role: :app do
     run "#{whenever_command}"
   end
 
@@ -76,5 +79,6 @@ namespace :deploy do
 
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
+  after "deploy", "deploy:run_whenever"
   # after "deploy:finalize_update", "deploy:remove_assets"
 end
