@@ -25,6 +25,8 @@ set :default_environment, {
 
 set :normalize_asset_timestamps, false
 
+before 'deploy', 'deploy:remove_assets'
+
 namespace :deploy do
   desc "Fix permissions"
   task :fix_permissions, :roles => [ :app, :db, :web ] do
@@ -52,6 +54,10 @@ namespace :deploy do
     # Add database config here
   end
 
+  task :remove_assets do 
+    run "rm -rf * #{shared_path}/assets/*"
+  end
+
   namespace :assets do
     task :update_asset_mtimes, :roles => lambda { assets_role }, :except => { :no_release => true } do
     end
@@ -66,6 +72,7 @@ namespace :deploy do
   #     end
   #   end
   # end
+
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
 end
