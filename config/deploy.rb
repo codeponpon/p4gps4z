@@ -52,7 +52,7 @@ namespace :deploy do
     # Add database config here
   end
 
-  task :remove_assets do 
+  task :remove_assets, roles: :app do 
     run "rm -rf * #{shared_path}/assets/*"
   end
 
