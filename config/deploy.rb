@@ -59,7 +59,7 @@ namespace :deploy do
   end
 
   task :run_workers, roles: :app, except: {no_release: true} do
-    run "cd #{release_path} && RAILS_ENV=production COUNT=5 QUEUE=* bundle exec rake resque:workers"
+    run "cd #{release_path} && RAILS_ENV=production bundle exec rake resque:workers COUNT=5 QUEUE=* "
   end
 
   # task :remove_assets, roles: :app do 
@@ -83,7 +83,7 @@ namespace :deploy do
 
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
-  after "deploy:run_workers", "deploy:run_whenever"
-  after "deploy", "deploy:run_workers --silent"
+  after "deploy", "deploy:run_whenever"
+  after "deploy:run_whenever", "deploy:run_workers"
   # after "deploy:finalize_update", "deploy:remove_assets"
 end
