@@ -11,7 +11,7 @@ set :branch, "master"
 set :use_sudo, true
 
 set :whenever_environment, "production"
-set :whenever_identifier, defer { "#{application}_#{production}" }
+set :whenever_identifier, defer { "#{application}_production" }
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
