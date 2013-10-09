@@ -77,8 +77,9 @@ namespace :deploy do
   #   end
   # end
 
+  before "deploy:restart", "deploy:run_whenever"
+  before "deploy:start", "deploy:run_whenever"
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
-  after "deploy", "deploy:run_whenever"
   # after "deploy:finalize_update", "deploy:remove_assets"
 end
