@@ -1,8 +1,3 @@
-set :whenever_environment, defer { stage }
-set :whenever_identifier, defer { "#{application}_#{stage}" }
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
-
 # require "bundler/capistrano"
 
 
@@ -15,6 +10,10 @@ set :repository, "https://github.com/codeponpon/p4gps4z.git"
 set :branch, "master"
 set :use_sudo, true
 
+set :whenever_environment, "production"
+set :whenever_identifier, defer { "#{application}_#{production}" }
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
 
