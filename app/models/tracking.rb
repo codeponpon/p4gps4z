@@ -14,9 +14,9 @@ class Tracking
   def sendmail_asynchronously
     user = self.user
     if user.reminder_when == 'status_change' && self.prev_packages_count < self.packages_count
-      Resque.enqueue(StatusChangeNotificationWorker, [self, self.user.reminder_by])
+      Resque.enqueue(StatusChangeNotificationWorker, self.code)
     elsif user.reminder_when == 'specific_post' && self.last_department != self.packages.last.department
-      Resque.enqueue(SpecificPostNotificationWorker, [self, self.user.reminder_by])
+      Resque.enqueue(SpecificPostNotificationWorker, self.code)
       self.update_attribute(:last_department, self.packages.last.department)
     end
   end
