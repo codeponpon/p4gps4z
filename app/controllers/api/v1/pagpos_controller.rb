@@ -1,5 +1,5 @@
 class Api::V1::PagposController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :force_get_data
   # respond_to :json
 
   def index
@@ -103,7 +103,7 @@ class Api::V1::PagposController < ApplicationController
           end
         else
           tracking.each_with_index do |process, index|
-            if (index-1) > tracking_obj.packages.count
+            if not tracking_obj.blank? && (index-1) > tracking_obj.packages.count
               pac = tracking_objpackages.new
               pac.process_at = process.last[:process_at]
               pac.department = process.last[:department]
