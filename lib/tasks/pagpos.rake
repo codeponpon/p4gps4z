@@ -1,8 +1,11 @@
 require 'resque/tasks'
 
 task "resque:setup" => :environment
+task "resque:work"
 
 namespace :pagpos do
+  task :setup => :environment
+
   desc 'Tracking package from post and save to DB'
   task :tracking => :environment do
     puts 'Checking tracking code to be add to queue'
