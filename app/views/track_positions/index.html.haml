@@ -27,7 +27,7 @@
             = t.code
           %td
             - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
-            %span{class: "#{status} radius label"}=t.status
+            %span{class: "#{status} radius label"}=@status
           %td
             = link_to "Details", tracking_details_path(t.code), class: 'button', disabled: status == 'alert' ? true : false
   .large-3.columns

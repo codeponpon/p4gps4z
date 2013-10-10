@@ -28,5 +28,9 @@ class TrackPositionsController < ApplicationController
   private
     def trackings
       @trackings = current_user.trackings
+      @status = @trackings.status
+      if @trackings.status == 'pending' && !@trackings.paclages.blank?
+        @status = 'ontheway'  
+      end
     end
 end
