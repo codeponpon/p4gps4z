@@ -71,12 +71,12 @@ namespace :deploy do
   end
 
   task :run_whenever, roles: :app, except: {no_release: true} do
-    run "cd #{release_path} && #{whenever_command}"
-    run "cd #{release_path} && RAILS_ENV=production bundle exec whenever --update-crontab pagpos"
+    run "cd #{current_path} && #{whenever_command}"
+    run "cd #{current_path} && RAILS_ENV=production bundle exec whenever --update-crontab pagpos"
   end
 
   task :run_workers, roles: :app, except: {no_release: true} do
-    run "cd #{release_path} && RAILS_ENV=production bundle exec rake resque:workers COUNT=5 QUEUE=* "
+    run "cd #{current_path} && RAILS_ENV=production bundle exec rake resque:workers COUNT=5 QUEUE=* "
   end
 
   # task :remove_assets, roles: :app do 

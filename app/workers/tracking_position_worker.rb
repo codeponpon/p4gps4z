@@ -72,6 +72,7 @@ class TrackingPositionWorker
               if signature_url.present? 
                 upload = UrlUpload.new(signature_url)
                 directory = "public/system/signature/"
+                Dir.mkdir(directory) unless File.exists?(directory)
                 user_dir = directory + tracking_obj.user._id.to_s
                 Dir.mkdir(user_dir) unless File.exists?(user_dir)
                 path = File.join(user_dir, upload.original_filename)
@@ -99,6 +100,7 @@ class TrackingPositionWorker
                 if signature_url.present? 
                   upload = UrlUpload.new(signature_url)
                   directory = "public/system/signature/"
+                  Dir.mkdir(directory) unless File.exists?(directory)
                   user_dir = directory + tracking_obj.user._id.to_s
                   Dir.mkdir(user_dir) unless File.exists?(user_dir)
                   path = File.join(user_dir, upload.original_filename)
