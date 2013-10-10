@@ -94,7 +94,7 @@ class TrackingPositionWorker
           tracking.each_with_index do |process, index|
             if (index-1) > package_obj.count
               pac = Package.new
-              pack.tracking_id = tracking_obj.id
+              pac.tracking_id = tracking_obj.id
               pac.process_at = process.last[:process_at]
               pac.department = process.last[:department]
               pac.description = process.last[:description]
