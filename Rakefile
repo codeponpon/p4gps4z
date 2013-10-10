@@ -5,12 +5,12 @@ require File.expand_path('../config/application', __FILE__)
 
 Pagpos::Application.load_tasks
 
-begin
-  # move from lib/task/resque.rake
-  require 'resque/tasks'
+# begin
+#   # move from lib/task/resque.rake
+#   require 'resque/tasks'
 
-  task "resque:setup" => :environment
+#   task "resque:setup" => :environment
 
-rescue LoadError
-  STDERR.puts "error loading all rake tasks"
-end
+# rescue LoadError
+#   STDERR.puts "error loading all rake tasks"
+# end
