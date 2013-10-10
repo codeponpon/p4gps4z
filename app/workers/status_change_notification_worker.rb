@@ -3,7 +3,7 @@ class StatusChangeNotificationWorker
   
   def self.perform(tracking_code)
     tracking = Tracking.where(code: tracking_code).first
-    user = tracking.user
+    user = User.find(tracking.user_id)
     reminder_by = user.reminder_by
 
     if reminder_by == 'email'
