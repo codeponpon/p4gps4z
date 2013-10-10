@@ -14,7 +14,7 @@ set :whenever_command, "RAILS_ENV=production bundle exec whenever"
 require "whenever/capistrano"
 
 server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
-
+server "pagposv1.cloudapp.net", :web, :app, :worker
 
 set :deploy_to, "/home/#{user}/apps/#{application}"
 default_run_options[:pty] = true
