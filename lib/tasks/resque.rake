@@ -5,7 +5,7 @@ task "resque:work"
 
 namespace :resque do  
   task :setup => :environment do
-    include Mongoid::Document
+    Mongoid::Criteria.send(:descendants).each { |klass|  klass.columns }
   end
   
   desc "Restart running workers"

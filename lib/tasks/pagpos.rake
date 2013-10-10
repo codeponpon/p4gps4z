@@ -5,7 +5,7 @@ task "resque:work"
 
 namespace :pagpos do
   task :setup => :environment do
-    include Mongoid::Document
+    Mongoid::Criteria.send(:descendants).each { |klass|  klass.columns }
   end
 
   desc 'Tracking package from post and save to DB'
