@@ -23,18 +23,13 @@
 # every 0 0 27-31 * *
 # every :day, :at => '12:20am', :roles => [:app]
 
-set :output, File.join(Dir.getwd, 'tmp', 'logs', 'cron_log.log')
+set :output, File.join(Dir.getwd, 'log', 'cron_log.log') 
 set :environment, ENV['RAILS_ENV'] || "development"
 
-every :reboot do
-  # command "whenever -i #{File.join(Dir.getwd, 'config', 'schedule.rb')}"
-  rake "resque:workers COUNT=5 QUEUE=*"
-end
-
 every 1.minute do 
-  rake "pagpos:tracking"
+  rake "environment pagpos:tracking"
 end
 
 every 2.minute do
-  rake "pagpos:mail_notification"
+  rake "environment pagpos:mail_notification"
 end
