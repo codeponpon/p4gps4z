@@ -26,8 +26,11 @@
           %td 
             = t.code
           %td
+            - package_status = t.status
+            - if package_status == 'pending' && !t.packages.blank?
+              - package_status = 'ontheway'
             - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
-            %span{class: "#{status} radius label"}=@status
+            %span{class: "#{status} radius label"}=package_status
           %td
             = link_to "Details", tracking_details_path(t.code), class: 'button', disabled: status == 'alert' ? true : false
   .large-3.columns
