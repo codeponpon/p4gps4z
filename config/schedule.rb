@@ -22,7 +22,6 @@
 # every :sunday .. :saturday, :weekend, :weekday
 # every 0 0 27-31 * *
 # every :day, :at => '12:20am', :roles => [:app]
-require File.expand_path('../environment', __FILE__)
 
 set :output, File.join(Dir.getwd, 'tmp', 'logs', 'cron_log.log')
 set :environment, Rails.env || ENV['RAILS_ENV'] || "development"
