@@ -4,7 +4,9 @@ task "resque:setup" => :environment
 task "resque:work"
 
 namespace :pagpos do
-  task :setup => :environment
+  task :setup => :environment do
+    include Mongoid::Document
+  end
 
   desc 'Tracking package from post and save to DB'
   task :tracking => :environment do

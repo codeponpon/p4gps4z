@@ -4,7 +4,9 @@ task "resque:setup" => :environment
 task "resque:work"
 
 namespace :resque do  
-  task :setup => :environment
+  task :setup => :environment do
+    include Mongoid::Document
+  end
   
   desc "Restart running workers"
   task :restart_workers => :environment do
