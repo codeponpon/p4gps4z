@@ -1,3 +1,7 @@
+require 'resque/tasks'
+
+task "resque:setup" => :environment
+
 namespace :pagpos do
   desc 'Tracking package from post and save to DB'
   task :tracking => :environment do
