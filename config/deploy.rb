@@ -76,7 +76,7 @@ namespace :deploy do
   end
 
   task :run_workers, roles: :app, except: {no_release: true} do
-    run "cd #{current_path} && RAILS_ENV=production bundle exec rake resque:workers COUNT=5 QUEUE=* "
+    run "cd #{current_path} && PIDFILE=./resque.pid BACKGROUND=yes COUNT=5 QUEUE=* bundle exec rake environment resque:workers"
   end
 
   # task :remove_assets, roles: :app do 

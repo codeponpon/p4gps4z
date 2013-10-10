@@ -1,8 +1,7 @@
 class StatusChangeNotificationWorker  
   @queue = :status_change_notification_queue
   
-  def self.perform(tracking_code)
-    tracking = Tracking.where(code: tracking_code).first
+  def self.perform(tracking)
     user = tracking.user
     reminder_by = user.reminder_by
 
