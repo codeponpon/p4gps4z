@@ -57,11 +57,12 @@ class TrackingPositionWorker
           end
         end
 
-        tracking_obj = Tracking.where(code: tracking_code, status: 'pending').first
-        tracking_package = tracking_obj.blank? ? nil : tracking_obj.packages
-        if tracking_package.blank? && !tracking_obj.blank?
+        tracking_obj = Tracking.where(code: tracking_code).first
+        package_obj = Package.where(tracking_id: tracking_obj.id)
+        if package_obj.blank?
           tracking.each_with_index do |process, index|
-            pac = tracking_obj.packages.new
+            pac = Package.new
+            pac.tracking_id = tracking_obj.id
             pac.process_at = process.last[:process_at]
             pac.department = process.last[:department]
             pac.description = process.last[:description]
@@ -88,8 +89,9 @@ class TrackingPositionWorker
           end
         else
           tracking.each_with_index do |process, index|
-            if (index-1) > tracking_obj.packages.count
-              pac = tracking_objpackages.new
+            if (index-1) > package_obj.count
+              pac = Package.new
+              pack.tracking_id = tracking_obj.id
               pac.process_at = process.last[:process_at]
               pac.department = process.last[:department]
               pac.description = process.last[:description]
