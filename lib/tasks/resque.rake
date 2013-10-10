@@ -4,11 +4,8 @@ task "resque:setup" => :environment
 task "resque:work"
 
 namespace :resque do  
-  task :setup => :environment do 
-    raise "Please set your RESQUE_WORKER variable to true" unless ENV['RESQUE_WORKER'] == "true"
-    Dir[File.join(Rails.root, 'app', 'workers', '*.rb')].each { |file| require file if file.present? }
-  end
-  
+  task :setup => :environment
+ 
   desc "Restart running workers"
   task :restart_workers => :environment do
     Rake::Task['resque:stop_workers'].invoke
@@ -72,7 +69,7 @@ namespace :resque do
     count.times do
       ## Using Kernel.spawn and Process.detach because regular system() call would
       ## cause the processes to quit when capistrano finishes
-      pid = spawn(env_vars, "rake environment resque:work RESQUE_WORKER=true", ops)
+      pid = spawn(env_vars, "rake resque:work", ops)
       Process.detach(pid)
       pids << pid
     end
