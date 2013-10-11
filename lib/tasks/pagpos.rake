@@ -28,7 +28,6 @@ namespace :pagpos do
       puts "All tracking was done"
     end
   end
-  
 end
 
 def get_pendings

@@ -33,6 +33,7 @@ class User
   field :token_fb, :type => String
 
   field :gender, :type => String
+  field :specific_department, :type => String 
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
@@ -59,6 +60,7 @@ class User
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
+        registered_user.update_attributes(token_fb: auth.credentials.token)
         return registered_user
       else
         user = User.create( token_fb:auth.credentials.token,
