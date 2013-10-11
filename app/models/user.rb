@@ -30,6 +30,7 @@ class User
 
   field :provider, :type => String
   field :uid, :type => String
+  field :token_fb, :type => String
 
   field :gender, :type => String
 
@@ -60,7 +61,8 @@ class User
       if registered_user
         return registered_user
       else
-        user = User.create(name:auth.extra.raw_info.name,
+        user = User.create( token_fb:auth.credentials.token,
+                            name:auth.extra.raw_info.name,
                             provider:auth.provider,
                             uid:auth.uid,
                             email:auth.info.email,

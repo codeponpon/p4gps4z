@@ -46,6 +46,8 @@ gem 'omniauth-twitter'
 
 gem "parse-ruby-client"
 
+gem 'xmpp4r_facebook'
+
 # gem 'exception_notification'
 
 # gem 'aws-sdk', '~> 1.3.4'

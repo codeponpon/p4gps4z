@@ -20,6 +20,8 @@ Pagpos::Application.routes.draw do
     put 'users/:id' => 'users#update', as: 'user_update'
     get 'user_profile' => 'users#edit'
     get 'users/auth/:provider' => 'omniauth_callbacks#passthru'
+
+    get 'send_fbchat' => 'api/v1/pagpos#fbchat'
   end
 
   namespace :api do

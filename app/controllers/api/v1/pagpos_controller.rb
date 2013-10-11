@@ -1,5 +1,5 @@
-class Api::V1::PagposController < ApplicationController
-  before_filter :authenticate_user!, except: :force_get_data
+class Api::V1::PagposController < Devise::SessionsController
+  before_filter :authenticate_user!, except: [:force_get_data]
   # respond_to :json
 
   def index
@@ -136,5 +136,31 @@ class Api::V1::PagposController < ApplicationController
         return render json: {data: tracking}
       end # error data not found
     end # end if not
+  end
+
+  def fbchat
+    require 'xmpp4r_facebook'
+    reciever_uid = '625109503'
+    sender_uid = current_user.uid
+    fbtoken = 'CAACEdEose0cBALi1HpHhmsm6TckDbR76goJvegKzq2hEfP9QTzAS71vwhAhKEhnN7EQ61kwDM3JZCc0sQrqw44Bjhgw8AWd2XQ1ZCF5nNnX7sMhFKZBB6ZAdSeY023NNBJUCHc6YAlmqpgzXrDFSf9NeIZC53cWkwYxVGcjILFhGaxBLFUC8L3L8wrODfsxZBJC0axQCiDAwZDZD'
+    fb_app_id = Devise.omniauth_configs[:facebook].strategy[:client_id]
+    fb_app_secret = Devise.omniauth_configs[:facebook].strategy[:client_secret]
+
+
+    id = "#{sender_uid}@chat.facebook.com"
+    to = "#{reciever_uid}@chat.facebook.com"
+    body = "Hello World"
+
+    # subject = 'message from ruby'
+    message = Jabber::Message.new to, body
+    # message.subject = subject
+
+    client = Jabber::Client.new Jabber::JID.new(id)
+    client.connect
+    client.auth_sasl(Jabber::SASL::XFacebookPlatform.new(client, fb_app_id, fbtoken, fb_app_secret), nil)
+    client.send message
+    client.close
+
+    return render json: { data: client.status }
   end
 end
