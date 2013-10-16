@@ -47,6 +47,6 @@ class Api::V1::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    return render json: { success: false, errors: [t('api.v1.sessions.invalid_login')] }, :status => :unauthorized
+    return render :status => 401, message: 'Unauthorized',  json: { success: false, errors: [t('api.v1.sessions.invalid_login')] }
   end
 end
