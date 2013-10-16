@@ -1,4 +1,4 @@
-class Api::V1::PackagesController < Devise::RegistrationsController
+class Api::V1::PackagesController < Devise::SessionController
   before_filter :authenticate_user!
   respond_to :json
 

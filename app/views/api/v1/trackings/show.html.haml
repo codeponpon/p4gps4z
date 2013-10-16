@@ -1,0 +1,23 @@
+.large-12.columns
+  %h3= @tracking.code
+  %table
+    %thead
+      %tr
+        %th Date Process  
+        %th Department 
+        %th Description 
+        %th Status 
+        %th Reciever
+    %tbody
+    - @tracking.packages.each do |p| 
+      %tr
+        %td= p.process_at.squish
+        %td= p.department
+        %td= p.description
+        %td= p.status
+        %td= p.reciever
+      - if not p.signature.blank? 
+        %tr
+          %td{colspan: 4} &nbsp;
+          %td
+            = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)

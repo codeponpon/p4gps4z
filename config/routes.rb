@@ -22,6 +22,7 @@ Pagpos::Application.routes.draw do
     get 'users/auth/:provider' => 'omniauth_callbacks#passthru'
 
     get 'send_fbchat' => 'api/v1/pagpos#fbchat'
+
   end
 
   namespace :api do
@@ -33,7 +34,7 @@ Pagpos::Application.routes.draw do
       get 'trackings/:code/:token' => 'trackings#show', as: 'trackings'
       post 'trackings' => 'trackings#create'
       delete 'trackings' => 'tracking#destroy'
-
+      
       get 'force_get_data' => 'pagpos#force_get_data'
       get 'show' => 'pagpos#show'
       # get 'auth/:provider' => 'omniauth_callbacks#passthru'

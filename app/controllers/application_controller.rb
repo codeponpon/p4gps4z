@@ -27,6 +27,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_user
+    @user = User.where(_id: params[:token]).first
+    if @user.blank?
+      return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid user' }
+    end
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
