@@ -26,7 +26,11 @@ Pagpos::Application.routes.draw do
     namespace :v1  do
       devise_for :users
       root to: 'welcome#index'
-      post 'add_tracking' => 'trackings#create'
+      
+      get 'trackings' => 'trackings#index'
+      get 'tracking/:code/:token' => 'trackings#show', as:'tracking'
+      post 'tracking' => 'trackings#create'
+
       get 'force_get_data' => 'pagpos#force_get_data'
       get 'show' => 'pagpos#show'
       # get 'auth/:provider' => 'omniauth_callbacks#passthru'
