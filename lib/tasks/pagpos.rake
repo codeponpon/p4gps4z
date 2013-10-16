@@ -1,44 +1,35 @@
 namespace :pagpos do
+
   desc 'Tracking package from post and save to DB'
   task :tracking => :environment do
     puts 'Checking tracking code to be add to queue'
-    tracking = Tracking.where(status: 'pending')
-    tracking.each do |t|
-      t.tracking_position
+    get_pendings
+    @tracking.each do |t|
+      Resque.enqueue(TrackingPositionWorker, t.code)
     end
   end
 
-  desc "Send notification by email"
-  task :mail_notification => :environment do
-    tracking = Tracking.where(status: 'pending')
-    tracking.each do |t|
+  desc "Send email notification"
+  task :send_email_notification => :environment do
+    get_pendings
+    @tracking.each do |t|
       Time.zone = t.user.try(:time_zone) || 'UTC'
       begin
-        t.sendmail_asynchronously
-        puts "Added tracking code to queue successfully!"
+        reminder_when = t.user.reminder_when        
+        Resque.enqueue(SendEmailWorker, [t, reminder_when])
       rescue Exception => exception
-        puts "Adding tracking code to queue failed!"
+        puts "#{t.code} cannot add to queue"
         t.update_attribute(:status, "error")
       end
     end
 
-    if tracking.blank?
+    if @tracking.blank?
       puts "All tracking was done"
     end
   end
+  
+end
 
-  desc "Send notification by sms"
-  task :sms_notification => :environment do
-    # TODO
-  end  
-
-  desc "Send notification by WhatsApp"
-  task :whatsapp_notification => :environment do
-    # TODO
-  end
-
-  desc "Send notification by Facebook"
-  task :facebook_notification => :environment do
-    # TODO
-  end
+def get_pendings
+  @tracking = Tracking.in(status: ['pending'])
 end

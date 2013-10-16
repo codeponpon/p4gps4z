@@ -11,16 +11,6 @@ class Tracking
   field :prev_packages_count, type: Integer, default: 0
   field :last_department, type: String
 
-  def sendmail_asynchronously
-    user = self.user
-    if user.reminder_when == 'status_change' && self.prev_packages_count < self.packages_count
-      Resque.enqueue(StatusChangeNotificationWorker, self.code)
-    elsif user.reminder_when == 'specific_post' && self.last_department != self.packages.last.department
-      Resque.enqueue(SpecificPostNotificationWorker, self.code)
-      self.update_attribute(:last_department, self.packages.last.department)
-    end
-  end
-
   def tracking_position
     Resque.enqueue(TrackingPositionWorker, self.code)
   end
