@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    @user = User.where(_id: params[:token]).first
+    token = params[:token].present? ? params[:token] : params[:tracking][:token].present? ? params[:tracking][:token] : nil
+    @user = User.where(_id: token).first
     if @user.blank?
       return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid user' }
     end
