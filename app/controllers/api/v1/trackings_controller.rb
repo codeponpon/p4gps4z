@@ -31,11 +31,17 @@ class Api::V1::TrackingsController < ApplicationController
   end
 
   def destroy
-    tracking = @user.trackings.where(code: @code).first
-    if tracking.blank?
-      return render status: 400, message: 'Bad request', json: { success: false, error: 'Invalid tracking code' }
+    tracking = @user.trackings.where(code: @code).first    
+    tracking.packages.destroy_all
+    status = false;
+    if tracking.packages.blank?
+      status = true if tracking.destroy
+    end
+
+    if status
+      return render status: 200, message: 'OK', json: { success: true, message: 'Tracking code has been deleted.' }
     else
-      return render status: 200, message: 'OK', json: { success: true, message: 'Delete tracking code successfully' }
+      return render status: 200, message: 'OK', json: { success: false, errors: tracking.errors.full_messages }
     end
   end
 

@@ -27,9 +27,10 @@ Pagpos::Application.routes.draw do
       devise_for :users
       root to: 'welcome#index'
       
-      get 'trackings' => 'trackings#index'
-      get 'tracking/:code/:token' => 'trackings#show', as:'tracking'
-      post 'tracking' => 'trackings#create'
+      # Trackings always send :code and :token 
+      get 'trackings/:code/:token' => 'trackings#show', as: 'trackings'
+      post 'trackings' => 'trackings#create'
+      delete 'trackings' => 'tracking#destroy'
 
       get 'force_get_data' => 'pagpos#force_get_data'
       get 'show' => 'pagpos#show'

@@ -2,10 +2,10 @@
   .large-3.columns
     &nbsp;
   .large-6.columns
-    = simple_form_for(@tracking, :url => track_positions_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
+    = simple_form_for(@tracking, :url => api_v1_trackings_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
       = f.error_notification
       = f.input :code, placeholder: 'Tracking id', required: true, focus: true, value: '', label: false
-      = f.input :user_id, :as => :hidden, input_html: { value: current_user._id }
+      = f.input :token, :as => :hidden, input_html: { value: current_user._id }
       = submit_tag "Add", class:"small button radius center"
   .large-3.columns
     &nbsp;
@@ -17,21 +17,19 @@
     %table
       %thead
         %tr
-          %th{width: "200"} Tracking code
-          %th{width: "150"} Status
-          %th{width: "150"} 
+          %th{width: "100"} Tracking code
+          %th{width: "100"} Status
+          %th{width: "200"} 
       %tbody
       - @trackings.each do |t|
         %tr
           %td 
             = t.code
           %td
-            - package_status = t.status
-            - if package_status == 'pending' && !t.packages.blank?
-              - package_status = 'ontheway'
             - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
-            %span{class: "#{status} radius label"}=package_status
+            %span{class: "#{status} radius label"}=t.status
           %td
-            = link_to "Details", tracking_details_path(t.code), class: 'button', disabled: status == 'alert' ? true : false
+            = link_to "Details", api_v1_trackings_path(t.code, current_user.id), class: 'button', disabled: status == 'alert' ? true : false
+            = link_to "Delete", api_v1_trackings_path(t.code, current_user.id), class: 'button', method: :delete, :confirm => "You sure?" 
   .large-3.columns
     &nbsp;
