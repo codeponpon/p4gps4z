@@ -4,13 +4,27 @@ class Api::V1::TrackingsController < ApplicationController
   def show
     tracking = @user.trackings.where(code: @code).first
     if not tracking.blank?
-      response = {
+      response = []
+      tracking.packages.each do |package|
+        response << {
+          process_at: package.process_at,
+          department: package.department,
+          description: package.description,
+          status: package.status,
+          reciever: package.reciever,
+          signature: package.signature
+        }
+      end
+      
+      result = {
+        success: true, 
+        data: response, 
         code: tracking.code,
         status: tracking.status,
         craeted_at: tracking.created_at,
-        updated_at: tracking.updated_at
+        updated_at: tracking.updated_at 
       }
-      return render status: 200, message: 'OK', json: { success: true, data: response }
+      return render status: 200, message: 'OK', json: result
     else
       return render status: 400, message: 'Bad request', json: { status: false, error: 'Invalid code' }
     end
