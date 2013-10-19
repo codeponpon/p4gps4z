@@ -1,8 +1,8 @@
 Pagpos::Application.routes.draw do
-
-  get "trackings/:code/:token" => "track_positions#show", as: 'trackings'
-  post "trackings" => "track_positions#create"
-  delete "trackings" => "track_positions#destroy"
+  get 'trackings' => 'trackings#new', as: 'new_tracking'
+  get 'tracking/:code/:token' => 'trackings#show', as: 'tracking'
+  post 'trackings' => 'trackings#create'
+  delete 'tracking/:code/:token' => 'trackings#destroy'
 
   get 'welcome' => "welcome#index"
 

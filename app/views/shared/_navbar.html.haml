@@ -7,7 +7,7 @@
     %ul.right.button-group
       %li
         - unless current_user.nil?
-          = link_to "Tracking", track_positions_path
+          = link_to "Tracking", new_tracking_path
           = link_to "Profile", user_profile_path
           = link_to "Signout", destroy_user_session_path, method: :delete
         - else
