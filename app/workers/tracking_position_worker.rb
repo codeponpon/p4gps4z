@@ -1,5 +1,5 @@
 class TrackingPositionWorker
-  @queue = :tracking_position
+  @queue = :tracking_position_queue
 
   def self.perform(tracking_code)
     url = 'http://track.thailandpost.co.th/trackinternet/'

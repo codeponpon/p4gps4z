@@ -1,5 +1,5 @@
 class PushNotificationWorker
-  @queue = :push_notification_to_android
+  @queue = :mobile_push_notification_queue
 
   def self.perform(tracking_code)
     tracking = Tracking.where(code: tracking_code).first
