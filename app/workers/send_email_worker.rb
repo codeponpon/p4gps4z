@@ -9,7 +9,7 @@ class SendEmailWorker
       EmailNotification.specific_post(tracking_obj).deliver
       puts "Added Status specific post notifiction to queue successfully!"
     elsif reminder_when == 'status_change'
-      EmailNotification.status_change(tracking).deliver
+      EmailNotification.status_change(tracking_obj).deliver
       puts "Added Status change notifiction to queue successfully!"
     end
   end
