@@ -26,10 +26,12 @@ class User
   field :reminder_when, :type => String, :default => "status_change"
   field :reminder_by, :type => String, :default => "email"
 
-  field :time_zone, :type => String, :default => "UTC"
+  field :time_zone, :type => String, :default => 0
 
   field :provider, :type => String
   field :uid, :type => String
+
+  field :gender, :type => String
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
@@ -63,6 +65,7 @@ class User
                             uid:auth.uid,
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20],
+                            time_zone: auth.extra.raw_info.timezone
                           )
       end
        
