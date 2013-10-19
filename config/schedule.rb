@@ -32,5 +32,5 @@ every 1.minute do
 end
 
 every 2.minute do
-  rake "environment pagpos:mail_notification"
+  rake "environment pagpos:send_email_notification"
 end
