@@ -53,11 +53,4 @@ class Api::V1::TrackingsController < ApplicationController
       return render :status => 400, message: 'Bad request', :json => { success: false, error: @track.errors.full_messages[0]}
     end
   end
-
-  def require_tracking_code
-    @code = params[:code].present? ? params[:code] : params[:tracking][:code].present? ? params[:tracking][:code] : nil
-    if @code.blank?
-      return render status: 200, message: 'Bad request', json:{ success: false, error: 'Invalid tracking code' }
-    end
-  end
 end

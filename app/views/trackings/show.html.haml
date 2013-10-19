@@ -1,30 +1,23 @@
-%header
-  .row
-    .large-12.columns
-      .large-3.columns &nbsp;
-      .large-6.columns.center
-        %h1= @tracking.code
-      .large-3.columns &nbsp;
-%section.section_main      
-  .large-12.columns
-    %table
-      %thead
+.large-12.columns
+  %h3= @tracking.code
+  %table
+    %thead
+      %tr
+        %th Date Process  
+        %th Department 
+        %th Description 
+        %th Status 
+        %th Reciever
+    %tbody
+    - @tracking.packages.each do |p| 
+      %tr
+        %td= p.process_at.squish
+        %td= p.department
+        %td= p.description
+        %td= p.status
+        %td= p.reciever
+      - if not p.signature.blank? 
         %tr
-          %th Date Process  
-          %th Department 
-          %th Description 
-          %th Status 
-          %th Reciever
-      %tbody
-      - @tracking.packages.each do |p| 
-        %tr
-          %td= p.process_at.squish
-          %td= p.department
-          %td= p.description
-          %td= p.status
-          %td= p.reciever
-        - if not p.signature.blank? 
-          %tr
-            %td{colspan: 4} &nbsp;
-            %td
-              = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)
+          %td{colspan: 4} &nbsp;
+          %td
+            = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)

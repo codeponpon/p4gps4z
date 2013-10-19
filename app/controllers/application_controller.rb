@@ -28,10 +28,21 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
+    if current_user.present?
+      return @user = current_user
+    end
+    
     token = params[:token].present? ? params[:token] : params[:tracking][:token].present? ? params[:tracking][:token] : nil
     @user = User.where(_id: token).first
     if @user.blank?
       return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid user' }
+    end
+  end
+
+  def require_tracking_code
+    @code = params[:code].present? ? params[:code] : params[:tracking][:code].present? ? params[:tracking][:code] : nil
+    if @code.blank?
+      return render status: 200, message: 'Bad request', json:{ success: false, error: 'Invalid tracking code' }
     end
   end
 
