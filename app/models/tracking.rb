@@ -6,6 +6,7 @@ class Tracking
   validates :code, presence: true, uniqueness: {:scope => :user_id}, format: { with: /\A[E|C|R|L][A-Z][0-9]{9}[0-9A-Z]{2}\Z/ }, length: { is: 13 }
   
   field :code, type: String
+  field :description, type: String
   field :status, type: String, default: "pending"
   field :packages_count, type: Integer, default: 0
   field :prev_packages_count, type: Integer, default: 0
