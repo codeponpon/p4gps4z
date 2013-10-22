@@ -1325,13 +1325,12 @@ $default-float: left;
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
 @import 'foundation';
-
+@import 'foundation/general_foundicons';
 $backgroud-image: 'bg.jpg';
 
 body{
   margin: 0;
   padding: 0;
-  font: 100% "Helvetica Neue",Arial, Helvetica, sans-serif;
   color: #555;
   background: #f5f5f5 url($backgroud-image);
 }

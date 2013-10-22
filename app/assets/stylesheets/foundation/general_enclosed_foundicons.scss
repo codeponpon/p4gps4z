@@ -1,0 +1,71 @@
+@import "settings";
+
+/* font-face */
+@include faceGE;
+
+/* global foundicon styles */
+[class*="#{$classPrefixGeneralEnclosed}"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+[class*="#{$classPrefixGeneralEnclosed}"]:before {
+  font-family: $GeneralEnclosedFoundicons;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+}
+
+/* icons */
+@include i-class(settings,"000", $classPrefixGeneralEnclosed);
+@include i-class(heart,"001", $classPrefixGeneralEnclosed);
+@include i-class(star,"002", $classPrefixGeneralEnclosed);
+@include i-class(plus,"003", $classPrefixGeneralEnclosed);
+@include i-class(minus,"004", $classPrefixGeneralEnclosed);
+@include i-class(checkmark,"005", $classPrefixGeneralEnclosed);
+@include i-class(remove,"006", $classPrefixGeneralEnclosed);
+@include i-class(mail,"007", $classPrefixGeneralEnclosed);
+@include i-class(calendar,"008", $classPrefixGeneralEnclosed);
+@include i-class(page,"009", $classPrefixGeneralEnclosed);
+@include i-class(tools,"00a", $classPrefixGeneralEnclosed);
+@include i-class(globe,"00b", $classPrefixGeneralEnclosed);
+@include i-class(home,"00c", $classPrefixGeneralEnclosed);
+@include i-class(quote,"00d", $classPrefixGeneralEnclosed);
+@include i-class(people,"00e", $classPrefixGeneralEnclosed);
+@include i-class(monitor,"00f", $classPrefixGeneralEnclosed);
+@include i-class(laptop,"010", $classPrefixGeneralEnclosed);
+@include i-class(phone,"011", $classPrefixGeneralEnclosed);
+@include i-class(cloud,"012", $classPrefixGeneralEnclosed);
+@include i-class(error,"013", $classPrefixGeneralEnclosed);
+@include i-class(right-arrow,"014", $classPrefixGeneralEnclosed);
+@include i-class(left-arrow,"015", $classPrefixGeneralEnclosed);
+@include i-class(up-arrow,"016", $classPrefixGeneralEnclosed);
+@include i-class(down-arrow,"017", $classPrefixGeneralEnclosed);
+@include i-class(trash,"018", $classPrefixGeneralEnclosed);
+@include i-class(add-doc,"019", $classPrefixGeneralEnclosed);
+@include i-class(edit,"01a", $classPrefixGeneralEnclosed);
+@include i-class(lock,"01b", $classPrefixGeneralEnclosed);
+@include i-class(unlock,"01c", $classPrefixGeneralEnclosed);
+@include i-class(refresh,"01d", $classPrefixGeneralEnclosed);
+@include i-class(paper-clip,"01e", $classPrefixGeneralEnclosed);
+@include i-class(video,"01f", $classPrefixGeneralEnclosed);
+@include i-class(photo,"020", $classPrefixGeneralEnclosed);
+@include i-class(graph,"021", $classPrefixGeneralEnclosed);
+@include i-class(idea,"022", $classPrefixGeneralEnclosed);
+@include i-class(mic,"023", $classPrefixGeneralEnclosed);
+@include i-class(cart,"024", $classPrefixGeneralEnclosed);
+@include i-class(address-book,"025", $classPrefixGeneralEnclosed);
+@include i-class(compass,"026", $classPrefixGeneralEnclosed);
+@include i-class(flag,"027", $classPrefixGeneralEnclosed);
+@include i-class(location,"028", $classPrefixGeneralEnclosed);
+@include i-class(clock,"029", $classPrefixGeneralEnclosed);
+@include i-class(folder,"02a", $classPrefixGeneralEnclosed);
+@include i-class(inbox,"02b", $classPrefixGeneralEnclosed);
+@include i-class(website,"02c", $classPrefixGeneralEnclosed);
+@include i-class(smiley,"02d", $classPrefixGeneralEnclosed);
+@include i-class(search,"02e", $classPrefixGeneralEnclosed);

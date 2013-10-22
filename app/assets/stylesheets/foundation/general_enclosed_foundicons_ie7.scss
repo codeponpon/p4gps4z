@@ -1,0 +1,56 @@
+@import "settings";
+
+/* general icons for IE7 */
+[class*="#{$classPrefixGeneralEnclosed}"] {
+  font-family: $GeneralEnclosedFoundicons;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@include ie-class(settings,"000", $classPrefixGeneralEnclosed);
+@include ie-class(heart,"001", $classPrefixGeneralEnclosed);
+@include ie-class(star,"002", $classPrefixGeneralEnclosed);
+@include ie-class(plus,"003", $classPrefixGeneralEnclosed);
+@include ie-class(minus,"004", $classPrefixGeneralEnclosed);
+@include ie-class(checkmark,"005", $classPrefixGeneralEnclosed);
+@include ie-class(remove,"006", $classPrefixGeneralEnclosed);
+@include ie-class(mail,"007", $classPrefixGeneralEnclosed);
+@include ie-class(calendar,"008", $classPrefixGeneralEnclosed);
+@include ie-class(page,"009", $classPrefixGeneralEnclosed);
+@include ie-class(tools,"00a", $classPrefixGeneralEnclosed);
+@include ie-class(globe,"00b", $classPrefixGeneralEnclosed);
+@include ie-class(home,"00c", $classPrefixGeneralEnclosed);
+@include ie-class(quote,"00d", $classPrefixGeneralEnclosed);
+@include ie-class(people,"00e", $classPrefixGeneralEnclosed);
+@include ie-class(monitor,"00f", $classPrefixGeneralEnclosed);
+@include ie-class(laptop,"010", $classPrefixGeneralEnclosed);
+@include ie-class(phone,"011", $classPrefixGeneralEnclosed);
+@include ie-class(cloud,"012", $classPrefixGeneralEnclosed);
+@include ie-class(error,"013", $classPrefixGeneralEnclosed);
+@include ie-class(right-arrow,"014", $classPrefixGeneralEnclosed);
+@include ie-class(left-arrow,"015", $classPrefixGeneralEnclosed);
+@include ie-class(up-arrow,"016", $classPrefixGeneralEnclosed);
+@include ie-class(down-arrow,"017", $classPrefixGeneralEnclosed);
+@include ie-class(trash,"018", $classPrefixGeneralEnclosed);
+@include ie-class(add-doc,"019", $classPrefixGeneralEnclosed);
+@include ie-class(edit,"01a", $classPrefixGeneralEnclosed);
+@include ie-class(lock,"01b", $classPrefixGeneralEnclosed);
+@include ie-class(unlock,"01c", $classPrefixGeneralEnclosed);
+@include ie-class(refresh,"01d", $classPrefixGeneralEnclosed);
+@include ie-class(paper-clip,"01e", $classPrefixGeneralEnclosed);
+@include ie-class(video,"01f", $classPrefixGeneralEnclosed);
+@include ie-class(photo,"020", $classPrefixGeneralEnclosed);
+@include ie-class(graph,"021", $classPrefixGeneralEnclosed);
+@include ie-class(idea,"022", $classPrefixGeneralEnclosed);
+@include ie-class(mic,"023", $classPrefixGeneralEnclosed);
+@include ie-class(cart,"024", $classPrefixGeneralEnclosed);
+@include ie-class(address-book,"025", $classPrefixGeneralEnclosed);
+@include ie-class(compass,"026", $classPrefixGeneralEnclosed);
+@include ie-class(flag,"027", $classPrefixGeneralEnclosed);
+@include ie-class(location,"028", $classPrefixGeneralEnclosed);
+@include ie-class(clock,"029", $classPrefixGeneralEnclosed);
+@include ie-class(folder,"02a", $classPrefixGeneralEnclosed);
+@include ie-class(inbox,"02b", $classPrefixGeneralEnclosed);
+@include ie-class(website,"02c", $classPrefixGeneralEnclosed);
+@include ie-class(smiley,"02d", $classPrefixGeneralEnclosed);
+@include ie-class(search,"02e", $classPrefixGeneralEnclosed);

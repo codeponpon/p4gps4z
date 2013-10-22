@@ -1,10 +1,10 @@
 @import "settings";
 
 /* font-face */
-@include face;
+@include faceS;
 
 /* global foundicon styles */
-[class*="#{$classPrefix}"] {
+[class*="#{$classPrefixSocial}"] {
   display: inline;
   width: auto;
   height: auto;
@@ -14,7 +14,7 @@
   background-position: 0 0;
   background-repeat: repeat;
 }
-[class*="#{$classPrefix}"]:before {
+[class*="#{$classPrefixSocial}"]:before {
   font-family: $SocialFoundicons;
   font-weight: normal;
   font-style: normal;
@@ -22,33 +22,33 @@
 }
 
 /* icons */
-@include i-class(thumb-up,"000");
-@include i-class(thumb-down,"001");
-@include i-class(rss,"002");
-@include i-class(facebook,"003");
-@include i-class(twitter,"004");
-@include i-class(pinterest,"005");
-@include i-class(github,"006");
-@include i-class(path,"007");
-@include i-class(linkedin,"008");
-@include i-class(dribbble,"009");
-@include i-class(stumble-upon,"00a");
-@include i-class(behance,"00b");
-@include i-class(reddit,"00c");
-@include i-class(google-plus,"00d");
-@include i-class(youtube,"00e");
-@include i-class(vimeo,"00f");
-@include i-class(flickr,"010");
-@include i-class(slideshare,"011");
-@include i-class(picassa,"012");
-@include i-class(skype,"013");
-@include i-class(steam,"014");
-@include i-class(instagram,"015");
-@include i-class(foursquare,"016");
-@include i-class(delicious,"017");
-@include i-class(chat,"018");
-@include i-class(torso,"019");
-@include i-class(tumblr,"01a");
-@include i-class(video-chat,"01b");
-@include i-class(digg,"01c");
-@include i-class(wordpress,"01d");
+@include i-class(thumb-up,"000",$classPrefixSocial);
+@include i-class(thumb-down,"001",$classPrefixSocial);
+@include i-class(rss,"002",$classPrefixSocial);
+@include i-class(facebook,"003",$classPrefixSocial);
+@include i-class(twitter,"004",$classPrefixSocial);
+@include i-class(pinterest,"005",$classPrefixSocial);
+@include i-class(github,"006",$classPrefixSocial);
+@include i-class(path,"007",$classPrefixSocial);
+@include i-class(linkedin,"008",$classPrefixSocial);
+@include i-class(dribbble,"009",$classPrefixSocial);
+@include i-class(stumble-upon,"00a",$classPrefixSocial);
+@include i-class(behance,"00b",$classPrefixSocial);
+@include i-class(reddit,"00c",$classPrefixSocial);
+@include i-class(google-plus,"00d",$classPrefixSocial);
+@include i-class(youtube,"00e",$classPrefixSocial);
+@include i-class(vimeo,"00f",$classPrefixSocial);
+@include i-class(flickr,"010",$classPrefixSocial);
+@include i-class(slideshare,"011",$classPrefixSocial);
+@include i-class(picassa,"012",$classPrefixSocial);
+@include i-class(skype,"013",$classPrefixSocial);
+@include i-class(steam,"014",$classPrefixSocial);
+@include i-class(instagram,"015",$classPrefixSocial);
+@include i-class(foursquare,"016",$classPrefixSocial);
+@include i-class(delicious,"017",$classPrefixSocial);
+@include i-class(chat,"018",$classPrefixSocial);
+@include i-class(torso,"019",$classPrefixSocial);
+@include i-class(tumblr,"01a",$classPrefixSocial);
+@include i-class(video-chat,"01b",$classPrefixSocial);
+@include i-class(digg,"01c",$classPrefixSocial);
+@include i-class(wordpress,"01d",$classPrefixSocial);
