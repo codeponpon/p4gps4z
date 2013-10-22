@@ -29,7 +29,7 @@ class TrackingsController < ApplicationController
         craeted_at: @tracking.created_at,
         updated_at: @tracking.updated_at 
       }
-      return render status: 200, message: 'OK', json: result
+      # return render status: 200, message: 'OK', json: result
     else
       return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid code' }
     end
