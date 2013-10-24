@@ -41,10 +41,31 @@ module Pagpos
     # config.i18n.default_locale = :de
 
     # config.assets.precompile += %w( application.js zepto.js custom.modernizr.js foundation.abide.js foundation.alert.js foundation.clearing.js foundation.cookie.js foundation.dropdown.js foundation.form.js foundation.interchange.js foundation.joyride.js foundation.js foundation.magellan.js foundation.orbit.js foundation.placeholder.js foundation.reveal.js foundation.section.js foundation.tooltip.js foundation.toolbar.js jquery_ujs.js index.js jquery.js turbolinks.js html5.js application.css foundation_and_overrides.scss _setting.scss accessibility_foundicons.scss accessibility_foundicons_ie7.scss general_foundicons.scss general_foundicons_ie7.scss social_founditions.scss social_founditions_ie7.scss general_enclosed_founditions.scss general_enclosed_founditions_ie7.scss style.scss LigatureSymbols-2.07.eot LigatureSymbols-2.07.svg LigatureSymbols-2.07.ttf LigatureSymbols-2.07.woff accessibility_foundicons.eot accessibility_foundicons.svg accessibility_foundicons.ttf accessibility_foundicons.woff general_foundicons.eot general_foundicons.svg general_foundicons.ttf general_foundicons.woff general_enclosed_founditions.eot general_enclosed_founditions.svg general_enclosed_founditions.ttf general_enclosed_founditions.woff social_founditions.eot social_founditions.ttf social_founditions.svg social_founditions.woff)
-    # config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif,
+      "LigatureSymbols-2.07.eot",
+      "LigatureSymbols-2.07.svg",
+      "LigatureSymbols-2.07.ttf",
+      "LigatureSymbols-2.07.woff",
+      "accessibility_foundicons.eot",
+      "accessibility_foundicons.svg",
+      "accessibility_foundicons.ttf",
+      "accessibility_foundicons.woff",
+      "general_foundicons.eot",
+      "general_foundicons.svg",
+      "general_foundicons.ttf",
+      "general_foundicons.woff",
+      "general_enclosed_founditions.eot",
+      "general_enclosed_founditions.svg",
+      "general_enclosed_founditions.ttf",
+      "general_enclosed_founditions.woff",
+      "social_founditions.eot",
+      "social_founditions.ttf",
+      "social_founditions.svg",
+      "social_founditions.woff")
+
 
     config.assets.precompile << Proc.new do |path|
-      if path =~ /\.(css|js)\z/
+      if path =~ /\.(css|scss|js)\z/
         full_path = Rails.application.assets.resolve(path).to_path
         app_assets_path = Rails.root.join('app', 'assets').to_path
         if full_path.starts_with? app_assets_path
