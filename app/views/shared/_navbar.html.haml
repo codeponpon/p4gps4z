@@ -19,10 +19,6 @@
               = link_to "Signout", destroy_user_session_path, method: :delete
           - if current_user.blank?
             %li
-              = link_to "Login with Twitter", user_omniauth_authorize_path(:twitter)
-            %li
-              = link_to "Login with Google", user_omniauth_authorize_path(:google_oauth2)
-            %li
               = link_to "Login with Facebook", user_omniauth_authorize_path(:facebook)
             %li
               = link_to "Signin", new_user_session_path
