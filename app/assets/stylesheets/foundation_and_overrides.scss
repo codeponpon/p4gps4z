@@ -1255,7 +1255,7 @@ $default-float: left;
 
 // Background color for the top bar
 
-  $topbar-bg-color: #111;
+  $topbar-bg-color: #d9d9d9;
   $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1274,8 +1274,8 @@ $default-float: left;
 
 // Style the top bar dropdown elements
 
-  $topbar-dropdown-bg: #222;
-  $topbar-dropdown-link-color: #fff;
+  $topbar-dropdown-bg: #d9d9d9;
+  $topbar-dropdown-link-color: #d9d9d9;
   // $topbar-dropdown-link-bg: lighten($topbar-bg-color, 5%);
   $topbar-dropdown-toggle-size: 5px;
   $topbar-dropdown-toggle-color: #fff;
@@ -1292,7 +1292,7 @@ $default-float: left;
   $topbar-link-bg-hover: darken($topbar-bg-color, 3%);
   $topbar-link-bg-active: darken($topbar-bg-color, 3%);
 
-  $topbar-dropdown-label-color: #555;
+  $topbar-dropdown-label-color: #d9d9d9;
   $topbar-dropdown-label-text-transform: uppercase;
   $topbar-dropdown-label-font-weight: bold;
   $topbar-dropdown-label-font-size: em-calc(10);
@@ -1305,8 +1305,8 @@ $default-float: left;
   $topbar-menu-link-weight: bold;
   $topbar-menu-link-color: #fff;
   $topbar-menu-icon-color: #fff;
-  $topbar-menu-link-color-toggled: #888;
-  $topbar-menu-icon-color-toggled: #888;
+  $topbar-menu-link-color-toggled: #d9d9d9;
+  $topbar-menu-icon-color-toggled: #d9d9d9;
 
 // Transitions and breakpoint styles
 
@@ -1326,15 +1326,18 @@ $default-float: left;
 
 @import 'foundation';
 @import 'foundation/general_foundicons';
+@import 'style';
+
 $backgroud-image: 'bg.jpg';
 
 body{
   margin: 0;
   padding: 0;
-  color: #555;
   background: #f5f5f5 url($backgroud-image);
 }
-
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, a{
+  color: #555;
+}
 table {
   border: 1px solid #d3d3d3;
   border-collapse: separate;
@@ -1363,4 +1366,32 @@ table tbody tr:nth-child(odd) {
   background: -moz-linear-gradient(100% 25% 90deg, #f6f6f6, #f1f1f1);
   background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
   background: #f6f6f6;
+}
+
+.medium.button {
+  padding-top: 0.75em;
+}
+
+header form.custom {
+  margin: 30px 0;
+}
+
+header form.custom input#tracking_code { 
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-size: 20px; 
+  margin: 0;
+  padding: 5px;
+}
+
+header form.custom input.medium.button{
+  padding: 0.75em 1.2em;
+}
+.center { text-align: center; margin: 0 auto; }
+
+.description {
+  font-family: 'Open Sans Condensed',sans-serif;
+  font-weight: normal;
+  color: #333;
+  margin: 0;
+  font-size: 20px;
 }

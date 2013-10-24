@@ -1,42 +1,38 @@
-.large-12.columns
-  .large-3.columns
-    &nbsp;
-  .large-6.columns
-    = simple_form_for(@tracking, :url => trackings_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
-      = f.error_notification
-      .row.collapse
-        .small-10.columns   
-          = f.input :code, placeholder: 'Tracking id', required: true, focus: true, value: '', label: false
-        .small-2.columns        
-          = f.input :token, :as => :hidden, input_html: { value: @user._id }
-          = f.submit "Add", class: "small button center"
-  .large-3.columns
-    &nbsp;
-.large-12.columns
-  .large-3.columns
-    &nbsp;
-  .large-6.columns
-    %table
-      %thead
-        %tr
-          %th{width: "140"} Tracking code
-          %th{width: "100"} Status
-          %th{width: "200"} 
-      %tbody
-      - @user.trackings.each do |t|
-        %tr
-          %td 
-            = t.code
-          %td
-            - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
-            %span{class: "#{status} radius label"}=t.status
-          %td
-<<<<<<< HEAD:app/views/track_positions/index.html.haml
-            = link_to "Details", trackings_path(t.code, current_user.id), class: 'button', disabled: status == 'alert' ? true : false
-            = link_to "Delete", trackings_path(t.code, current_user.id), class: 'button', method: :delete, :confirm => "You sure?" 
-=======
-            = link_to "Details", tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
-            = link_to "Delete", tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => "You sure?" 
->>>>>>> 1861b8e... clone tracking from api:app/views/trackings/new.html.haml
-  .large-3.columns
-    &nbsp;
+%header
+  .row
+    .large-12.columns
+      .large-3.columns &nbsp;
+      .large-6.columns
+        = simple_form_for(@tracking, :url => trackings_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
+          = f.error_notification
+          .row.collapse
+            .large-10.columns   
+              = f.input :code, placeholder: 'Tracking id', required: true, focus: true, value: '', label: false
+            .large-2.columns        
+              = f.input :token, :as => :hidden, input_html: { value: @user._id }
+              = f.submit "Add", class: "medium button center"
+      .large-3.columns &nbsp;
+%section.section_main
+  .large-12.columns
+    .large-3.columns
+      &nbsp;
+    .large-6.columns
+      %table
+        %thead
+          %tr
+            %th{width: "140"} Tracking code
+            %th{width: "100"} Status
+            %th{width: "200"} 
+        %tbody
+        - @user.trackings.each do |t|
+          %tr
+            %td 
+              = t.code
+            %td
+              - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
+              %span{class: "#{status} radius label"}=t.status
+            %td
+              = link_to "Details", tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
+              = link_to "Delete", tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => "You sure?" 
+    .large-3.columns
+      &nbsp;  

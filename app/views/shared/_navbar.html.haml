@@ -1,18 +1,28 @@
-.row
-  .large-3.columns
-    %h1
-      %a{ href: "/" }
-        PAGPOS
-  .large-9.columns
-    %ul.right.button-group
-      %li
-        - unless current_user.nil?
-          = link_to "Tracking", new_tracking_path
-          = link_to "Profile", user_profile_path
-          = link_to "Signout", destroy_user_session_path, method: :delete
-        - else
-          = link_to "Twitter", user_omniauth_authorize_path(:twitter)
-          = link_to "Google", user_omniauth_authorize_path(:google_oauth2)
-          = link_to "Facebook", user_omniauth_authorize_path(:facebook)
-          = link_to "Signin", new_user_session_path
-/ End Header and Nav
+%nav.top-bar
+  .large-12.columns.header_nav
+    .row
+      .large-3.columns
+        %ul#menu-header.nav-bar.horizontal
+          %li.active
+            %a{href: "/"} PAGPOS
+      .large-9.columns
+        %ul#menu-header.nav-bar.right
+          %li
+          - unless current_user.blank?
+            %li
+              = link_to "Tracking", new_tracking_path
+          - unless current_user.blank?
+            %li
+              = link_to "Profile", user_profile_path
+          - unless current_user.blank?
+            %li
+              = link_to "Signout", destroy_user_session_path, method: :delete
+          - if current_user.blank?
+            %li
+              = link_to "Login with Twitter", user_omniauth_authorize_path(:twitter)
+            %li
+              = link_to "Login with Google", user_omniauth_authorize_path(:google_oauth2)
+            %li
+              = link_to "Login with Facebook", user_omniauth_authorize_path(:facebook)
+            %li
+              = link_to "Signin", new_user_session_path

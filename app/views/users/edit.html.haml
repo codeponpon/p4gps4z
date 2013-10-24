@@ -1,35 +1,36 @@
-.large-12.columns
-  .large-3.columns &nbsp;
-  .large-6.columns
-    = simple_form_for(@user, :url => user_update_path(@user), :html => { :method => :put, class: 'custom' }) do |f|
-      %h4 ข้อมูลส่วนตัว
-      .row
-        .large-12.columns
-          = f.error_notification
-      .row
-        = f.input :reset_password_token, :as => :hidden
-        = f.full_error :reset_password_token
-        .large-6.columns รหัสผ่าน
-        .large-6.columns
-          = f.input :password, :label => "New password", :required => true, :autofocus => true, label: false
-      .row
-        .large-6.columns ยืนยันรหัสผ่านอีกครั้ง
-        .large-6.columns
-          = f.input :password_confirmation, :label => "Confirm your new password", :required => true, label: false
-      .row
-        .large-6.columns รหัสผ่านปัจจุบัน
-        .large-6.columns
-          = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, label: false
-      %h4 การแจ้งเตือน
-      .row
-        .large-6.columns แจ้งเตือนเมื่อ
-        .large-6.columns
-          = f.input :reminder_when, collection: {"Status change" => "status_changed", "Specific post" => "specific_post", "Specific time" => "specific_time"}, selected: @user.reminder_when.to_sym, label: false
-      .row
-        .large-6.columns ช่่องทางแจ้งเตือน
-        .large-6.columns 
-          = f.input :reminder_by, collection: {"Email" => "email" , "SMS" => "sms", "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook" }, selected: @user.reminder_by.to_sym, label: false
-      .row
-        .large-12.columns
-          = f.submit 'บันทึก', class: 'button'
-  .large-3.columns &nbsp;
+.row
+  .large-12.columns
+    .large-3.columns &nbsp;
+    .large-6.columns
+      = simple_form_for(@user, :url => user_update_path(@user), :html => { :method => :put, class: 'custom' }) do |f|
+        .row
+          .large-12.columns
+            = f.error_notification
+        %h4 ข้อมูลส่วนตัว
+        .row
+          = f.input :reset_password_token, :as => :hidden
+          = f.full_error :reset_password_token
+          .large-6.columns รหัสผ่าน
+          .large-6.columns
+            = f.input :password, :label => "New password", :required => true, :autofocus => true, label: false
+        .row
+          .large-6.columns ยืนยันรหัสผ่านอีกครั้ง
+          .large-6.columns
+            = f.input :password_confirmation, :label => "Confirm your new password", :required => true, label: false
+        .row
+          .large-6.columns รหัสผ่านปัจจุบัน
+          .large-6.columns
+            = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, label: false
+        %h4 การแจ้งเตือน
+        .row
+          .large-6.columns แจ้งเตือนเมื่อ
+          .large-6.columns
+            = f.input :reminder_when, collection: {"Status change" => "status_changed", "Specific post" => "specific_post", "Specific time" => "specific_time"}, selected: @user.reminder_when.to_sym, label: false, disabled: true
+        .row
+          .large-6.columns ช่่องทางแจ้งเตือน
+          .large-6.columns 
+            = f.input :reminder_by, collection: {"Email" => "email" , "SMS" => "sms", "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook" }, selected: @user.reminder_by.to_sym, label: false, disabled: true
+        .row
+          .large-12.columns
+            = f.submit 'บันทึก', class: 'button'
+    .large-3.columns &nbsp;
