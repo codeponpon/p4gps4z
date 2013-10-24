@@ -40,6 +40,7 @@ module Pagpos
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.precompile += %w( application.js zepto.js custom.modernizr.js foundation.abide.js foundation.alert.js foundation.clearing.js foundation.cookie.js foundation.dropdown.js foundation.form.js foundation.interchange.js foundation.joyride.js foundation.js foundation.magellan.js foundation.orbit.js foundation.placeholder.js foundation.reveal.js foundation.section.js foundation.tooltip.js foundation.toolbar.js jquery_ujs.js index.js jquery.js turbolinks.js html5.js application.css foundation_and_overrides.scss _setting.scss accessibility_foundicons.scss accessibility_foundicons_ie7.scss general_foundicons.scss general_foundicons_ie7.scss social_founditions.scss social_founditions_ie7.scss style.css)
+    config.assets.precompile += %w( application.js zepto.js custom.modernizr.js foundation.abide.js foundation.alert.js foundation.clearing.js foundation.cookie.js foundation.dropdown.js foundation.form.js foundation.interchange.js foundation.joyride.js foundation.js foundation.magellan.js foundation.orbit.js foundation.placeholder.js foundation.reveal.js foundation.section.js foundation.tooltip.js foundation.toolbar.js jquery_ujs.js index.js jquery.js turbolinks.js html5.js application.css foundation_and_overrides.scss _setting.scss accessibility_foundicons.scss accessibility_foundicons_ie7.scss general_foundicons.scss general_foundicons_ie7.scss social_founditions.scss social_founditions_ie7.scss style.scss)
+    config.assets.precompile << %w(*/fonts/**/*.*)
   end
 end
