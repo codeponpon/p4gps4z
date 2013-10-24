@@ -1,0 +1,77 @@
+$fontAccessibility: "accessibility_foundicons";
+$AccessibilityFoundicons: "AccessibilityFoundicons";
+$classPrefixAccessibility: "foundicon-a-";
+
+$fontGeneral: "general_foundicons";
+$GeneralFoundicons: "GeneralFoundicons";
+$classPrefixGeneral: "foundicon-g-";
+
+$fontGeneralEnclosed: "general_enclosed_foundicons";
+$GeneralEnclosedFoundicons: "GeneralEnclosedFoundicons";
+$classPrefixGeneralEnclosed: "foundicon-ge-";
+
+$fontSocial: "social_foundicons";
+$SocialFoundicons: "SocialFoundicons";
+$classPrefixSocial: "foundicon-s-";
+
+$classPrefix: "foundicon-";
+
+@mixin i-class($name,$pua,$prefix) {
+  .#{$prefix}#{$name}:before { 
+    content: "\f#{$pua}";
+  }
+}
+
+@mixin ie-class($name,$pua,$prefix) {
+  .#{$prefix}#{$name} { 
+    *zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf#{$pua};"); 
+  }
+}
+
+@mixin faceG {
+  @font-face { 
+    font-family: $GeneralFoundicons;
+    src: url(<%= asset_path('general_foundicons.eot?#iefix') %>) format('embedded-opentype'),
+         url(<%= asset_path('general_foundicons.woff') %>) format('woff'),
+         url(<%= asset_path('general_foundicons.ttf') %>) format('truetype'),
+         url(<%= asset_path('general_foundicons.svg#general_foundicons') %>) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin faceA{
+  @font-face { 
+    font-family: $AccessibilityFoundicons;
+    src: url(<%= asset_path('accessibility_foundicons.eot?#iefix') %>) format('embedded-opentype'),
+         url(<%= asset_path('accessibility_foundicons.woff') %>) format('woff'),
+         url(<%= asset_path('accessibility_foundicons.ttf') %>) format('truetype'),
+         url(<%= asset_path('accessibility_foundicons.svg#accessibility_foundicons') %>) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin faceS{
+  @font-face { 
+    font-family: $SocialFoundicons;
+    src: url(<%= asset_path('social_foundicons.eot?#iefix') %>) format('embedded-opentype'),
+         url(<%= asset_path('social_foundicons.woff') %>) format('woff'),
+         url(<%= asset_path('social_foundicons.ttf') %>) format('truetype'),
+         url(<%= asset_path('social_foundicons.svg#social_foundicons') %>) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin faceGE{
+  @font-face { 
+    font-family: $GeneralEnclosedFoundicons;
+    src: url(<%= asset_path('general_enclosed_foundicons.eot?#iefix') %>) format('embedded-opentype'),
+         url(<%= asset_path('general_enclosed_foundicons.woff') %>) format('woff'),
+         url(<%= asset_path('general_enclosed_foundicons.ttf') %>) format('truetype'),
+         url(<%= asset_path('general_enclosed_foundicons.svg#general_enclosed_foundicons') %>) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
