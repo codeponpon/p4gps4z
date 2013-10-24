@@ -1369,6 +1369,24 @@ table tbody tr:nth-child(odd) {
   background: #f6f6f6;
 }
 
+table.tracking_details th:first-child{
+  padding-left: 0.2em;
+  border-left: none;
+}
+
+table.tracking_details th {
+  padding: 1.1em 0.7em;
+  font-size: 1.2em;
+  border: 0.1em solid #DFDFDF;
+  background-color: #FCFCFC;
+}
+
+table.tracking_details td {
+  padding: 1.3em 1.1em 1.3em 1.1em;
+  border-bottom: 0.1em dashed #CDCDCD;
+  color: #4A4A4A;
+}
+
 .medium.button {
   padding-top: 0.75em;
 }
@@ -1395,4 +1413,11 @@ header form.custom input.medium.button{
   color: #333;
   margin: 0;
   font-size: 20px;
+}
+
+.adv-454{
+  width: 300px;
+  max-height: 600px;
+  font-size: 275px;
+  padding-top: 130px;
 }

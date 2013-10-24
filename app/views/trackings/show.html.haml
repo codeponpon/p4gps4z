@@ -7,24 +7,36 @@
       .large-3.columns &nbsp;
 %section.section_main      
   .large-12.columns
-    %table
+    %table.tracking_details
       %thead
         %tr
           %th Date Process  
-          %th Department 
-          %th Description 
           %th Status 
-          %th Reciever
+          %th 
       %tbody
-      - @tracking.packages.each do |p| 
+      - @tracking.packages.each_with_index do |p, i| 
         %tr
-          %td= p.process_at.squish
-          %td= p.department
-          %td= p.description
-          %td= p.status
-          %td= p.reciever
-        - if not p.signature.blank? 
-          %tr
-            %td{colspan: 4} &nbsp;
-            %td
-              = image_tag('../'+p.signature.gsub!('public/', ''), alt: p.reciever)
+          %td
+            = p.process_at.squish
+            .post_meta
+              .lsf-icon{title: "pin"}
+                = "Department: #{p.department}"
+          %td
+            = p.status
+            - if p.description.present?
+              .post_meta
+                .lsf-icon{title: "info"}
+                  = p.description
+          - if i.zero?
+            %td{rowspan: @tracking.packages.count-1, valign: 'top', align: 'center'}
+              - unless @tracking.packages.last.signature.blank?
+                = image_tag('../'+@tracking.packages.last.signature.gsub!('public/', ''), alt: p.reciever)
+                - unless @tracking.packages.last.reciever.blank?
+                  %br
+                  %br
+                  = @tracking.packages.last.reciever
+              - else
+                .adv-454.lsf-icon{title: "camera"}
+          - unless p.reciever.blank?
+            %td{align: 'center', valign: 'middle' }
+              = p.reciever
