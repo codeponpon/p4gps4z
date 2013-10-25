@@ -13,14 +13,15 @@ namespace :pagpos do
   task :send_email_notification => :environment do
     get_pendings
     @tracking.each do |t|
-      tz = t.user.time_zone.blank? ? 0 : t.user.time_zone.to_i
-      Time.zone = tz.zero? ? 'UTC' : Time.zone.now.in_time_zone(tz).zone
-      
       begin
-        reminder_when = t.user.reminder_when
-        tracking_id   = t.id
-        user_id       = t.user_id.to_s
-        Resque.enqueue(SendEmailWorker, [tracking_id, user_id, reminder_when])
+        unless t.packages.blank?
+          tz = t.user.time_zone.blank? ? 0 : t.user.time_zone.to_i
+          Time.zone = tz.zero? ? 'UTC' : Time.zone.now.in_time_zone(tz).zone
+          reminder_when = t.user.reminder_when
+          tracking_id   = t.id
+          user_id       = t.user_id.to_s
+          Resque.enqueue(SendEmailWorker, [tracking_id, user_id, reminder_when])
+        end
       rescue Exception => exception
         puts "#{t.code} cannot add to queue"
         t.update_attribute(:status, "error")
