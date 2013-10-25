@@ -3,7 +3,7 @@
  Notes: - <nav class="top-bar"> can have .fixed added to make it stick to the top of viewport. Can add .contain-to-grid to top-bar to make it full width but content on grid. - <li class="name"> creates a branding area that can be linked to homepage - Can include text, image or both inside this <li>. - <li class="divider"> creates a divider between nav items, add margins for space - <li class="search"> Needs to hold a <form> which can use .row.collapse and pre/postfix buttons or default type="search"
 */
 /* <nav> */
-.top-bar { background: #222222; height: 20px; line-height: 45px; margin: 0 0 30px; padding: 0; width: 100%; /* Contain width to .row width */ /* First <ul> for branding, title, name, etc */ /* topbar global <ul> styles */ /* Style for when you add 'fixed' as a class to .top-bar */ }
+.top-bar { background: #222222; height: 45px; line-height: 45px; margin: 0; padding: 0; width: 100%; /* Contain width to .row width */ /* First <ul> for branding, title, name, etc */ /* topbar global <ul> styles */ /* Style for when you add 'fixed' as a class to .top-bar */ }
 .top-bar.contain-to-grid { margin: 0 auto; position: relative; width: 940px; /* Get the black bar to extend all the way */ /* Contained and fixed at the top */ }
 .top-bar.contain-to-grid:before, .top-bar.contain-to-grid:after { background: #222222; content: ""; display: block; height: 45px; position: absolute; width: 1000px; }
 .top-bar.contain-to-grid:before { left: -100%; }
@@ -213,7 +213,7 @@
 
 body {background: #fafafa;}
 
-.row {width: 960px;}
+.top-bar .row {max-width: 960px;}
 
 hr {
     -moz-border-bottom-colors: none;
