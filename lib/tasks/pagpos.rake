@@ -13,13 +13,9 @@ namespace :pagpos do
   task :send_email_notification => :environment do
     get_pendings
     @tracking.each do |t|
-      tz = t.user.time_zone.blank? ? 0 : t.user.time_zone
-      if tz.integer?
-        Time.zone = tz.zero? ? 'UTC' : Time.zone.now.in_time_zone(tz).zone
-      else
-        Time.zone = tz
-      end
-
+      tz = t.user.time_zone.blank? ? 0 : t.user.time_zone.to_i
+      Time.zone = tz.zero? ? 'UTC' : Time.zone.now.in_time_zone(tz).zone
+      
       begin
         reminder_when = t.user.reminder_when        
         Resque.enqueue(SendEmailWorker, [t, reminder_when])
