@@ -3,7 +3,7 @@ class SendEmailWorker
   
   def self.perform(params)
     tracking_obj, reminder_when = params
-    user = User.where(_id: tracking_obj.user_id).first
+    user = User.where(_id: tracking_obj.user_id.to_s).first
     packages = Package.where(tracking_id: tracking_obj.id).first
     if reminder_when == 'specific_post' && user.specific_department == packages.last.department
       EmailNotification.specific_post(tracking_obj).deliver
