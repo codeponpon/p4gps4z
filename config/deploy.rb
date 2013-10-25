@@ -20,7 +20,7 @@ set :use_sudo, true
 # If you're using your own private keys for git, you want to tell Capistrano to use agent forwarding with this command. Agent forwarding can make key management much simpler as it uses your local keys instead of keys installed on the server.
 set :ssh_options, { :forward_agent => true }
 
-set :whenever_command, "RAILS_ENV=#{rails_env} bundle exec whenever"
+set :whenever_command, "RAILS_ENV=production bundle exec whenever"
 require "whenever/capistrano"
 
 server "pagposv1.cloudapp.net", :web, :app, :db, primary: true

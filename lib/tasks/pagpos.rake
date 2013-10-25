@@ -6,6 +6,7 @@ namespace :pagpos do
     get_pendings
     @tracking.each do |t|
       Resque.enqueue(TrackingPositionWorker, t.code)
+      puts "#{t.code} add to queue success"
     end
   end
 
