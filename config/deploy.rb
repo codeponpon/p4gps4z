@@ -8,14 +8,14 @@ set :application, "pagpos"
 set :user, "pagposazure"
 set :scm, :git
 set :repository, "git@github.com:codeponpon/p4gps4z.git"
-set :branch, "master"
+set :branch, "release/release-2510"
 set :use_sudo, true
 
 # This essentially keeps a clone of your app on the server and then just does a git pull to fetch new changes and copies the directory across when you deploy.
-set :repository_cache, "git_cache"
+# set :repository_cache, "git_cache"
 
 # In most cases you want to use this option, otherwise each deploy will do a full repository clone every time.
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 
 # If you're using your own private keys for git, you want to tell Capistrano to use agent forwarding with this command. Agent forwarding can make key management much simpler as it uses your local keys instead of keys installed on the server.
 set :ssh_options, { :forward_agent => true }
