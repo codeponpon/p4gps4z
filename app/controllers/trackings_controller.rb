@@ -1,4 +1,5 @@
 class TrackingsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :require_user
   before_filter :require_tracking_code, except: :new
 

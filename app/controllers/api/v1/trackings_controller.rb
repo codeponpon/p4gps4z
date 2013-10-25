@@ -1,4 +1,5 @@
 class Api::V1::TrackingsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :require_user, :require_tracking_code
 
   def show
