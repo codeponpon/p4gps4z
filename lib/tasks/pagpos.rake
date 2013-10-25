@@ -17,8 +17,10 @@ namespace :pagpos do
       Time.zone = tz.zero? ? 'UTC' : Time.zone.now.in_time_zone(tz).zone
       
       begin
-        reminder_when = t.user.reminder_when        
-        Resque.enqueue(SendEmailWorker, [t, reminder_when])
+        reminder_when = t.user.reminder_when
+        tracking_id   = t.id
+        user_id       = t.user_id.to_s
+        Resque.enqueue(SendEmailWorker, [tracking_id, user_id, reminder_when])
       rescue Exception => exception
         puts "#{t.code} cannot add to queue"
         t.update_attribute(:status, "error")
