@@ -35,7 +35,7 @@ class User
   field :gender, :type => String
   field :specific_department, :type => String 
 
-  field :gender, :type => String
+  field :gender, :type => String, :default => ""
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0

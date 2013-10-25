@@ -1,3 +1,9 @@
+production:
+  sessions:
+    default:
+      database: pagpos_production
+      hosts:
+        - pagposv1.cloudapp.net
 development:
   # Configure available database sessions. (required)
   sessions:
