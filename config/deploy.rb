@@ -8,7 +8,7 @@ set :application, "pagpos"
 set :user, "pagposazure"
 set :scm, :git
 set :repository, "git@github.com:codeponpon/p4gps4z.git"
-set :branch, "release/release-2510"
+set :branch, "master"
 set :use_sudo, true
 
 # This essentially keeps a clone of your app on the server and then just does a git pull to fetch new changes and copies the directory across when you deploy.
