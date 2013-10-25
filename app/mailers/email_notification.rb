@@ -9,8 +9,8 @@ class EmailNotification < ActionMailer::Base
     mail( subject: 'Package notifications', to: @user.email, template_name: template_name )
   end
 
-  def status_change(tracking)
-    @tracking = tracking
+  def status_change(tracking_id)
+    @tracking = Tracking.where(id: tracking_id).first
     @user = @tracking.user
     mail( subject: 'Package status has changed', to: @user.email )
 
@@ -18,8 +18,8 @@ class EmailNotification < ActionMailer::Base
     @tracking.update_tracking_status
   end
 
-  def specific_post(tracking)
-    @tracking = tracking
+  def specific_post(tracking_id)
+    @tracking = Tracking.where(id: tracking_id).first
     @user = @tracking.user
     mail( subject: 'Package notifications', to: @user.email )
   end
