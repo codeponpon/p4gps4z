@@ -13,7 +13,16 @@ class Tracking
   field :last_department, type: String
 
   def tracking_position
-    Resque.enqueue(TrackingPositionWorker, self.code)
+    puts "#{Time.now } #{self.code} added to tracking_position queue"
+    Resque.enqueue(TrackingPositionWorker, [self.user_id.to_s, self.code])
+  end
+
+  def enqueue_send_email_worker
+    puts "#{Time.now } #{self.code} added to enqueue_send_email_worker queue"
+    reminder_when = self.user.reminder_when
+    tracking_id   = self.id.to_s
+    specific_department = (self.user.specific_department == self.packages.last.department)
+    Resque.enqueue(SendEmailWorker, [tracking_id, reminder_when, specific_department])
   end
 
   def update_tracking_status

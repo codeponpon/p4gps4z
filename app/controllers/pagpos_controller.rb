@@ -1,8 +1,8 @@
-class TrackingPositionWorker
-  @queue = :tracking_position_queue
-
-  def self.perform(params)
-    user_id, tracking_code = params
+class PagposController < ApplicationController
+  def index
+    tracking_code = params[:code]
+    user_id = params[:user_id]
+    # return render text: "#{DateTime.now} #{tracking_code} is tracking"
     puts "#{DateTime.now} #{tracking_code} is tracking"
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
@@ -41,7 +41,7 @@ class TrackingPositionWorker
       post_receive_link = post.links.last.href.match(/\'(.*)\'\,/)
       if post_receive_link.blank?
         Tracking.where(code: tracking_code, user_id: user_id).first.update_attributes(status: 'notfound')
-        puts "#{tracking_code} not found"
+        return render text: "#{tracking_code} notfound"
       else
         recieve_url = url + post.links.last.href.match(/\'(.*)\'\,/)[1]
         post_receive = a.get(recieve_url)
@@ -122,10 +122,11 @@ class TrackingPositionWorker
           end
         end
         tracking_obj.update_attribute(:packages_count, tracking.count)
-        puts "#{tracking_code} tracking success"
+        # return render text: "#{tracking_code} tracking success"
+        return render json: tracking
       end # data not found
     else
-      puts "#{tracking_code} cannot track has something wrong"
+      return render text: "#{tracking_code} cannot track has something wrong"
     end # end if not
   end
 end

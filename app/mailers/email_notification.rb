@@ -10,17 +10,26 @@ class EmailNotification < ActionMailer::Base
   end
 
   def status_change(tracking_id)
-    @tracking = Tracking.where(id: tracking_id).first
+    @tracking = Tracking.where(_id: tracking_id).first
     @user = @tracking.user
     mail( subject: 'Package status has changed', to: @user.email )
 
-    Resque.enqueue(PushNotificationWorker, @tracking.code)
+    # Pust notification to mobile
+    # Resque.enqueue(PushNotificationWorker, @tracking.code)
     @tracking.update_tracking_status
+    puts "#{DateTime.now} #{@tracking.code} email was sent"
   end
 
   def specific_post(tracking_id)
-    @tracking = Tracking.where(id: tracking_id).first
+    @tracking = Tracking.where(_id: tracking_id).first
     @user = @tracking.user
     mail( subject: 'Package notifications', to: @user.email )
+    
+    @tracking.update_tracking_status
+    puts "#{DateTime.now} #{@tracking.code} email was sent"
+  end
+
+  def test
+    mail( subject: 'This is test email', to: 'tester@example.com' )
   end
 end
