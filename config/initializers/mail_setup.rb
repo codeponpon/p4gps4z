@@ -9,13 +9,19 @@
 #   :password => "",
 #   :enable_starttls_auto => true
 # }
-
-ActionMailer::Base.smtp_settings = {
-  :address => "smtp.gmail.com",
-  :port => '587',
-  :domain => "pagpos.com",
-  :authentication => :plain,
-  :user_name => "emailfortest.smtp@gmail.com",
-  :password => "asdqwe!@#",
-  :enable_starttls_auto => true
-}
+if "production".eql? Rails.env
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => '587',
+    :domain => "pagpos.com",
+    :authentication => :plain,
+    :user_name => "emailfortest.smtp@gmail.com",
+    :password => "asdqwe!@#",
+    :enable_starttls_auto => true
+  }
+else
+  ActionMailer::Base.smtp_settings = {
+    :address => "localhost", 
+    :port => 1025
+  }
+end
