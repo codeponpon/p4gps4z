@@ -29,8 +29,9 @@
                   = p.description
           - if i.zero?
             %td{rowspan: @tracking.packages.count-1, valign: 'top', align: 'center'}
-              - unless @tracking.packages.last.signature.blank?
-                = image_tag('../'+@tracking.packages.last.signature.gsub!('public/', ''), alt: p.reciever)
+              - signature = @tracking.packages.map(&:signature).reject(&:nil?).first
+              - unless signature.blank?
+                = image_tag(signature.split('/public').last, alt: p.reciever)
                 - unless @tracking.packages.last.reciever.blank?
                   %br
                   %br
