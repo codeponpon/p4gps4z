@@ -19,6 +19,8 @@
               = link_to "Signout", destroy_user_session_path, method: :delete
           - if current_user.blank?
             %li
+              = link_to "Find Package", pagpos_path
+            %li
               = link_to "Login with Facebook", user_omniauth_authorize_path(:facebook)
             %li
               = link_to "Signin", new_user_session_path

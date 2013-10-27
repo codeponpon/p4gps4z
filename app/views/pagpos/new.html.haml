@@ -1,0 +1,13 @@
+%header
+  .row
+    .large-12.columns
+      .large-3.columns &nbsp;
+      .large-6.columns
+        = simple_form_for(@tracking, :url => pagpos_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
+          = f.error_notification
+          .row.collapse
+            .large-10.columns   
+              = f.input :code, placeholder: 'Tracking id', required: true, focus: true, label: false
+            .large-2.columns        
+              = f.submit "Add", class: "medium button center"
+      .large-3.columns &nbsp;
