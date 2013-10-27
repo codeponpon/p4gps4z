@@ -1,0 +1,49 @@
+%header
+  .row
+    .large-12.columns
+      .large-3.columns &nbsp;
+      .large-6.columns
+        = simple_form_for(@tracking, :url => pagpos_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
+          = f.error_notification
+          .row.collapse
+            .large-10.columns   
+              = f.input :code, value: params[:id], required: true, focus: true, label: false
+            .large-2.columns        
+              = f.hidden_field :status, value: 'guest'
+              = f.submit "Add", class: "medium button center"
+      .large-3.columns &nbsp;
+%section.section_main      
+  .large-12.columns
+    %table.tracking_details
+      %thead
+        %tr
+          %th Date Process  
+          %th Status 
+          %th 
+      %tbody
+      - @tracking.packages.each_with_index do |p, i| 
+        %tr
+          %td
+            = p.process_at.squish
+            .post_meta
+              .lsf-icon{title: "pin"}
+                = "Department: #{p.department}"
+          %td
+            = p.status
+            - if p.description.present?
+              .post_meta
+                .lsf-icon{title: "info"}
+                  = p.description
+          - if i.zero?
+            %td{rowspan: @tracking.packages.count-1, valign: 'top', align: 'center'}
+              - unless @tracking.packages.last.signature.blank?
+                = image_tag('../'+@tracking.packages.last.signature.gsub!('public/', ''), alt: p.reciever)
+                - unless @tracking.packages.last.reciever.blank?
+                  %br
+                  %br
+                  = @tracking.packages.last.reciever
+              - else
+                .adv-454.lsf-icon{title: "camera"}
+          - unless p.reciever.blank?
+            %td{align: 'center', valign: 'middle' }
+              = p.reciever

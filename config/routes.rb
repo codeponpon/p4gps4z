@@ -6,7 +6,9 @@ Pagpos::Application.routes.draw do
 
   get 'welcome' => "welcome#index"
 
-  get 'pagpos' => "pagpos#index"
+  get 'pagpos' => "pagpos#new"
+  post 'pagpos' => "pagpos#create"
+  get 'pagpos/:code' => "pagpos#show" #, as: "pagpos_result"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   # get 'users/auth/facebook' => 'omniauth_callbacks#passthru'
