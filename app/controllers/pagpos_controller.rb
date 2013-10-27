@@ -25,12 +25,11 @@ class PagposController < ApplicationController
       redirect_to action: "new"
     else
       @tracking = Tracking.where(code: params[:code], status: TrackingStatus.guest).first
-      track_position(@tracking)
+      track_position(params[:code])
     end
   end
 
-  def track_position(tracking_result)
-    tracking_code = tracking_result.code
+  def track_position(tracking_code)
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
