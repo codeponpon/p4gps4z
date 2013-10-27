@@ -8,7 +8,7 @@
           = render "shared/flash_message", flash: flash
           .row.collapse
             .large-10.columns   
-              = f.input :code, placeholder: 'Tracking id', required: true, focus: true, label: false
+              = f.input :code, placeholder: t('trackings.placeholder_tracking_id'), required: true, focus: true, label: false
             .large-2.columns        
-              = f.submit "Add", class: "medium button center"
+              = f.submit t('trackings.add_btn'), class: "medium button center"
       .large-3.columns &nbsp;

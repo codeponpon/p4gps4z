@@ -1335,6 +1335,7 @@ $default-float: left;
 @import 'style';
 
 $backgroud-image: 'bg.png';
+$pagpos-main-color: #F06B48;
 
 body{
   margin: 0;
@@ -1345,6 +1346,20 @@ body{
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, a{
   color: #555;
 }
+
+a:hover {
+  color: $pagpos-main-color;
+}
+
+// .button {
+//   @include button-base;
+//   @include button-size;
+//   @include button-style($pagpos-main-color);
+// }
+
+// .button:hover{
+//   background-color: $pagpos-main-color;
+// }
 
 table {
   border: 1px solid #d3d3d3;

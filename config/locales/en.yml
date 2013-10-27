@@ -20,10 +20,58 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pagpos:
+    title: 'PAGPOS'
+    slogan: 'Package Position Notification System'
+  welcome_page:
+    step_one: '1. Order/Packaging'
+    step_one_description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra, lacus id interdum ultrices, elit metus semper tellus, vel lacinia libero purus vitae risus.'
+    step_two: '2. Tracking'
+    step_two_description: ' Vivamus tortor tellus, rutrum sit amet mollis vel, imperdiet consectetur orci. Mauris pharetra congue enim, et sagittis lectus congue ut. Cum sociis natoque penatibus.'
+    step_three: '3. Notification'
+    step_three_description: 'Sed vitae nisi leo. Nulla tincidunt, turpis non gravida pharetra, diam sapien posuere massa, non luctus leo mauris at sapien. Donec ut fermentum eros.'
+  social:
+    twitter: 'Twitter'
+    facebook: 'Facebook'
+  menu:
+    tracking: "Tracking"
+    profile: "Profile"
+    signout: "Signout"
+    signin: "Signin"
+    find_package: "Find Package"
+    login_with_facebook: "Login with Facebook"
+  shared_link:
+    signin: "Sign in"
+    signup: "Sign up"
+    forget_password: "Forgot your password?"
+    donot_recieve_password: "Didn't receive confirmation instructions?"
+    donot_recieve_unlock_password: "Didn't receive unlock instructions?"
+  signup:
+    title: 'Sign up'
+    submit_btn: "Sign up"
+  signin:
+    title: 'Sign in'
+    submit_btn: "Sign in"
+    remember_me: 'Yes, remember me'
   api:
     v1:
       token:
         invalid_token: 'Invalid authentication token'
       sessions:
         invalid_login: 'Login information is incorrect, please try again'
+  trackings:
+    date_process: 'Date Process'
+    status: 'Status'
+    department: 'Department'
+    tracking_code: 'Tracking code'
+    details_btn: 'Details'
+    delete_btn: 'Delete'
+    placeholder_tracking_id: 'Tracking id'
+    add_btn: 'Add'
+    delete_confirmation: 'You sure?'
+  tracking_status:
+    default_status: 'pending'
+    pending: 'pending'
+    ontheway: 'ontheway'
+    done: 'done'
+    guest: 'guest'

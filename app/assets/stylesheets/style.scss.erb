@@ -1,3 +1,4 @@
+$pagpos-main-color: #F06B48;
 /* Foundation Top Bar
  Requires: -jquery.foundation.topbar.js
  Notes: - <nav class="top-bar"> can have .fixed added to make it stick to the top of viewport. Can add .contain-to-grid to top-bar to make it full width but content on grid. - <li class="name"> creates a branding area that can be linked to homepage - Can include text, image or both inside this <li>. - <li class="divider"> creates a divider between nav items, add margins for space - <li class="search"> Needs to hold a <form> which can use .row.collapse and pre/postfix buttons or default type="search"
@@ -16,8 +17,8 @@
 .top-bar ul { display: inline; line-height: 45px; list-style: none; /* Main Navigation links style */ /* Left Side <ul> */ /* Right Side <ul> */ }
 .top-bar ul > li { float: left; /* Dividers between navigation */ /* Put a button in an <li> but give is a class */ /* Put a search bar or text input in the bar */ /* Hide the triangle for breakpoint menu */ /* li.has-dropdown */ }
 .top-bar ul > li a:not(.button) { display: block; font-size: 18px; font-weight: bold; height: 45px; line-height: 45px; padding: 0 15px; }
-.top-bar ul > li:hover, .top-bar ul > li.active { background: #f3f3f3; }
-.top-bar ul > li:hover a { color: #4d4d4d; }
+.top-bar ul > li:hover, .top-bar ul > li.active { background: $pagpos-main-color; }
+.top-bar ul > li:hover a { color: white; }
 .top-bar ul > li.active a { color: white; }
 .top-bar ul > li.divider { background: black; -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); height: 100%; margin-right: 1px; width: 1px; }
 .top-bar ul > li.has-button a.button { margin: 0 11.25px; }
@@ -62,7 +63,7 @@
 }
 .top-bar ul > li.has-dropdown .dropdown li a { font-weight: normal; height: 100%; line-height: 1; padding: 15px; white-space: nowrap; }
 .top-bar ul > li.has-dropdown .dropdown li a:after { border: none; }
-.top-bar ul > li.has-dropdown .dropdown li a:hover { background: #F06B48; }
+.top-bar ul > li.has-dropdown .dropdown li a:hover { background: $pagpos-main-color; }
 .top-bar ul > li.has-dropdown .dropdown li label { color: #6f6f6f; font-size: 10px; font-weight: bold; margin: 0; padding-left: 15px; text-transform: uppercase; }
 .top-bar ul > li.has-dropdown .dropdown li.divider { border-top: solid 1px black; -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset; -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset; height: 10px; padding: 0; width: 100%; }
 .top-bar ul > li.has-dropdown .dropdown li:last-child { padding-bottom: 0; }
@@ -196,6 +197,7 @@
 }
 
 .lsf-icon-dropcap:before {
+  color: $pagpos-main-color;
   content:attr(title);
   font-size:64px;
   font-family: 'LigatureSymbols';
@@ -231,7 +233,7 @@ hr {
 
 .page_wrap {margin: 0 auto 25px;}
 
-header {background: #f3f3f3 url(bg.png); clear:both; padding: 0;}
+header {background: #f3f3f3 url(<%=image_path('bg.png')%>); clear:both; padding: 0;}
 
 .header_nav {background: #fafafa; padding: 0; box-shadow: 0 1px 6px rgba(34, 25, 25, 0.6); z-index: 999;}
 .header_nav_fullwidth {background: #fafafa; padding: 10px 0 2px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);}
@@ -265,7 +267,7 @@ h1,h2,h3,h4 {font-family:'Open Sans Condensed',sans-serif; font-weight: normal; 
 /* END Frontpage sections */
 
 
-.heading_supersize {font-size: 128px; text-align:center; font-weight: normal; line-height: 150px; margin:0 0 10px; color: #212121;}
+.heading_supersize {font-size: 128px; text-align:center; font-weight: normal; line-height: 150px; margin:0 0 10px; color: $pagpos-main-color/* #212121 */;}
 .heading_largesize {font-size: 34px; font-weight: normal;}
 
 .dropcap_red, 
@@ -315,7 +317,7 @@ dl.tabs dd.active a {background: #fff;}
 
 .nav-bar > li > a { color: #4d4d4d;}
 .nav-bar > li > a:hover { color: #000;}
-.active a {background:#F06B48; color: #FFF;}
+.active a {background:$pagpos-main-color; color: #FFF;}
 
 .nav-bar > li.has-flyout > a:first-child:after { content: ""; display: block; width: 0; height: 0; border: solid 5px; border-color: #e0e0e0 transparent transparent transparent; position: absolute; right: 20px; top: 17px; }
 

@@ -10,8 +10,8 @@
     %table.tracking_details
       %thead
         %tr
-          %th Date Process  
-          %th Status 
+          %th= t('trackings.date_process')
+          %th= t('trackings.status')
           %th 
       %tbody
       - @tracking.packages.each_with_index do |p, i| 
@@ -20,7 +20,7 @@
             = p.process_at.squish
             .post_meta
               .lsf-icon{title: "pin"}
-                = "Department: #{p.department}"
+                = "#{t('trackings.department')}: #{p.department}"
           %td
             = p.status
             - if p.description.present?

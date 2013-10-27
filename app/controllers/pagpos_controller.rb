@@ -5,7 +5,7 @@ class PagposController < ApplicationController
   end
 
   def create
-    qtracking = Tracking.where(code: params[:tracking][:code], status: 'guest').first
+    qtracking = Tracking.where(code: params[:tracking][:code], status: TrackingStatus.guest).first
     if qtracking.blank?
       @tracking = Tracking.new(code: params[:tracking][:code])
       if @tracking.save
@@ -24,7 +24,7 @@ class PagposController < ApplicationController
       flash[:alert] = "Tracking code is invalid"
       redirect_to action: "new"
     else
-      @tracking = Tracking.where(code: params[:code], status: 'guest').first
+      @tracking = Tracking.where(code: params[:code], status: TrackingStatus.guest).first
       track_position(@tracking)
     end
   end
@@ -87,7 +87,7 @@ class PagposController < ApplicationController
           end
         end
 
-        @tracking = Tracking.where(code: tracking_code, status: 'guest').first
+        @tracking = Tracking.where(code: tracking_code, status: TrackingStatus.guest).first
         package_obj = Package.where(tracking_id: @tracking.id)
         if package_obj.blank?
           tracking.each_with_index do |process, index|

@@ -7,7 +7,7 @@ class Tracking
   
   field :code, type: String
   field :description, type: String
-  field :status, type: String, default: "pending"
+  field :status, type: String, default: TrackingStatus.default_status
   field :packages_count, type: Integer, default: 0
   field :prev_packages_count, type: Integer, default: 0
   field :last_department, type: String
@@ -28,7 +28,7 @@ class Tracking
   def update_tracking_status
     self.update_attribute(:prev_packages_count, self.packages_count)
     if not self.packages.map(&:reciever).reject(&:empty?).blank?
-      self.update_attribute(:status, 'done')
+      self.update_attribute(:status, TrackingStatus.done)
     end
   end
 end

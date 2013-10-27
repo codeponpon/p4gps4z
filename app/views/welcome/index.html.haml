@@ -1,21 +1,21 @@
 %header
-  %h1.heading_supersize PAGPOS
-  %h2.welcome_text Package Position Notification System
+  %h1.heading_supersize= t('pagpos.title')
+  %h2.welcome_text= t('pagpos.slogan')
 / ######################## Section ########################
 %section.section_main
   .row
     .large-4.columns
       %h3
         %span.dropcap_red.lsf-icon-dropcap{title: "present"}
-        1. Order/Packaging
-      %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra, lacus id interdum ultrices, elit metus semper tellus, vel lacinia libero purus vitae risus.
+        = t('welcome_page.step_one')
+      %p= t('welcome_page.step_one_description')
     .large-4.columns
       %h3
         %span.dropcap_black.lsf-icon-dropcap{title: "pin"}
-        2. Tracking
-      %p Vivamus tortor tellus, rutrum sit amet mollis vel, imperdiet consectetur orci. Mauris pharetra congue enim, et sagittis lectus congue ut. Cum sociis natoque penatibus.
+        = t('welcome_page.step_two')
+      %p= t('welcome_page.step_two_description')
     .large-4.columns
       %h3
         %span.dropcap_black.lsf-icon-dropcap{title: "notify"}
-        3. Notification
-      %p Sed vitae nisi leo. Nulla tincidunt, turpis non gravida pharetra, diam sapien posuere massa, non luctus leo mauris at sapien. Donec ut fermentum eros.
+        = t('welcome_page.step_three')
+      %p= t('welcome_page.step_three_description')
