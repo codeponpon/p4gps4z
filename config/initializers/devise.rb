@@ -251,7 +251,8 @@ Devise.setup do |config|
 
   # PAGPOSDEV
   require "omniauth-facebook"
-  if ["production", "staging"].include? Rails.evn
+  
+  if "production".eql? Rails.env
     config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
   else
     config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
