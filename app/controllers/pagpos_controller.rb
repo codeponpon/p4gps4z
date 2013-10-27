@@ -7,7 +7,7 @@ class PagposController < ApplicationController
   def create
     qtracking = Tracking.where(code: params[:tracking][:code], status: TrackingStatus.guest).first
     if qtracking.blank?
-      @tracking = Tracking.new(code: params[:tracking][:code])
+      @tracking = Tracking.new(code: params[:tracking][:code], status: TrackingStatus.guest)
       if @tracking.save
         flash[:notice] = "Add tracking code successfully"
         redirect_to action: "show", code: params[:tracking][:code]
