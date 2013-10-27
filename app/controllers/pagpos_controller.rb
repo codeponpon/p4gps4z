@@ -1,9 +1,36 @@
 class PagposController < ApplicationController
-  def index
-    tracking_code = params[:code]
-    user_id = params[:user_id]
-    # return render text: "#{DateTime.now} #{tracking_code} is tracking"
-    puts "#{DateTime.now} #{tracking_code} is tracking"
+
+  def new
+    @tracking = Tracking.new
+  end
+
+  def create
+    qtracking = Tracking.where(code: params[:tracking][:code], status: 'guest').first
+    if qtracking.blank?
+      @tracking = Tracking.new(code: params[:tracking][:code])
+      if @tracking.save
+        flash[:notice] = "Add tracking code successfully"
+        redirect_to action: "show", code: params[:tracking][:code]
+      else
+        render action: "new"
+      end
+    else
+      redirect_to action: 'show', code: params[:tracking][:code]
+    end
+  end
+
+  def show
+    if params_validation.blank?
+      flash[:alert] = 'Tracking code is invalid'
+      @tracking = nil
+    else
+      @tracking = Tracking.where(code: params[:code], status: 'guest').first
+      track_position(@tracking)
+    end
+  end
+
+  def track_position(tracking_result)
+    tracking_code = tracking_result.code
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
@@ -40,8 +67,9 @@ class PagposController < ApplicationController
       end
       post_receive_link = post.links.last.href.match(/\'(.*)\'\,/)
       if post_receive_link.blank?
-        Tracking.where(code: tracking_code, user_id: user_id).first.update_attributes(status: 'notfound')
-        return render text: "#{tracking_code} notfound"
+        flash[:alert] = 'Tracking code not found'
+        Tracking.where(code: tracking_code, status: 'guest').first.update_attributes(status: 'notfound')
+        @tracking = nil
       else
         recieve_url = url + post.links.last.href.match(/\'(.*)\'\,/)[1]
         post_receive = a.get(recieve_url)
@@ -60,12 +88,12 @@ class PagposController < ApplicationController
           end
         end
 
-        tracking_obj = Tracking.where(code: tracking_code, user_id: user_id).first
-        package_obj = Package.where(tracking_id: tracking_obj.id)
+        @tracking = Tracking.where(code: tracking_code, status: 'guest').first
+        package_obj = Package.where(tracking_id: @tracking.id)
         if package_obj.blank?
           tracking.each_with_index do |process, index|
             pac = Package.new
-            pac.tracking_id = tracking_obj.id
+            pac.tracking_id = @tracking.id
             pac.process_at = process.last[:process_at]
             pac.department = process.last[:department]
             pac.description = process.last[:description]
@@ -75,9 +103,9 @@ class PagposController < ApplicationController
               # pac.image = Image.new(attachment: URI.parse(signature_url))
               if signature_url.present? 
                 upload = UrlUpload.new(signature_url)
-                directory = "public/system/signature/"
+                directory = Dir.getwd + "/public/system/signature/"
                 Dir.mkdir(directory) unless File.exists?(directory)
-                user_dir = directory + tracking_obj.user._id.to_s
+                user_dir = directory + @tracking.id.to_s
                 Dir.mkdir(user_dir) unless File.exists?(user_dir)
                 path = File.join(user_dir, upload.original_filename)
                 File.open(path, "wb") { |f| f.write(upload.read) }
@@ -86,15 +114,15 @@ class PagposController < ApplicationController
                   pac.signature = path
                 end
               end
-              # tracking_obj.update_attribute(:status, 'done')
+              # @tracking.update_attribute(:status, 'done')
             end
             pac.save
           end
         else
           tracking.each_with_index do |process, index|
-            if (index-1) > package_obj.count
+            if (index+1) > package_obj.count
               pac = Package.new
-              pac.tracking_id = tracking_obj.id
+              pac.tracking_id = @tracking.id
               pac.process_at = process.last[:process_at]
               pac.department = process.last[:department]
               pac.description = process.last[:description]
@@ -104,9 +132,9 @@ class PagposController < ApplicationController
                 # pac.image = Image.new(attachment: URI.parse(signature_url))
                 if signature_url.present? 
                   upload = UrlUpload.new(signature_url)
-                  directory = "public/system/signature/"
+                  directory = Dir.getwd + "/public/system/signature/"
                   Dir.mkdir(directory) unless File.exists?(directory)
-                  user_dir = directory + tracking_obj.user._id.to_s
+                  user_dir = directory + @tracking.id.to_s
                   Dir.mkdir(user_dir) unless File.exists?(user_dir)
                   path = File.join(user_dir, upload.original_filename)
                   File.open(path, "wb") { |f| f.write(upload.read) }
@@ -115,18 +143,24 @@ class PagposController < ApplicationController
                     pac.signature = path
                   end
                 end
-                # tracking_obj.update_attribute(:status, 'done')
+                # @tracking.update_attribute(:status, 'done')
               end
               pac.save
             end
           end
         end
-        tracking_obj.update_attribute(:packages_count, tracking.count)
+        @tracking.update_attribute(:packages_count, tracking.count)
         # return render text: "#{tracking_code} tracking success"
-        return render json: tracking
+        # return render json: tracking
       end # data not found
     else
-      return render text: "#{tracking_code} cannot track has something wrong"
+      # return render text: "#{tracking_code} cannot track has something wrong"
+      @tracking = nil
     end # end if not
+  end
+
+  def params_validation
+    valid_code_regex = /\A[E|C|R|L][A-Z][0-9]{9}[0-9A-Z]{2}\Z/
+    valid_code_regex.match(params.require(:code).upcase)
   end
 end
