@@ -56,6 +56,9 @@ $em-base: 16px !default;
 //   @return $pxWidth / $rem-base * 1rem;
 // }
 
+// PAGPOS white color
+$pagpos-white-color: #f5f5f5;
+
 // Change whether or not you include browser prefixes
 // $experimental: true;
 
@@ -816,7 +819,7 @@ $default-float: left;
 
 // We use these to control the caption styles
 
-// $orbit-container-bg: #f5f5f5;
+// $orbit-container-bg: $pagpos-white-color;
 // $orbit-caption-bg: rgba(0,0,0,0.6);
 // $orbit-caption-font-color: #fff;
 // $orbit-caption-font-size: emCalc(14);
@@ -969,7 +972,7 @@ $default-float: left;
 
 // We use these to control the CTA area styles
 
-// $price-cta-bg: #f5f5f5;
+// $price-cta-bg: $pagpos-white-color;
 // $price-cta-align: center;
 // $price-cta-padding: em-calc(20 20 0);
 
@@ -1167,7 +1170,7 @@ $default-float: left;
 // $switch-paddle-transition-speed: .1s;
 // $switch-paddle-transition-ease: ease-out;
 // $switch-positive-color: lighten($success-color, 50%);
-// $switch-negative-color: #f5f5f5;
+// $switch-negative-color: $pagpos-white-color;
 
 // Outline Style for tabbing through switches
 
@@ -1190,7 +1193,7 @@ $default-float: left;
 
 // These control the table head styles
 
-// $table-head-bg: #f5f5f5;
+// $table-head-bg: $pagpos-white-color;
 // $table-head-font-size: em-calc(14);
 // $table-head-font-color: #222;
 // $table-head-font-weight: bold;
@@ -1319,6 +1322,9 @@ $default-float: left;
   $topbar-divider-border-bottom: solid 1px lighten($topbar-bg-color, 10%);
   $topbar-divider-border-top: solid 1px darken($topbar-bg-color, 10%);
 
+// Warning
+  $warning-background-color: #ff6c3c;
+
 // Sticky Class
 
 // $topbar-sticky-class: ".sticky";
@@ -1328,13 +1334,14 @@ $default-float: left;
 @import 'foundation/general_foundicons';
 @import 'style';
 
-$backgroud-image: 'bg.jpg';
+$backgroud-image: 'bg.png';
 
 body{
   margin: 0;
   padding: 0;
-  background: #f5f5f5 url($backgroud-image);
+  background: $pagpos-white-color url($backgroud-image);
 }
+
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, a{
   color: #555;
 }
@@ -1421,4 +1428,9 @@ header form.custom input.medium.button{
   max-height: 600px;
   font-size: 275px;
   padding-top: 130px;
+}
+
+.alert-box.warning {
+  @include alert-base;
+  @include alert-style($warning-background-color);
 }

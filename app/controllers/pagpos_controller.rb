@@ -21,8 +21,8 @@ class PagposController < ApplicationController
 
   def show
     if params_validation.blank?
-      flash[:alert] = 'Tracking code is invalid'
-      @tracking = nil
+      flash[:alert] = "Tracking code is invalid"
+      redirect_to action: "new"
     else
       @tracking = Tracking.where(code: params[:code], status: 'guest').first
       track_position(@tracking)
@@ -68,8 +68,7 @@ class PagposController < ApplicationController
       post_receive_link = post.links.last.href.match(/\'(.*)\'\,/)
       if post_receive_link.blank?
         flash[:alert] = 'Tracking code not found'
-        Tracking.where(code: tracking_code, status: 'guest').first.update_attributes(status: 'notfound')
-        @tracking = nil
+        redirect_to action: "new"
       else
         recieve_url = url + post.links.last.href.match(/\'(.*)\'\,/)[1]
         post_receive = a.get(recieve_url)
