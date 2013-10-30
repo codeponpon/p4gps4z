@@ -764,4 +764,18 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
     display: none;
   }
 }
+.alpha-version { background: url(<%= image_path('alpha.gif') %>); }
+.beta-version { background: url(<%= image_path('beta.gif') %>); }
 
+.alpha-version, 
+.beta-version {
+  position:absolute; 
+  right:0px; 
+  top:0px; 
+  margin:0px; 
+  padding:0px;
+  border: none;
+  width: 150px; 
+  height: 150px;
+  z-index: 1000;
+}
