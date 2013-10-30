@@ -14,6 +14,8 @@
           %th= t('trackings.status')
           %th 
       %tbody
+      - rows = @tracking.packages.count
+      - reciever = @tracking.packages.map(&:reciever).reject(&:nil?).first
       - @tracking.packages.each_with_index do |p, i| 
         %tr
           %td
@@ -28,16 +30,13 @@
                 .lsf-icon{title: "info"}
                   = p.description
           - if i.zero?
+            - reciever = @tracking.packages.map(&:reciever).reject(&:nil?).last
             %td{rowspan: @tracking.packages.count-1, valign: 'top', align: 'center'}
-              - signature = @tracking.packages.map(&:signature).reject(&:nil?).first
-              - unless signature.blank?
+              - signature = @tracking.packages.map(&:signature).reject(&:nil?).last
+              - if !signature.blank? && File.exists?(signature)
                 = image_tag(signature.split('/public').last, alt: p.reciever)
-                - unless @tracking.packages.last.reciever.blank?
-                  %br
-                  %br
-                  = @tracking.packages.last.reciever
               - else
                 .adv-454.lsf-icon{title: "camera"}
-          - unless p.reciever.blank?
+          - if (i+1) == rows && !reciever.blank?
             %td{align: 'center', valign: 'middle' }
-              = p.reciever
+              = reciever

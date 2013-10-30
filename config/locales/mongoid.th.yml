@@ -1,0 +1,8 @@
+th:
+  mongoid: 
+    errors:
+      models:
+        tracking:
+          attributes:
+            code:
+              taken: 'มีรหัสนี้ในระบบแล้ว'

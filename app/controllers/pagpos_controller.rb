@@ -25,17 +25,21 @@ class PagposController < ApplicationController
       redirect_to action: "new"
     else
       @tracking = Tracking.where(code: params[:code], status: TrackingStatus.guest).first
-      track_position(params[:code])
+      if @tracking.blank?
+        @tracking = Tracking.create(code: params[:code], status: TrackingStatus.guest)
+      end
+      @tracking_code = params[:code]
+      track_position
     end
   end
 
-  def track_position(tracking_code)
+  def track_position
     url = 'http://track.thailandpost.co.th/trackinternet/'
     trackurl = url + 'Default.aspx'
     a = Mechanize.new { |agent| agent.follow_meta_refresh = true }
     t = a.get(trackurl)
     f1 = t.form('Form1')
-    f1.TextBarcode = tracking_code
+    f1.TextBarcode = @tracking_code
     post = a.submit(f1, f1.buttons.last)
 
     if not post.uri.path.scan('Result.aspx').first.nil?
@@ -86,7 +90,7 @@ class PagposController < ApplicationController
           end
         end
 
-        @tracking = Tracking.where(code: tracking_code, status: TrackingStatus.guest).first
+        # @tracking = Tracking.where(code: tracking_code, status: TrackingStatus.guest).first
         package_obj = Package.where(tracking_id: @tracking.id)
         if package_obj.blank?
           tracking.each_with_index do |process, index|
@@ -101,6 +105,7 @@ class PagposController < ApplicationController
               # pac.image = Image.new(attachment: URI.parse(signature_url))
               if signature_url.present? 
                 upload = UrlUpload.new(signature_url)
+                Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                 directory = Dir.getwd + "/public/system/signature/"
                 Dir.mkdir(directory) unless File.exists?(directory)
                 user_dir = directory + @tracking.id.to_s
@@ -130,6 +135,7 @@ class PagposController < ApplicationController
                 # pac.image = Image.new(attachment: URI.parse(signature_url))
                 if signature_url.present? 
                   upload = UrlUpload.new(signature_url)
+                  Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                   directory = Dir.getwd + "/public/system/signature/"
                   Dir.mkdir(directory) unless File.exists?(directory)
                   user_dir = directory + @tracking.id.to_s

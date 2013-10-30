@@ -1,0 +1,56 @@
+th:
+  pagpos:
+    title: 'PAGPOS'
+    slogan: 'Package Position Notification System'
+  welcome_page:
+    step_one: '1. Order/Packaging'
+    step_one_description: 'ซื้อสินค้าออนไลน์จากร้านค้าที่เป็น Partner กับ PAGPOS'
+    step_two: '2. Tracking'
+    step_two_description: 'ร้านค้าหรือผู้ให้บิรการนำสินค้าไปส่งที่ไปรณีย์ตามคำสั่งซื้อของลูกค้า'
+    step_three: '3. Notification'
+    step_three_description: 'ลูกค้าได้รับการแจ้งเตือนเมื่อสถานะของพัสดุมีการเปลี่ยนแปลง'
+  social:
+    twitter: 'Twitter'
+    facebook: 'Facebook'
+  menu:
+    tracking: "ติดตามพัสดุ"
+    profile: "โปรไฟล์"
+    signout: "ออกจากระบบ"
+    signin: "เข้าสู่ระบบ"
+    find_package: "หาตำแหน่งพัสดุ"
+    login_with_facebook: "เข้าระบบด้วย Facebook"
+  shared_link:
+    signin: "เข้าสู่ระบบ"
+    signup: "สมัครสมาชิก"
+    forget_password: "ลืมรหัสผ่าน?"
+    donot_recieve_password: "ไม่ได้รับรหัสผ่าน?"
+    donot_recieve_unlock_password: "ไม่ได้รับรหัสปลดล็อคเพื่อเข้าสู่ระบบ?"
+  signup:
+    title: 'สมัครสมาชิก'
+    submit_btn: "สมัครสมาชิก"
+  signin:
+    title: 'เข้าสู่ระบบ'
+    submit_btn: "เข้าสู่ระบบ"
+    remember_me: 'จำฉันไว้ในระบบ'
+  api:
+    v1:
+      token:
+        invalid_token: 'Token code ไม่ถูกต้อง'
+      sessions:
+        invalid_login: 'การเข้าระบบผิดพลาด กรุณาตรวจสอบการป้อนข้อมูลอีกครั้ง'
+  trackings:
+    date_process: 'วันที่ดำเนินการ'
+    status: 'สถานะพัสดุ'
+    department: 'ที่ทำการไปรษณืย์'
+    tracking_code: 'รหัสพัสดุ'
+    details_btn: 'รายละเอียก'
+    delete_btn: 'ลบ'
+    placeholder_tracking_id: 'รหัสพัสดุ'
+    add_btn: 'ค้นหา'
+    delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
+  tracking_status:
+    default_status: 'รอดำเนินการ'
+    pending: 'รอดำเนินการ'
+    ontheway: 'กำลังจัดส่ง'
+    done: 'จัดส่งเรียบร้อยแล้ว'
+    guest: 'ผู้ใช้ทั่วไป'
