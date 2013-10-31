@@ -1,4 +1,8 @@
+require 'azure/azure_sdk' if Rails.env.production?
+
 class PagposController < ApplicationController
+
+  before_filter :sabud_blob
 
   def new
     @tracking = Tracking.new
@@ -105,16 +109,23 @@ class PagposController < ApplicationController
               # pac.image = Image.new(attachment: URI.parse(signature_url))
               if signature_url.present? 
                 upload = UrlUpload.new(signature_url)
-                Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
-                directory = Dir.getwd + "/public/system/signature/"
-                Dir.mkdir(directory) unless File.exists?(directory)
-                user_dir = directory + @tracking.id.to_s
-                Dir.mkdir(user_dir) unless File.exists?(user_dir)
-                path = File.join(user_dir, upload.original_filename)
-                File.open(path, "wb") { |f| f.write(upload.read) }
-
-                if File.exists?(path)
-                  pac.signature = path
+                file_name = upload.original_filename
+                if @blobs.blank?
+                  Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
+                  directory = Dir.getwd + "/public/system/signature/"
+                  Dir.mkdir(directory) unless File.exists?(directory)
+                  user_dir = directory + @tracking.id.to_s
+                  Dir.mkdir(user_dir) unless File.exists?(user_dir)
+                  path = File.join(user_dir, file_name)
+                  File.open(path, "wb") { |f| f.write(upload.read) }
+                  if File.exists?(path)
+                    pac.signature = path.split('/public').last
+                  end
+                else
+                  blob = @blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
+                  if blob.name.eql?(file_name)
+                    pac.signature = @blobs.get_url({container: 'signature', file_name: file_name})
+                  end
                 end
               end
               # @tracking.update_attribute(:status, 'done')
@@ -135,16 +146,23 @@ class PagposController < ApplicationController
                 # pac.image = Image.new(attachment: URI.parse(signature_url))
                 if signature_url.present? 
                   upload = UrlUpload.new(signature_url)
-                  Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
-                  directory = Dir.getwd + "/public/system/signature/"
-                  Dir.mkdir(directory) unless File.exists?(directory)
-                  user_dir = directory + @tracking.id.to_s
-                  Dir.mkdir(user_dir) unless File.exists?(user_dir)
-                  path = File.join(user_dir, upload.original_filename)
-                  File.open(path, "wb") { |f| f.write(upload.read) }
-
-                  if File.exists?(path)
-                    pac.signature = path
+                  file_name = upload.original_filename
+                  if @blobs.blank?
+                    Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
+                    directory = Dir.getwd + "/public/system/signature/"
+                    Dir.mkdir(directory) unless File.exists?(directory)
+                    user_dir = directory + @tracking.id.to_s
+                    Dir.mkdir(user_dir) unless File.exists?(user_dir)
+                    path = File.join(user_dir, file_name)
+                    File.open(path, "wb") { |f| f.write(upload.read) }
+                    if File.exists?(path)
+                      pac.signature = path.split('/public').last
+                    end
+                  else
+                    blob = @blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
+                    if blob.name.eql?(file_name)
+                      pac.signature = @blobs.get_url({container: 'signature', file_name: file_name})
+                    end
                   end
                 end
                 # @tracking.update_attribute(:status, 'done')
@@ -167,4 +185,11 @@ class PagposController < ApplicationController
     valid_code_regex = /\A[E|C|R|L][A-Z][0-9]{9}[0-9A-Z]{2}\Z/
     valid_code_regex.match(params.require(:code).upcase)
   end
+
+  private
+    def sabud_blob
+      @blobs = nil
+      return @blobs unless Rails.env.production?
+      @blobs = AzureSdk::Storage::Blobs
+    end
 end
