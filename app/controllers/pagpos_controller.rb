@@ -105,9 +105,43 @@ class PagposController < ApplicationController
             pac.description = process.last[:description]
             pac.status = process.last[:status]
             pac.reciever = process.last[:reciever].strip
-            if not process.last[:reciever].blank?
+            if !process.last[:reciever].blank? && signature_url.present?
               # pac.image = Image.new(attachment: URI.parse(signature_url))
-              if signature_url.present? 
+              upload = UrlUpload.new(signature_url)
+              file_name = upload.original_filename
+              if @blobs.blank?
+                Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
+                directory = Dir.getwd + "/public/system/signature/"
+                Dir.mkdir(directory) unless File.exists?(directory)
+                user_dir = directory + @tracking.id.to_s
+                Dir.mkdir(user_dir) unless File.exists?(user_dir)
+                path = File.join(user_dir, file_name)
+                File.open(path, "wb") { |f| f.write(upload.read) }
+                if File.exists?(path)
+                  pac.signature = path.split('/public').last
+                end
+              else
+                blob = @blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
+                if blob.name.eql?(file_name)
+                  pac.signature = @blobs.get_url({container: 'signature', file_name: file_name})
+                end
+              end
+              # @tracking.update_attribute(:status, 'done')
+            end
+            pac.save
+          end
+        else
+          tracking.each_with_index do |process, index|
+            if (index+1) > package_obj.count
+              pac = Package.new
+              pac.tracking_id = @tracking.id
+              pac.process_at = process.last[:process_at]
+              pac.department = process.last[:department]
+              pac.description = process.last[:description]
+              pac.status = process.last[:status]
+              pac.reciever = process.last[:reciever].strip
+              if !process.last[:reciever].blank? && signature_url.present?
+                # pac.image = Image.new(attachment: URI.parse(signature_url))
                 upload = UrlUpload.new(signature_url)
                 file_name = upload.original_filename
                 if @blobs.blank?
@@ -125,44 +159,6 @@ class PagposController < ApplicationController
                   blob = @blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
                   if blob.name.eql?(file_name)
                     pac.signature = @blobs.get_url({container: 'signature', file_name: file_name})
-                  end
-                end
-              end
-              # @tracking.update_attribute(:status, 'done')
-            end
-            pac.save
-          end
-        else
-          tracking.each_with_index do |process, index|
-            if (index+1) > package_obj.count
-              pac = Package.new
-              pac.tracking_id = @tracking.id
-              pac.process_at = process.last[:process_at]
-              pac.department = process.last[:department]
-              pac.description = process.last[:description]
-              pac.status = process.last[:status]
-              pac.reciever = process.last[:reciever].strip
-              if not process.last[:reciever].blank?
-                # pac.image = Image.new(attachment: URI.parse(signature_url))
-                if signature_url.present? 
-                  upload = UrlUpload.new(signature_url)
-                  file_name = upload.original_filename
-                  if @blobs.blank?
-                    Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
-                    directory = Dir.getwd + "/public/system/signature/"
-                    Dir.mkdir(directory) unless File.exists?(directory)
-                    user_dir = directory + @tracking.id.to_s
-                    Dir.mkdir(user_dir) unless File.exists?(user_dir)
-                    path = File.join(user_dir, file_name)
-                    File.open(path, "wb") { |f| f.write(upload.read) }
-                    if File.exists?(path)
-                      pac.signature = path.split('/public').last
-                    end
-                  else
-                    blob = @blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
-                    if blob.name.eql?(file_name)
-                      pac.signature = @blobs.get_url({container: 'signature', file_name: file_name})
-                    end
                   end
                 end
                 # @tracking.update_attribute(:status, 'done')

@@ -1,7 +1,10 @@
+require 'azure/azure_sdk' if Rails.env.production?
+
 class TrackingPositionWorker
   @queue = :tracking_position_queue
 
   def self.perform(params)
+    blobs = Rails.env.production? ? AzureSdk::Storage::Blobs : nil
     user_id, tracking_code = params
     puts "#{DateTime.now} #{tracking_code} is tracking"
     url = 'http://track.thailandpost.co.th/trackinternet/'
@@ -71,19 +74,25 @@ class TrackingPositionWorker
             pac.description = process.last[:description]
             pac.status = process.last[:status]
             pac.reciever = process.last[:reciever].strip
-            if not process.last[:reciever].blank?
+            if !process.last[:reciever].blank? && signature_url.present?
               # pac.image = Image.new(attachment: URI.parse(signature_url))
-              if signature_url.present? 
-                upload = UrlUpload.new(signature_url)
-                directory = "public/system/signature/"
+              upload = UrlUpload.new(signature_url)
+              file_name = upload.original_filename
+              if blobs.blank?
+                Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
+                directory = Dir.getwd + "/public/system/signature/"
                 Dir.mkdir(directory) unless File.exists?(directory)
-                user_dir = directory + tracking_obj.user._id.to_s
+                user_dir = directory + @tracking.id.to_s
                 Dir.mkdir(user_dir) unless File.exists?(user_dir)
-                path = File.join(user_dir, upload.original_filename)
+                path = File.join(user_dir, file_name)
                 File.open(path, "wb") { |f| f.write(upload.read) }
-
                 if File.exists?(path)
-                  pac.signature = path
+                  pac.signature = path.split('/public').last
+                end
+              else
+                blob = blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
+                if blob.name.eql?(file_name)
+                  pac.signature = blobs.get_url({container: 'signature', file_name: file_name})
                 end
               end
               # tracking_obj.update_attribute(:status, 'done')
@@ -100,19 +109,25 @@ class TrackingPositionWorker
               pac.description = process.last[:description]
               pac.status = process.last[:status]
               pac.reciever = process.last[:reciever].strip
-              if not process.last[:reciever].blank?
+              if !process.last[:reciever].blank? && signature_url.present? 
                 # pac.image = Image.new(attachment: URI.parse(signature_url))
-                if signature_url.present? 
-                  upload = UrlUpload.new(signature_url)
-                  directory = "public/system/signature/"
+                upload = UrlUpload.new(signature_url)
+                file_name = upload.original_filename
+                if blobs.blank?
+                  Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
+                  directory = Dir.getwd + "/public/system/signature/"
                   Dir.mkdir(directory) unless File.exists?(directory)
-                  user_dir = directory + tracking_obj.user._id.to_s
+                  user_dir = directory + @tracking.id.to_s
                   Dir.mkdir(user_dir) unless File.exists?(user_dir)
-                  path = File.join(user_dir, upload.original_filename)
+                  path = File.join(user_dir, file_name)
                   File.open(path, "wb") { |f| f.write(upload.read) }
-
                   if File.exists?(path)
-                    pac.signature = path
+                    pac.signature = path.split('/public').last
+                  end
+                else
+                  blob = blobs.create({container: 'signature', file_name: file_name, file_content: upload.read})
+                  if blob.name.eql?(file_name)
+                    pac.signature = blobs.get_url({container: 'signature', file_name: file_name})
                   end
                 end
                 # tracking_obj.update_attribute(:status, 'done')
