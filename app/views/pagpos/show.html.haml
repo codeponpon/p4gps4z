@@ -40,8 +40,8 @@
             - reciever = @tracking.packages.map(&:reciever).reject(&:nil?).last
             %td{rowspan: @tracking.packages.count-1, valign: 'top', align: 'center'}
               - signature = @tracking.packages.map(&:signature).reject(&:nil?).last
-              - if !signature.blank? && File.exists?(signature)
-                = image_tag(signature.split('/public').last, alt: p.reciever)
+              - if !signature.blank?
+                = image_tag(signature, alt: p.reciever)
               - else
                 .adv-454.lsf-icon{title: "camera"}
           - if (i+1) == rows && !reciever.blank?
