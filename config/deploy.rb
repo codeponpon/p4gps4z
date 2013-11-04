@@ -112,7 +112,7 @@ namespace :deploy do
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy", "deploy:run_whenever"
-  after "deploy:run_whenever", "deploy:cleanup"
+  # after "deploy:run_whenever", "deploy:cleanup"
   # after "deploy:run_whenever", "deploy:run_workers"
   # after "deploy:finalize_update", "deploy:remove_assets"
 end
