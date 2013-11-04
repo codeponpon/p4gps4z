@@ -1,9 +1,9 @@
 class TrackingStatus
-  @default_status = I18n.t('tracking_status.default_status')
-  @pending  = I18n.t('tracking_status.pending')
-  @ontheway = I18n.t('tracking_status.ontheway')
-  @done     = I18n.t('tracking_status.done')
-  @guest    = I18n.t('tracking_status.guest')
+  @pending  = 'pending'
+  @ontheway = 'ontheway'
+  @done     = 'done'
+  @guest    = 'guest'
+  @default_status = @pending
 
   def self.default_status; @default_status; end
   def self.all_status; [@pending, @ontheway, @done, @guest]; end
