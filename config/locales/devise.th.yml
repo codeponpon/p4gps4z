@@ -23,8 +23,8 @@ th:
       unlock_instructions:
         subject: "การปลดล็อคบัญชี"
     omniauth_callbacks:
-      failure: "ไม่สามารยืนยันบัญชี %{kind} เพราะ \"%{reason}\"."
-      success: "การยืนยันบัญชี %{kind} เรียบร้อยแล้ว."
+      failure: "ไม่สามารถเข้าใช้งานผ่าน %{kind} เพราะ \"%{reason}\"."
+      success: "คุณเข้าใช้งานผ่าน %{kind} เรียบร้อยแล้ว."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
