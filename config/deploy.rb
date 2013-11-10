@@ -5,7 +5,7 @@ require "bundler/capistrano"
 default_run_options[:pty] = true 
 
 set :application, "pagpos"
-set :user, "pagposazure"
+set :user, "codeponpon"
 set :scm, :git
 set :repository, "git@github.com:codeponpon/p4gps4z.git"
 set :branch, "master"
@@ -24,8 +24,11 @@ set :ssh_options, { :forward_agent => true }
 set :whenever_command, "RAILS_ENV=#{rails_env} bundle exec whenever"
 require "whenever/capistrano"
 
-server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
-server "pagposv1.cloudapp.net", :web, :app, :worker
+server "pagpos.cloudapp.net", :web, :app, :db, primary: true
+server "pagpos.cloudapp.net", :web, :app, :worker
+
+# server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
+# server "pagposv1.cloudapp.net", :web, :app, :worker
 
 set :deploy_to, "/home/#{user}/apps/#{application}"
 default_run_options[:pty] = true

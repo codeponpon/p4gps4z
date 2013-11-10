@@ -3,7 +3,13 @@ production:
     default:
       database: pagpos_production
       hosts:
-        - pagposv1.cloudapp.net
+        - pagposdb.cloudapp.net:62178
+staging:
+  sessions:
+    default:
+      database: pagpos_staging
+      hosts:
+        - pagposdbdev.cloudapp.net:57320
 development:
   # Configure available database sessions. (required)
   sessions:
@@ -15,7 +21,8 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        # - localhost:27017
+        - pagposdbdev.cloudapp.net:57320
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
