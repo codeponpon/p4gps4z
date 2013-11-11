@@ -32,7 +32,6 @@ class User
   field :uid, :type => String
   field :token_fb, :type => String
 
-  field :gender, :type => String
   field :specific_department, :type => String 
 
   field :gender, :type => String, :default => ""
