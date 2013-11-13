@@ -1,5 +1,9 @@
 require "bundler/capistrano"
 
+set :stages, [:staging, :production]
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 # Must be set for the password prompt
 # from git to work
 default_run_options[:pty] = true 
