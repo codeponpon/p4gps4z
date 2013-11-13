@@ -84,6 +84,7 @@ Pagpos::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true  
   config.action_mailer.default_url_options = { :host => "dev.pagpos.com" }
+  PUBLIC_SUBDOMAIN = "dev"
   
   # Stripe
   # Stripe.api_key = ""

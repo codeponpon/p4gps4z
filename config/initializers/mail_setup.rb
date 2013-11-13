@@ -9,7 +9,7 @@
 #   :password => "",
 #   :enable_starttls_auto => true
 # }
-if Rails.env.production?
+if Rails.env.production? || Rails.env.staging?
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => '587',

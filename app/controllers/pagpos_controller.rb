@@ -1,4 +1,4 @@
-require 'azure/azure_sdk' if Rails.env.production?
+require 'azure/azure_sdk' if Rails.env.production? || Rails.env.staging?
 
 class PagposController < ApplicationController
 
@@ -185,7 +185,7 @@ class PagposController < ApplicationController
   private
     def sabud_blob
       @blobs = nil
-      return @blobs unless Rails.env.production?
+      return @blobs unless Rails.env.production? || Rails.env.staging?
       @blobs = AzureSdk::Storage::Blobs
     end
 end
