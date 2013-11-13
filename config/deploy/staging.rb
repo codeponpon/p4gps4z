@@ -1,9 +1,9 @@
-server "pagposx.cloudapp.net", :web, :app, :db, primary: true
-server "pagposx.cloudapp.net", :web, :app, :worker
+server "pagposdev.cloudapp.net", :web, :app, :db, primary: true
+server "pagposdev.cloudapp.net", :web, :app, :worker
 
-role :app, "pagposx.cloudapp.net", "pagposx1.cloudapp.net", "pagposx2.cloudapp.net"
-role :db, "pagposdbx.cloudapp.net", :primary => true
-role :web, "pagposx.cloudapp.net"
+role :app, "pagposdev.cloudapp.net"  #, "pagposdev1.cloudapp.net", "pagposdev2.cloudapp.net"
+role :db, "pagposdbdev.cloudapp.net", :primary => true
+role :web, "pagposdev.cloudapp.net"
 
 set :application, "pagpos"
 set :user, "codeponpon"
