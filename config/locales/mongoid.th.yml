@@ -6,3 +6,20 @@ th:
           attributes:
             code:
               taken: 'มีรหัสนี้ในระบบแล้ว'
+        user:
+          attributes:
+            current_password:
+              blank: 'กรุณาป้อนรหัสผ่านปัจจับันก่อน'
+            password:
+              too_short: 'รหัสผ่านไม่ถูกต้อง'
+            password_confirmation:
+              confirmation: 'กรุณาป้อนรหัสผ่านอีกครั้ง'
+            phone_no:
+              blank: 'กรุณาป้อนหมายเลขโทรศัพท์เมื่อท่านต้องการแจ้งเตือนผ่าน SMS'
+              wrong_length: 'ความยาวของหมายเลขโทรศัพท์ไม่ถูกต้อง'
+              invalid: 'หมายเลขโทรศัพท์ไม่ถูกต้อง'
+      messages:
+        unknown_attribute:
+          message: 'unknown attribute %{message}'
+          summary: 'unknown attribute %{summary}'
+          resolution: 'unknown attribute %{resolution}'

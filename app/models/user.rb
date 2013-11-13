@@ -3,6 +3,8 @@ class User
   include Mongoid::Timestamps
   has_many :trackings
 
+  validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +37,7 @@ class User
   field :specific_department, :type => String 
 
   field :gender, :type => String, :default => ""
+  field :phone_no, :type => String, :default => ""
 
   ## Trackable
   field :sign_in_count,      :type => Integer, :default => 0
@@ -70,7 +73,8 @@ class User
                             uid:auth.uid,
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20],
-                            time_zone: auth.extra.raw_info.timezone
+                            time_zone: auth.extra.raw_info.timezone,
+                            gender: auth.extra.raw_info.gender
                           )
       end
        

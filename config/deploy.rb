@@ -1,15 +1,19 @@
 require "bundler/capistrano"
 
+set :stages, [:staging, :production]
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 # Must be set for the password prompt
 # from git to work
 default_run_options[:pty] = true 
 
 set :application, "pagpos"
-set :user, "codeponpon"
 set :scm, :git
-set :repository, "git@github.com:codeponpon/p4gps4z.git"
-set :branch, "master"
 set :use_sudo, true
+set :user, "codeponpon"
+# set :repository, "git@github.com:codeponpon/p4gps4z.git"
+# set :branch, "master"
 
 # This essentially keeps a clone of your app on the server and then just does a git pull to fetch new changes and copies the directory across when you deploy.
 # set :repository_cache, "git_cache"
@@ -24,8 +28,8 @@ set :ssh_options, { :forward_agent => true }
 set :whenever_command, "RAILS_ENV=#{rails_env} bundle exec whenever"
 require "whenever/capistrano"
 
-server "pagpos.cloudapp.net", :web, :app, :db, primary: true
-server "pagpos.cloudapp.net", :web, :app, :worker
+# server "pagpos.cloudapp.net", :web, :app, :db, primary: true
+# server "pagpos.cloudapp.net", :web, :app, :worker
 
 # server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
 # server "pagposv1.cloudapp.net", :web, :app, :worker
@@ -46,7 +50,7 @@ after "deploy:restart", "deploy:restart_workers"
 def run_remote_rake(rake_cmd)
   rake_args = ENV['RAKE_ARGS'].to_s.split(',')
  
-  cmd = "cd #{fetch(:latest_release)} && bundle exec #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, "production")} #{rake_cmd}"
+  cmd = "cd #{fetch(:latest_release)} && bundle exec #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, rails_env)} #{rake_cmd}"
   cmd += "['#{rake_args.join("','")}']" unless rake_args.empty?
   run cmd
   set :rakefile, nil if exists?(:rakefile)
@@ -86,7 +90,7 @@ namespace :deploy do
 
   task :run_whenever, roles: :app, except: {no_release: true} do
     run "cd #{current_path} && #{whenever_command}"
-    run "cd #{current_path} && RAILS_ENV=production bundle exec whenever --update-crontab pagpos"
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec whenever --update-crontab pagpos"
   end
 
   task :run_workers, roles: :app, except: {no_release: true} do

@@ -138,11 +138,12 @@ class Api::V1::PagposController < Devise::SessionsController
     end # end if not
   end
 
+  # Push notification by Facebook Chat
   def fbchat
     require 'xmpp4r_facebook'
     reciever_uid = '625109503'
-    sender_uid = current_user.uid
-    fbtoken = 'CAACEdEose0cBAKpw8ULdlTn2HNSwJdrMj6p5Hy5Ep6J5SivV4caOxqdaPiHGLCZBxeTdjEoSKV0DMsZAeIQ93mRYmqEvZCjegpaxfJKstpReHZCo58dMncDHFlT5NNtj4NtuF8HBWKD1FRHsKHBwyE7WZCnvwj5w3Q0ZBCgzdL0ZAeg7scbACCkgcBCyV4MtELKoK5t236ZCQQZDZD'
+    sender_uid = '100007021091903'
+    fbtoken = 'CAAHjh3c3ZAMQBAH9hKVAtmZBKSQ1iDijLTEg7ZBQ7TEFTREMKJGK1g7gqsKaHhL2JfEyw0YeeLUqNweuiPm5wTQ9dk7tgNUuV4uDVwxM7cPdCZBdatCGRVF2wetIx3UwICINOxvY4kwfih9MSv40BIwJdCMfyuMcXMdjsGEAKkU748GQqlT9'
     fb_app_id = Devise.omniauth_configs[:facebook].strategy[:client_id]
     fb_app_secret = Devise.omniauth_configs[:facebook].strategy[:client_secret]
 

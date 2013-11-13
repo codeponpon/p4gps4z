@@ -25,9 +25,27 @@ class Tracking
     Resque.enqueue(SendEmailWorker, [tracking_id, reminder_when, specific_department])
   end
 
+  def enqueue_send_sms_worker
+    puts "#{Time.now } #{self.code} added to enqueue_send_sms_worker queue"
+    reminder_when = self.user.reminder_when
+    if self.packages.map(&:reciever).reject(&:nil?).last.blank?
+      message = "#{self.code} #{I18n.t('package_status.to', department: self.packages.last.department)}"
+    else
+      message = "#{self.code} #{I18n.t('package_status.recieved_by', reciever: self.packages.last.reciever)}"
+    end
+    specific_department = (self.user.specific_department == self.packages.last.department)
+
+    # Support only Thailand Mobile Phone at the moment
+    phone_no = self.user.phone_no
+    phone_no = phone_no.sub(phone_no[0], '+66')
+
+    params = [phone_no, message, reminder_when, specific_department]
+    Resque.enqueue(SendSmsWorker, params, self.id.to_s)
+  end
+
   def update_tracking_status
     self.update_attribute(:prev_packages_count, self.packages_count)
-    if not self.packages.map(&:reciever).reject(&:empty?).blank?
+    unless self.packages.map(&:reciever).reject(&:empty?).blank?
       self.update_attribute(:status, TrackingStatus.done)
     end
   end

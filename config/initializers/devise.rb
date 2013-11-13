@@ -10,7 +10,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'no-reply@pagpos.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -251,16 +251,18 @@ Devise.setup do |config|
 
   # PAGPOSDEV
   require "omniauth-facebook"
+  # Production
+  # config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
   
-  if Rails.env.production?
-    config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
-  else
-    config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+  # Staging
+  # config.omniauth :facebook, "531645936919748", "bcabdbc513e0160fecdd305b031d2377", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
+  
+  # Development
+  config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
-    require "omniauth-google-oauth2"
-    config.omniauth :google_oauth2, "872969710494.apps.googleusercontent.com", "EIB1LGGJGdapLbgVrWuLTCxm", { access_type: "offline", approval_prompt: "" }
+  # require "omniauth-google-oauth2"
+  # config.omniauth :google_oauth2, "872969710494.apps.googleusercontent.com", "EIB1LGGJGdapLbgVrWuLTCxm", { access_type: "offline", approval_prompt: "" }
 
-    require 'omniauth-twitter'
-    config.omniauth :twitter ,"SuK6DdVmsq8Wt4cDIHYQ", "bdSJ0ragAKX0rnWddDZSntLxo1sHy2LED2dvyk4Ja2g"
-  end
+  # require 'omniauth-twitter'
+  # config.omniauth :twitter ,"SuK6DdVmsq8Wt4cDIHYQ", "bdSJ0ragAKX0rnWddDZSntLxo1sHy2LED2dvyk4Ja2g"
 end

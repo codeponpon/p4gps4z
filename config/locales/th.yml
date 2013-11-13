@@ -3,11 +3,11 @@ th:
     title: 'PAGPOS'
     slogan: 'Package Position Notification System'
   welcome_page:
-    step_one: '1. Order/Packaging'
+    step_one: '1.Order'
     step_one_description: 'ซื้อสินค้าออนไลน์จากร้านค้าที่เป็น Partner กับ PAGPOS'
-    step_two: '2. Tracking'
+    step_two: '2.Track'
     step_two_description: 'ร้านค้าหรือผู้ให้บิรการนำสินค้าไปส่งที่ไปรณีย์ตามคำสั่งซื้อของลูกค้า'
-    step_three: '3. Notification'
+    step_three: '3.Send Notification'
     step_three_description: 'ลูกค้าได้รับการแจ้งเตือนเมื่อสถานะของพัสดุมีการเปลี่ยนแปลง'
   social:
     twitter: 'Twitter'
@@ -32,12 +32,20 @@ th:
     title: 'เข้าสู่ระบบ'
     submit_btn: "เข้าสู่ระบบ"
     remember_me: 'จำฉันไว้ในระบบ'
+  forgot_password:
+    title: "ลืมรหัสผ่าน?"
+    submit_btn: "กู้รหัสผ่าน"
+    hint: 'กรอกอีเมล์สำหรับกู้รหัสผ่าน'
   api:
     v1:
       token:
         invalid_token: 'Token code ไม่ถูกต้อง'
       sessions:
         invalid_login: 'การเข้าระบบผิดพลาด กรุณาตรวจสอบการป้อนข้อมูลอีกครั้ง'
+  user:
+    gender:
+      male: 'ผู้ชาย'
+      female: 'ผู้หญิง'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'
@@ -54,3 +62,14 @@ th:
     ontheway: 'กำลังจัดส่ง'
     done: 'จัดส่งเรียบร้อยแล้ว'
     guest: 'ผู้ใช้ทั่วไป'
+  package_status:
+    to: 'อยู่ที่ %{department}'
+    recieved_by: 'รับโดย %{reciever}'
+  footer:
+    copyright: 'PAGPOS &copy; %{year}'
+    menu:
+      blog: 'Blog'
+      about: 'เกี่ยวกับ PAGPOS'
+      term_of_use: 'นโยบายการใช้งาน'
+      bug_report: 'แจ้งปัญหาการใช้งาน'
+      contact: 'ติดต่อ PAGPOS'

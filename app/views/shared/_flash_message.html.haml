@@ -1,2 +1,4 @@
 - flash.each do |type, message| 
-  %div{class: "alert-box #{type}"}= message
+  %div{class: "alert-box #{type}", "data-alert" => true}
+    %a.close{href: '#'} &times;
+    = message

@@ -28,9 +28,10 @@ set :output, File.join(Dir.getwd, 'log', 'cron_log.log')
 set :environment, ENV['RAILS_ENV'] || "development"
 
 every 1.minute do 
-  rake "environment pagpos:tracking"
+  rake "environment pagpos:tracking_position"
 end
 
 every 2.minute do
   rake "environment pagpos:send_email_notification"
+  rake "environment pagpos:send_sms_notification"
 end

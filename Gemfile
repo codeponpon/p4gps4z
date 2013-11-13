@@ -78,6 +78,9 @@ gem 'zurb-foundation'
 
 gem 'azure'
 
+# SMS Gateway
+gem 'twilio-ruby'
+
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end

@@ -1,10 +1,10 @@
-require 'azure/azure_sdk' if Rails.env.production?
+require 'azure/azure_sdk' if Rails.env.production? || Rails.env.staging?
 
 class TrackingPositionWorker
   @queue = :tracking_position_queue
 
   def self.perform(params)
-    blobs = Rails.env.production? ? AzureSdk::Storage::Blobs : nil
+    blobs = (Rails.env.production? || Rails.env.staging?) ? AzureSdk::Storage::Blobs : nil
     user_id, tracking_code = params
     puts "#{DateTime.now} #{tracking_code} is tracking"
     url = 'http://track.thailandpost.co.th/trackinternet/'
@@ -82,7 +82,7 @@ class TrackingPositionWorker
                 Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                 directory = Dir.getwd + "/public/system/signature/"
                 Dir.mkdir(directory) unless File.exists?(directory)
-                user_dir = directory + @tracking.id.to_s
+                user_dir = directory + tracking_obj.id.to_s
                 Dir.mkdir(user_dir) unless File.exists?(user_dir)
                 path = File.join(user_dir, file_name)
                 File.open(path, "wb") { |f| f.write(upload.read) }
@@ -117,7 +117,7 @@ class TrackingPositionWorker
                   Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                   directory = Dir.getwd + "/public/system/signature/"
                   Dir.mkdir(directory) unless File.exists?(directory)
-                  user_dir = directory + @tracking.id.to_s
+                  user_dir = directory + tracking_obj.id.to_s
                   Dir.mkdir(user_dir) unless File.exists?(user_dir)
                   path = File.join(user_dir, file_name)
                   File.open(path, "wb") { |f| f.write(upload.read) }

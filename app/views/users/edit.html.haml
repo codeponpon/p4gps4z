@@ -6,21 +6,36 @@
         .row
           .large-12.columns
             = f.error_notification
+            = render "shared/flash_message", flash: flash
+        - if @user.provider.blank?
+          %h4 ความปลอดภัย
+          .row
+            = f.input :reset_password_token, :as => :hidden
+            = f.full_error :reset_password_token
+            .large-6.columns รหัสผ่าน
+            .large-6.columns
+              = f.input :password, :label => "New password", :required => true, :autofocus => true, label: false
+          .row
+            .large-6.columns ยืนยันรหัสผ่านอีกครั้ง
+            .large-6.columns
+              = f.input :password_confirmation, :label => "Confirm your new password", :required => true, label: false
+          .row
+            .large-6.columns รหัสผ่านปัจจุบัน
+            .large-6.columns
+              = f.input :current_password, :hint => "we need your current password to confirm your changes", label: false
         %h4 ข้อมูลส่วนตัว
         .row
-          = f.input :reset_password_token, :as => :hidden
-          = f.full_error :reset_password_token
-          .large-6.columns รหัสผ่าน
+          .large-6.columns ชื่อ
           .large-6.columns
-            = f.input :password, :label => "New password", :required => true, :autofocus => true, label: false
+            = f.input :name, :label => false, :required => true
         .row
-          .large-6.columns ยืนยันรหัสผ่านอีกครั้ง
+          .large-6.columns อีเมล
           .large-6.columns
-            = f.input :password_confirmation, :label => "Confirm your new password", :required => true, label: false
+            = f.input :email, :label => false, :required => true
         .row
-          .large-6.columns รหัสผ่านปัจจุบัน
+          .large-6.columns เพศ
           .large-6.columns
-            = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true, label: false
+            = f.input :gender, collection: {t("user.gender.male") => "male", t("user.gender.female") => "female"}, selected: @user.gender, label: false
         %h4 การแจ้งเตือน
         .row
           .large-6.columns แจ้งเตือนเมื่อ
@@ -29,8 +44,25 @@
         .row
           .large-6.columns ช่่องทางแจ้งเตือน
           .large-6.columns 
-            = f.input :reminder_by, collection: {"Email" => "email" , "SMS" => "sms", "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook" }, selected: @user.reminder_by.to_sym, label: false, disabled: true
+            = f.input :reminder_by, collection: {"Email" => "email" , "SMS" => "sms"}, selected: @user.reminder_by.to_sym, label: false
+            /, "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook" 
+        .row
+          .large-6.columns หมายเลขโทรศัพท์
+          .large-6.columns
+            = f.input :phone_no, :placeholder => "+66 81 2345 678", :required => true,  label: false
         .row
           .large-12.columns
             = f.submit 'บันทึก', class: 'button'
     .large-3.columns &nbsp;
+
+:javascript
+$(document).ready(function(){
+  if($('#user_reminder_by').val() == 'sms') $('#user_phone_no').addClass('required');
+  $('#user_reminder_by').on('change', function(){
+    if($(this).val() == 'sms'){
+      $('#user_phone_no').addClass('required');
+    }else{
+      $('#user_phone_no').removeClass('required');
+    }
+  });  
+});
