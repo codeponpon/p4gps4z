@@ -5,12 +5,8 @@ role :app, "pagpos.cloudapp.net" # add more servier "pagposx1.cloudapp.net", "pa
 role :db, "pagposdb.cloudapp.net", :primary => true
 role :web, "pagpos.cloudapp.net"
 
-set :application, "pagpos"
-set :user, "codeponpon"
-set :scm, :git
 set :repository, "git@github.com:codeponpon/p4gps4z.git"
 set :branch, "master"
-set :use_sudo, true
 
 set :branch do
   default_tag = `git tag`.split("\n").last
