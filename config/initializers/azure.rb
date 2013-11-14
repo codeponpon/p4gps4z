@@ -1,4 +1,4 @@
-if Rails.env.production?
+if Rails.env.production? || Rails.env.staging?
   require "azure"
   Azure.configure do |config|
     # Configure these 2 properties to use Storage
