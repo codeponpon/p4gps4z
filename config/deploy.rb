@@ -28,8 +28,8 @@ set :ssh_options, { :forward_agent => true }
 set :whenever_command, "RAILS_ENV=#{rails_env} bundle exec whenever"
 require "whenever/capistrano"
 
-server "pagpos.cloudapp.net", :web, :app, :db, primary: true
-server "pagpos.cloudapp.net", :web, :app, :worker
+# server "pagpos.cloudapp.net", :web, :app, :db, primary: true
+# server "pagpos.cloudapp.net", :web, :app, :worker
 
 # server "pagposv1.cloudapp.net", :web, :app, :db, primary: true
 # server "pagposv1.cloudapp.net", :web, :app, :worker
