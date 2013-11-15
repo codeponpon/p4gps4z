@@ -11,10 +11,17 @@ class UsersController < Devise::RegistrationsController
   def update
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     logger.debug(params[:user])
-    if resource.update_with_password(account_update_params)
+    update_result = if params[:user][:password].blank?
+      params[:user].delete('current_password')
+      resource.update_without_password(account_update_params)
+    else
+      resource.update_with_password(account_update_params)
+    end
+    if update_result
       if is_navigational_format?
         update_needs_confirmation?(resource, prev_unconfirmed_email)
       end
+      set_flash_message :notice, :updated
       sign_in resource_name, resource
       return render 'edit'
     else
@@ -24,6 +31,6 @@ class UsersController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit( :email, :password, :password_confirmation, :current_password, :reminder_when, :reminder_by)
+    params.require(:user).permit(:password, :password_confirmation, :current_password, :reminder_when, :reminder_by, :phone_no)
   end
 end
