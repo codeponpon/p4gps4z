@@ -54,3 +54,6 @@ th:
     ontheway: 'กำลังจัดส่ง'
     done: 'จัดส่งเรียบร้อยแล้ว'
     guest: 'ผู้ใช้ทั่วไป'
+  package_status:
+    to: 'อยู่ที่ %{department}'
+    recieved_by: 'รับโดย %{reciever}'

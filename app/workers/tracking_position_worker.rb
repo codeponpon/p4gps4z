@@ -82,7 +82,7 @@ class TrackingPositionWorker
                 Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                 directory = Dir.getwd + "/public/system/signature/"
                 Dir.mkdir(directory) unless File.exists?(directory)
-                user_dir = directory + @tracking.id.to_s
+                user_dir = directory + tracking_obj.id.to_s
                 Dir.mkdir(user_dir) unless File.exists?(user_dir)
                 path = File.join(user_dir, file_name)
                 File.open(path, "wb") { |f| f.write(upload.read) }
@@ -117,7 +117,7 @@ class TrackingPositionWorker
                   Dir.mkdir(Dir.getwd + "/public/system/") unless File.exists?(Dir.getwd + "/public/system/")
                   directory = Dir.getwd + "/public/system/signature/"
                   Dir.mkdir(directory) unless File.exists?(directory)
-                  user_dir = directory + @tracking.id.to_s
+                  user_dir = directory + tracking_obj.id.to_s
                   Dir.mkdir(user_dir) unless File.exists?(user_dir)
                   path = File.join(user_dir, file_name)
                   File.open(path, "wb") { |f| f.write(upload.read) }
