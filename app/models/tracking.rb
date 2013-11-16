@@ -34,12 +34,13 @@ class Tracking
       message = "#{self.code} #{I18n.t('package_status.recieved_by', reciever: self.packages.last.reciever)}"
     end
     specific_department = (self.user.specific_department == self.packages.last.department)
-    Resque.enqueue(SendSmsWorker, ["+66874352540", message, reminder_when, specific_department])
+    params = [self.user.phone_no, message, reminder_when, specific_department]
+    Resque.enqueue(SendSmsWorker, params, self.id.to_s)
   end
 
   def update_tracking_status
     self.update_attribute(:prev_packages_count, self.packages_count)
-    if not self.packages.map(&:reciever).reject(&:empty?).blank?
+    unless self.packages.map(&:reciever).reject(&:empty?).blank?
       self.update_attribute(:status, TrackingStatus.done)
     end
   end
