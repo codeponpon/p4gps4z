@@ -1,4 +1,5 @@
 $pagpos-main-color: #F06B48;
+$default-font-size: 13px;
 /* Foundation Top Bar
  Requires: -jquery.foundation.topbar.js
  Notes: - <nav class="top-bar"> can have .fixed added to make it stick to the top of viewport. Can add .contain-to-grid to top-bar to make it full width but content on grid. - <li class="name"> creates a branding area that can be linked to homepage - Can include text, image or both inside this <li>. - <li class="divider"> creates a divider between nav items, add margins for space - <li class="search"> Needs to hold a <form> which can use .row.collapse and pre/postfix buttons or default type="search"
@@ -16,10 +17,10 @@ $pagpos-main-color: #F06B48;
 .top-bar > ul .name img { margin-top: -5px; vertical-align: middle; }
 .top-bar ul { display: inline; line-height: 45px; list-style: none; /* Main Navigation links style */ /* Left Side <ul> */ /* Right Side <ul> */ }
 .top-bar ul > li { float: left; /* Dividers between navigation */ /* Put a button in an <li> but give is a class */ /* Put a search bar or text input in the bar */ /* Hide the triangle for breakpoint menu */ /* li.has-dropdown */ }
-.top-bar ul > li a:not(.button) { display: block; font-size: 18px; font-weight: bold; height: 45px; line-height: 45px; padding: 0 15px; }
-.top-bar ul > li:hover, .top-bar ul > li.active { background: $pagpos-main-color; }
+.top-bar ul > li a:not(.button) { display: block; font-size: $default-font-size; height: 45px; line-height: 45px; padding: 0 15px; }
+.top-bar ul > li:hover, .top-bar ul > li.active { background: $pagpos-main-color;}
 .top-bar ul > li:hover a { color: white; }
-.top-bar ul > li.active a { color: white; }
+.top-bar ul > li.active a { color: white; font-size: 18px; font-weight: bold;}
 .top-bar ul > li.divider { background: black; -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1); height: 100%; margin-right: 1px; width: 1px; }
 .top-bar ul > li.has-button a.button { margin: 0 11.25px; }
 .top-bar ul > li.has-button:hover { background: #222222; }
@@ -249,7 +250,7 @@ header {background: #f3f3f3 url(<%=image_path('bg.png')%>); clear:both; padding:
 .featured_post h3 {margin:10px 0 0; color: #000;}
 
 p {color: #333;}
-.welcome_text {font-size: 32px; margin-bottom: 0; padding-bottom: 30px; text-align:center; font-weight: normal; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;}
+.welcome_text {font-size: 32px; margin-bottom: 0; padding-bottom: 30px; text-align:center; font-weight: normal; font-family: 'LigatureSymbols', Georgia, serif;}
 .excerpt {font-size: 24px; margin-bottom: 0; font-weight: normal; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;}
 
 h1,h2,h3,h4 {font-family:'Open Sans Condensed',sans-serif; font-weight: normal; color: #333; margin: 20px 0;}
@@ -356,6 +357,10 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
 
 
 .footer {text-align:center; padding: 50px 0;}
+.footer .large-10.columns { padding-top: 20px; text-align: left; padding-left: 0;}
+.footer .large-10.columns ul.footer_menu { padding: 0; margin: 0; }
+.footer .large-10.columns ul.footer_menu li:first-child { margin-right: 20px;}
+.footer .large-10.columns ul.footer_menu li { list-style: none; float: left; margin-right: 20px;}
 
 /*-------------------------------------------------------------------------------------------------*/
 /* Masonry

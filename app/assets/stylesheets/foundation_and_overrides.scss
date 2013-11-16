@@ -1341,6 +1341,7 @@ body{
   margin: 0;
   padding: 0;
   background: $pagpos-white-color url($backgroud-image);
+  font-size: 13px;
 }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, a{
@@ -1419,7 +1420,7 @@ header form.custom {
 
 header form.custom input#tracking_code { 
   font-family: 'Open Sans Condensed',sans-serif;
-  font-size: 20px; 
+  font-size: 15px; 
   margin: 0;
   padding: 5px;
 }
