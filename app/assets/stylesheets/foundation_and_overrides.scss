@@ -217,7 +217,7 @@ $default-float: left;
 // $paragraph-aside-line-height: 1.35;
 // $paragraph-aside-font-style: italic;
 // $paragraph-text-rendering: optimizeLegibility;
-
+  
 // Style <code> tags
 
 // $code-color: darken($alert-color, 15%);
@@ -240,7 +240,7 @@ $default-float: left;
 // Style lists
 
 // $list-style-position: outside;
-// $list-side-margin: 0;
+// $list-side-margin: 0;8
 // $list-nested-margin: em-calc(20);
 // $definition-list-header-weight: bold;
 // $definition-list-header-margin-bottom: .3em;
@@ -1330,6 +1330,7 @@ $default-float: left;
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
+// @import 'media_queries';
 @import 'foundation';
 @import 'foundation/general_foundicons';
 @import 'style';

@@ -1,0 +1,132 @@
+@mixin default-block {
+  .large-1 {
+    position: relative;
+    width: 8.33333%;
+  }
+
+  .large-2 {
+    position: relative;
+    width: 16.66667%;
+  }
+
+  .large-3 {
+    position: relative;
+    width: 25%;
+  }
+
+  .large-4 {
+    position: relative;
+    width: 33.33333%;
+  }
+
+  .large-5 {
+    position: relative;
+    width: 41.66667%;
+  }
+
+  .large-6 {
+    position: relative;
+    width: 50%;
+  }
+
+  .large-7 {
+    position: relative;
+    width: 58.33333%;
+  }
+
+  .large-8 {
+    position: relative;
+    width: 66.66667%;
+  }
+
+  .large-9 {
+    position: relative;
+    width: 75%;
+  }
+
+  .large-10 {
+    position: relative;
+    width: 83.33333%;
+  }
+
+  .large-11 {
+    position: relative;
+    width: 91.66667%;
+  }
+
+  .large-12 {
+    position: relative;
+    width: 100%;
+  }  
+}
+
+@media only screen and (min-width: 240px){
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px){
+  .top-bar div[class^='large-'] { padding: 0; }
+  .top-bar .active { width: 100%; text-align: center; }
+  .top-bar .column,
+  .top-bar .columns {
+    width: 100%;
+  }
+  .top-bar .large-9 ul { margin: 0 auto; width: 98% !important; }
+  .top-bar ul > li {
+    float: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+  .top-bar ul > li a:not(.button) {
+    display: block;
+    font-size: 13px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    float: none;
+  }
+
+  header h1.heading_supersize { font-size: 100px; }
+
+  .footer .large-10.columns ul.footer_menu li { 
+    margin-right: 10px !important; 
+    float: none !important;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 10px;
+  }
+  .footer .bizspark_logo { width: 115px; margin: 50px auto 0;}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 599px){
+  .top-bar .column,
+  .top-bar .columns {
+    width: auto;
+  }
+
+  .top-bar .large-12 { width: 100%; }
+  .top-bar .large-9 { padding-left: 0; }
+  .top-bar .large-3 { padding-right: 0; }
+
+  .footer .large-10.columns ul.footer_menu li { margin-right: 10px !important;}
+  .footer .bizspark_logo { width: 115px; margin: 50px auto 0;}
+}
+  
+@media only screen and (min-width: 600px) and (max-width: 767px){ 
+  @include default-block; 
+
+  .footer .large-10.columns ul.footer_menu li { margin-right: 10px !important;}
+}
+
+@media only screen and (min-width: 768px){
+  
+}
+
+@media only screen and (min-width: 800px){
+
+}
+
+@media only screen and (min-width: 960px){
+  
+}
