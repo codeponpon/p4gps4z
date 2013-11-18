@@ -42,6 +42,10 @@ th:
         invalid_token: 'Token code ไม่ถูกต้อง'
       sessions:
         invalid_login: 'การเข้าระบบผิดพลาด กรุณาตรวจสอบการป้อนข้อมูลอีกครั้ง'
+  user:
+    gender:
+      male: 'ผู้ชาย'
+      female: 'ผู้หญิง'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'
