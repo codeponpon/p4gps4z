@@ -34,7 +34,12 @@ class Tracking
       message = "#{self.code} #{I18n.t('package_status.recieved_by', reciever: self.packages.last.reciever)}"
     end
     specific_department = (self.user.specific_department == self.packages.last.department)
-    params = [self.user.phone_no, message, reminder_when, specific_department]
+
+    # Support only Thailand Mobile Phone at the moment
+    phone_no = self.user.phone_no
+    phone_no = phone_no.sub(phone_no[0], '+66')
+
+    params = [phone_no, message, reminder_when, specific_department]
     Resque.enqueue(SendSmsWorker, params, self.id.to_s)
   end
 

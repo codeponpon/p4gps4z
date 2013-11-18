@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps
   has_many :trackings
 
-  validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')"
+  validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

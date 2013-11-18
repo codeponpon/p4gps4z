@@ -16,6 +16,8 @@ th:
               confirmation: 'กรุณาป้อนรหัสผ่านอีกครั้ง'
             phone_no:
               blank: 'กรุณาป้อนหมายเลขโทรศัพท์เมื่อท่านต้องการแจ้งเตือนผ่าน SMS'
+              wrong_length: 'ความยาวของหมายเลขโทรศัพท์ไม่ถูกต้อง'
+              invalid: 'หมายเลขโทรศัพท์ไม่ถูกต้อง'
       messages:
         unknown_attribute:
           message: 'unknown attribute %{message}'
