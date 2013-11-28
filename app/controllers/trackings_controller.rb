@@ -32,7 +32,9 @@ class TrackingsController < ApplicationController
       }
       # return render status: 200, message: 'OK', json: result
     else
-      return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid code' }
+      flash[:alert] = "Something wrong!!!"
+      redirect_to :action => "new"
+      # return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid code' }
     end
   end
 
@@ -57,9 +59,12 @@ class TrackingsController < ApplicationController
     end
 
     if status
-      return render status: 200, message: 'OK', json: { success: true, message: 'Tracking code has been deleted.' }
+      flash[:notice] = "Tracking has been deleted."
+      redirect_to :action => "new"
+      # return render status: 200, message: 'OK', json: { success: true, message: 'Tracking code has been deleted.' }
     else
-      return render status: 200, message: 'OK', json: { success: false, errors: tracking.errors.full_messages }
+      redirect_to :action => "new"
+      # return render status: 200, message: 'OK', json: { success: false, errors: tracking.errors.full_messages }
     end
   end
 end
