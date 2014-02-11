@@ -3,7 +3,7 @@ production:
     default:
       database: pagpos_production
       hosts:
-        - pagposdb.cloudapp.net:62178
+        - pagdb.cloudapp.net:27017
 staging:
   sessions:
     default:
