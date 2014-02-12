@@ -12,6 +12,9 @@ class SendSmsWorker
     end
     if result[:code].eql?(200)
       Tracking.where(_id: tracking_id).first.update_tracking_status
+      puts "sms has been sent"
+    else
+      puts "sms status #{result[:code]}, #{result[:message]}"
     end
   end
 end
