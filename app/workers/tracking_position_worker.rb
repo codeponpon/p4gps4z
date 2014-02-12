@@ -42,24 +42,26 @@ class TrackingPositionWorker
         end
       end
       post_receive_link = post.links.last.href.match(/\'(.*)\'\,/)
-      if post_receive_link.blank?
+      if post_receive_link.blank? && tracking[tracking.length].blank?
         Tracking.where(code: tracking_code, user_id: user_id).first.update_attributes(status: 'notfound')
         puts "#{tracking_code} not found"
       else
-        recieve_url = url + post.links.last.href.match(/\'(.*)\'\,/)[1]
-        post_receive = a.get(recieve_url)
-        receive_page = post_receive.body.encode("UTF-8", "tis-620")
-        recieve_page = Nokogiri::HTML(receive_page)
+        if !post_receive_link.blank?
+          recieve_url = url + post.links.last.href.match(/\'(.*)\'\,/)[1]
+          post_receive = a.get(recieve_url)
+          receive_page = post_receive.body.encode("UTF-8", "tis-620")
+          recieve_page = Nokogiri::HTML(receive_page)
 
-        signature = recieve_page.search('#Panel1 table:last #Image1').first.attributes['src'].value
-        unless signature.match(/[0-9]+/).blank?
-          signature_name = signature.match(/[0-9]+/)[0]
-          signature_url = url + 'Signatures/' + signature_name + '.jpg'
-        end
+          signature = recieve_page.search('#Panel1 table:last #Image1').first.attributes['src'].value
+          unless signature.match(/[0-9]+/).blank?
+            signature_name = signature.match(/[0-9]+/)[0]
+            signature_url = url + 'Signatures/' + signature_name + '.jpg'
+          end
 
-        recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each_with_index do |tr, i|
-          if i == 3
-            tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1]
+          recieve_page.search('#Panel1 table:first td.LabelSignature table tr').each_with_index do |tr, i|
+            if i == 3
+              tracking[tracking.count][:reciever] = tr.text.squish.split(':')[1]
+            end
           end
         end
 
@@ -73,7 +75,7 @@ class TrackingPositionWorker
             pac.department = process.last[:department]
             pac.description = process.last[:description]
             pac.status = process.last[:status]
-            pac.reciever = process.last[:reciever].strip
+            pac.reciever = process.last[:reciever].strip unless process.last[:reciever]
             if !process.last[:reciever].blank? && signature_url.present?
               # pac.image = Image.new(attachment: URI.parse(signature_url))
               upload = UrlUpload.new(signature_url)
@@ -108,7 +110,7 @@ class TrackingPositionWorker
               pac.department = process.last[:department]
               pac.description = process.last[:description]
               pac.status = process.last[:status]
-              pac.reciever = process.last[:reciever].strip
+              pac.reciever = process.last[:reciever].strip unless process.last[:reciever]
               if !process.last[:reciever].blank? && signature_url.present? 
                 # pac.image = Image.new(attachment: URI.parse(signature_url))
                 upload = UrlUpload.new(signature_url)

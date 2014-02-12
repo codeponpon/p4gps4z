@@ -58,7 +58,7 @@ th:
     delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
   tracking_status:
     default_status: 'รอดำเนินการ'
-    pending: 'รอดำเนินการ'
+    pending: 'ติดตามสถานะ'
     ontheway: 'กำลังจัดส่ง'
     done: 'จัดส่งเรียบร้อยแล้ว'
     guest: 'ผู้ใช้ทั่วไป'

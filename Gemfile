@@ -67,7 +67,7 @@ gem 'capistrano', '~> 2.15.4', group: :development
 gem 'debugger', group: [:development, :test]
 
 gem 'cancan'
-gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'compass-rails', '~> 1.1.2'
 gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'figaro'
 gem 'haml-rails'
