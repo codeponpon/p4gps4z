@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 
-set :stages, [:staging, :production]
-set :default_stage, "staging"
+set :stages, [:production]
+set :default_stage, "production"
 require 'capistrano/ext/multistage'
 
 # Must be set for the password prompt
@@ -10,7 +10,7 @@ default_run_options[:pty] = true
 
 set :application, "pagpos"
 set :scm, :git
-set :use_sudo, true
+set :use_sudo, false
 set :user, "codeponpon"
 # set :repository, "git@github.com:codeponpon/p4gps4z.git"
 # set :branch, "master"

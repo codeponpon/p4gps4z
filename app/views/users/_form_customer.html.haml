@@ -1,0 +1,37 @@
+= simple_form_for(@user, :url => store_customer_url(@user), :html => {role: 'form' }) do |f|
+  .form-group
+    .large-12.columns
+      = f.error_notification
+      = render "shared/flash_message_backend", flash: flash
+  %fieldset
+    %legend ข้อมูลส่วนตัว
+    .form-group
+      .large-6.columns ชื่อ
+      .large-6.columns
+        = f.input :name, :label => false, :required => false, input_html: { class: 'form-control' }
+    .form-group
+      .large-6.columns อีเมล
+      .large-6.columns
+        = f.input :email, :label => false, :required => false, input_html: { class: 'form-control' }
+    .form-group
+      .large-6.columns เพศ
+      .large-6.columns
+        = f.input :gender, collection: {t("user.gender.male") => "male", t("user.gender.female") => "female"}, selected: @user.gender, label: false, input_html: { class: 'form-control' }
+  %fieldset
+    %legend การแจ้งเตือน
+    .form-group
+      .large-6.columns แจ้งเตือนเมื่อ
+      .large-6.columns
+        = f.input :reminder_when, collection: {"Status change" => "status_changed", "Specific post" => "specific_post", "Specific time" => "specific_time"}, selected: @user.reminder_when.to_sym, label: false, disabled: true, input_html: { class: 'form-control' }
+    .form-group
+      .large-6.columns ช่่องทางแจ้งเตือน
+      .large-6.columns
+        = f.input :reminder_by, collection: {"SMS" => "sms", "Email" => "email"}, selected: @user.reminder_by.to_sym, label: false, input_html: { class: 'form-control' }
+    .form-group
+      .large-6.columns หมายเลขโทรศัพท์
+      .large-6.columns
+        = f.input :phone_no, :placeholder => "0812345678", :required => false,  label: false, input_html: { class: 'form-control' }
+    .form-group
+      .large-12.columns
+        = f.submit 'Submit', class: 'button btn btn-primary btn-lg col-lg-12'
+= render "shared/required_remider"

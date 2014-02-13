@@ -14,12 +14,14 @@ Bundler.require(:default, Rails.env)
 module Pagpos
   class Application < Rails::Application
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
-      
+
       g.test_framework :rspec, fixture: true
-      
-      
+
+
       g.fixture_replacement :fabrication
       g.view_specs false
       g.helper_specs false

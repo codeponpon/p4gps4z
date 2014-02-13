@@ -14,7 +14,7 @@ namespace :pagpos do
       @tracking.each do |t|
         if t.user.reminder_by.eql?('email')
           begin
-            unless t.packages.blank?
+            if !t.packages.blank? && t.has_new_package_record?
               tz = t.user.time_zone.blank? ? 0 : t.user.time_zone.to_i
               Time.zone = tz.zero? ? 'UTC' : tz
               t.enqueue_send_email_worker
@@ -37,7 +37,7 @@ namespace :pagpos do
     @tracking.each do |t|
       if t.user.reminder_by.eql?('sms')
         begin
-          unless t.packages.blank?
+          if !t.packages.blank? && t.has_new_package_record?
             tz = t.user.time_zone.blank? ? 0 : t.user.time_zone.to_i
             Time.zone = tz.zero? ? 'UTC' : tz
             t.enqueue_send_sms_worker

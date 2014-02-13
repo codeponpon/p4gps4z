@@ -1,0 +1,50 @@
+.row
+  .col-lg-12
+    / /.panel-heading
+    .panel-body
+      .inbox-checkbox-triggered
+        .btn-group.pull-right
+          = link_to raw("<i class='glyphicon glyphicon-plus'></i> #{t('backend.add')}"), store_add_customer_url(role: 'admin'), class: 'btn btn-primary'
+      .table-responsive
+        %table#dataTables.table.table-striped.table-hover.dataTable
+          %thead
+            %tr
+              %th email
+              %th name
+              %th{width: 150} Phone no.
+              %th{width: 150} roles
+              %th{width: 250}
+          %tbody
+            - @users.each_with_index do |u, i|
+              %tr{class: (i%2==0) ? 'odd' : 'even'}
+                %td=u.email
+                %td=u.name
+                %td=u.phone_no
+                %td=u.roles.map(&:name).join(', ')
+                %td
+                  =[pluralize(u.customers.count, 'customer'), pluralize(u.merchants.count, 'merchant')].join(', ')
+                  .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
+                    %button.btn.btn-default.txt-color-blue.dropdown-toggle{"data-toggle" => "dropdown"}
+                      %i.fa.fa-cog.fa-lg
+                    %ul.dropdown-menu.dropdown-menu-xs.pull-right
+                      %li
+                        %a{href: "javascript:void(0);"}
+                          %i.fa.fa-pencil.fa-lg.fa-fw.txt-color-greenLight
+                          = succeed "dit" do
+                            %u E
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0);"}
+                          %i.fa.fa-times.fa-lg.fa-fw.txt-color-red
+                          = succeed "elete" do
+                            %u D
+                      %li.divider
+        / /.table-responsive
+      / /.panel-body
+      = will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails
+    / /.panel
+  / /.col-lg-12
+= content_for :stylesheets do
+  = stylesheet_link_tag 'dataTable.bootstrap'
+= content_for :javascripts do
+  = javascript_include_tag 'jquery.dataTables', 'dataTable.bootstrap'

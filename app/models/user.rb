@@ -1,8 +1,17 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  has_many :trackings
+  rolify
 
+  has_many :trackings
+  embeds_one :store_detail
+  accepts_nested_attributes_for :store_detail, allow_destroy: true
+
+  has_and_belongs_to_many :customers, :class_name => 'User', :inverse_of => :merchants
+  has_and_belongs_to_many :merchants, :class_name => 'User', :inverse_of => :customers
+
+  has_many :campaigns_users
+  has_many :pag_invoices
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 
   # Include default devise modules. Others available are:
@@ -24,7 +33,7 @@ class User
   ## Rememberable
   field :remember_created_at, :type => Time
 
-  ## Reminder 
+  ## Reminder
   field :reminder_when, :type => String, :default => "status_change"
   field :reminder_by, :type => String, :default => "email"
 
@@ -34,7 +43,7 @@ class User
   field :uid, :type => String
   field :token_fb, :type => String
 
-  field :specific_department, :type => String 
+  field :specific_department, :type => String
 
   field :gender, :type => String, :default => ""
   field :phone_no, :type => String, :default => ""
@@ -47,10 +56,10 @@ class User
   field :last_sign_in_ip,    :type => String
 
   ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
@@ -76,8 +85,9 @@ class User
                             time_zone: auth.extra.raw_info.timezone,
                             gender: auth.extra.raw_info.gender
                           )
+        user.roles.create!(name: 'user')
       end
-       
+
     end
   end
 

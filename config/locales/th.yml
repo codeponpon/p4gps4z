@@ -1,4 +1,8 @@
 th:
+  website_title: 'PAGPOS'
+  will_paginate:
+    next: 'ถัดไป'
+    previous: 'ก่อนหน้า'
   pagpos:
     title: 'PAGPOS'
     slogan: 'Package Position Notification System'
@@ -25,10 +29,16 @@ th:
     forget_password: "ลืมรหัสผ่าน?"
     donot_recieve_password: "ไม่ได้รับรหัสผ่าน?"
     donot_recieve_unlock_password: "ไม่ได้รับรหัสปลดล็อคเพื่อเข้าสู่ระบบ?"
+  form:
+    submit: 'Submit'
+    cancel: 'Cancel'
+    reset: 'Reset'
   signup:
+    description: 'ยังไม่ได้เป็นสมาชิกรึเปล่าค่ะ?'
     title: 'สมัครสมาชิก'
     submit_btn: "สมัครสมาชิก"
   signin:
+    description: 'เป็นสมาชิกอยู่แล้ว?'
     title: 'เข้าสู่ระบบ'
     submit_btn: "เข้าสู่ระบบ"
     remember_me: 'จำฉันไว้ในระบบ'
@@ -46,6 +56,12 @@ th:
     gender:
       male: 'ผู้ชาย'
       female: 'ผู้หญิง'
+    add_customer:
+      success: 'Add customer success'
+    destroy_customer:
+      success: 'Delete success'
+    update_customer:
+      success: 'Delete success'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'
@@ -55,6 +71,7 @@ th:
     delete_btn: 'ลบ'
     placeholder_tracking_id: 'รหัสพัสดุ'
     add_btn: 'ค้นหา'
+    track_btn: 'เพิ่ม'
     delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
   tracking_status:
     default_status: 'รอดำเนินการ'
@@ -73,3 +90,44 @@ th:
       term_of_use: 'นโยบายการใช้งาน'
       bug_report: 'แจ้งปัญหาการใช้งาน'
       contact: 'ติดต่อ PAGPOS'
+      store: 'Store'
+  backend:
+    menu:
+      dashboard: 'Dashboard'
+      stores: 'Stores'
+      newsletters: 'Newsletters'
+      sms: 'SMS'
+      sms_templates: 'SMS Templates'
+      customers: 'Customers'
+      users: 'Users'
+      packages: 'Packages'
+      campaigns: 'SMS Packages'
+      statistics: 'Statistics'
+      invoices: 'Invoices'
+      profile: 'User Profile'
+      setting: 'Setting'
+      logout: 'Logout'
+      day: 'วัน'
+      week: 'สัปดาห์'
+      month: 'เดือน'
+      year: 'ปี'
+    button:
+      add: 'Add'
+      buy: 'buy'
+  page_title:
+    invoices: "Invoices"
+    invoice: "Invoice"
+    invoice_code: "%{payment_code}"
+    customers: 'Customers'
+    add_customer: 'Add Customer'
+    edit_customer: 'Edit Customer'
+    detail_customer: 'User Detail'
+    packages: 'Packages'
+    campaigns: 'SMS Packages'
+    buy_package: 'Buy Package'
+  text:
+    package:
+      payment_info: 'Payment Information'
+    get_free_package:
+      description: 'FREE'
+      gateway: 'PAGPOS'
