@@ -44,9 +44,16 @@ class Tracking
   end
 
   def update_tracking_status
-    self.update_attribute(:prev_packages_count, self.packages_count)
+    self.update_attributes({prev_packages_count: self.packages_count, last_department: self.packages.last.department})
     unless self.packages.map(&:reciever).reject(&:empty?).blank?
       self.update_attribute(:status, TrackingStatus.done)
     end
+  end
+
+  def has_new_package_record?
+    if self.prev_packages_count < self.packages.count
+      return true
+    end 
+    return false
   end
 end
