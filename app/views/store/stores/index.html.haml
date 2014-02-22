@@ -3,7 +3,7 @@
     .col-md-4.col-md-offset-4
       .login-panel.panel.panel-default
         .panel-heading
-          = image_tag('logos.png', width: 360)
+          = image_tag('logos.png', width: 250)
         .panel-body
           = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :defaults => {:wrapper_html => {:class => 'form-group'}}) do |f|
             = f.error_notification

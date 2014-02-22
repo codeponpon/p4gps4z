@@ -310,6 +310,7 @@ table.dataTable thead .sorting:after {
   margin: 15px 0;
 }
 
+.dropdown-menu ,
 .panel {
   border-radius: 0;
 }
@@ -319,4 +320,27 @@ table.dataTable thead .sorting:after {
   padding: 0;
   border: none;
   background-color: transparent;
+}
+.center {
+  margin: 0 auto;
+}
+.circle-xxl {
+  border-radius: 75px;
+  font-size: 24px;
+  height: 150px;
+  line-height: 1.33;
+  overflow: hidden;
+  padding: 55px 0 !important;
+  width: 150px;
+}
+.navbar-brand {
+  height: 60px;
+  padding: 0;
+}
+.navbar-top-links li a {
+  min-height: 60px;
+  padding: 20px 15px;
+}
+.page-header {
+  margin: 20px 0;
 }

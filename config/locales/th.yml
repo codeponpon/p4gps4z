@@ -73,3 +73,11 @@ th:
       term_of_use: 'นโยบายการใช้งาน'
       bug_report: 'แจ้งปัญหาการใช้งาน'
       contact: 'ติดต่อ PAGPOS'
+  backend:
+    menu:
+      dashboard: 'Dashboard'
+      sms_templates: 'SMS Templates'
+      customers: 'Customers'
+      packages: 'Packages'
+      statistics: 'Statistics'
+      invlices: 'Invoices'
