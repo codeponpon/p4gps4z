@@ -1,5 +1,5 @@
 class Store::StoresController < Devise::RegistrationsController
-  before_filter :require_merchant, except: [:index, :login]
+  before_filter :require_merchant, except: [:index]
   layout false
 
 	def resource_name
@@ -15,22 +15,12 @@ class Store::StoresController < Devise::RegistrationsController
   end
 
   def index
+    redirect_to store_root_path if current_user.present?
   end
 
   def new
   end
 
-  def login
-  end
-
   def create
   end
-
-  private
-    def require_merchant
-      if current_user.present?
-        return
-      end
-      redirect_to store_login_url
-    end
 end
