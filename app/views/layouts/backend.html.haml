@@ -17,8 +17,15 @@
     = javascript_include_tag "backend", "vendor/custom.modernizr"
     = csrf_meta_tags
   %body
-    / ######################## Main Menu ########################
-    = render 'shared/navbar_backend'
+    #wrapper
+      / ######################## Main Menu ########################
+      = render 'shared/navbar_backend'
 
-    / ######################## Content ########################
-    = yield
+      / ######################## Content ########################
+      #page-wrapper
+        .row
+          .col-lg-12
+            %h1.page-header Dashboard
+          / /.col-lg-12
+        / /.row
+        = yield
