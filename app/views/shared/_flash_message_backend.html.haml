@@ -1,0 +1,4 @@
+- flash.each do |type, message|
+  %div{class: "alert alert-danger alert-dismissable"}
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+    = message

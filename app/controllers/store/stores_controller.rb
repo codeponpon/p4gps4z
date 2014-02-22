@@ -1,6 +1,6 @@
 class Store::StoresController < Devise::RegistrationsController
   before_filter :require_merchant, except: [:index]
-  layout false
+  layout 'backend'
 
 	def resource_name
     :user

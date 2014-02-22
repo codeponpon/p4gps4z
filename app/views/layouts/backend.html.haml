@@ -18,14 +18,17 @@
     = csrf_meta_tags
   %body
     #wrapper
-      / ######################## Main Menu ########################
-      = render 'shared/navbar_backend'
+      - unless params[:controller].eql?('store/stores')
+        / ######################## Main Menu ########################
+        = render 'shared/navbar_backend'
 
-      / ######################## Content ########################
-      #page-wrapper
-        .row
-          .col-lg-12
-            %h1.page-header Dashboard
-          / /.col-lg-12
-        / /.row
+        / ######################## Content ########################
+        #page-wrapper
+          .row
+            .col-lg-12
+              %h1.page-header Dashboard
+            / /.col-lg-12
+          / /.row
+          = yield
+      - else
         = yield
