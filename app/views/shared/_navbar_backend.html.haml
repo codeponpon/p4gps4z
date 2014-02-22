@@ -1,0 +1,26 @@
+%nav.top-bar
+  .large-12.columns.header_nav
+    .row
+      .large-3.columns
+        %ul#menu-header.nav-bar
+          %li.active
+            %a{href: "/"}= t('pagpos.title')
+      .large-9.columns
+        %ul#menu-header.nav-bar.right
+          %li
+          - unless current_user.blank?
+            %li
+              = link_to t('menu.tracking'), new_tracking_path
+          - unless current_user.blank?
+            %li
+              = link_to t('menu.profile'), user_profile_path
+          - unless current_user.blank?
+            %li
+              = link_to t('menu.signout'), destroy_user_session_path, method: :delete
+          - if current_user.blank?
+            %li
+              = link_to t('menu.find_package'), pagpos_path
+            %li
+              = link_to t('menu.login_with_facebook'), user_omniauth_authorize_path(:facebook)
+            %li
+              = link_to t('menu.signin'), new_user_session_path
