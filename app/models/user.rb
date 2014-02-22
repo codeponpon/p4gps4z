@@ -1,6 +1,8 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  rolify
+
   has_many :trackings
 
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
@@ -24,7 +26,7 @@ class User
   ## Rememberable
   field :remember_created_at, :type => Time
 
-  ## Reminder 
+  ## Reminder
   field :reminder_when, :type => String, :default => "status_change"
   field :reminder_by, :type => String, :default => "email"
 
@@ -34,7 +36,7 @@ class User
   field :uid, :type => String
   field :token_fb, :type => String
 
-  field :specific_department, :type => String 
+  field :specific_department, :type => String
 
   field :gender, :type => String, :default => ""
   field :phone_no, :type => String, :default => ""
@@ -77,7 +79,7 @@ class User
                             gender: auth.extra.raw_info.gender
                           )
       end
-       
+
     end
   end
 

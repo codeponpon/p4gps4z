@@ -34,7 +34,7 @@ gem 'nokogiri'
 gem 'sidekiq'
 gem 'redis'
 
-gem 'resque', require: 'resque/server'  
+gem 'resque', require: 'resque/server'
 gem 'whenever', :require => false
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
@@ -61,7 +61,7 @@ gem 'xmpp4r_facebook'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 2.15.4', group: :development  
+gem 'capistrano', '~> 2.15.4', group: :development
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
@@ -72,7 +72,7 @@ gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'figaro'
 gem 'haml-rails'
 gem 'mongoid', '~> 4', :github=>"mongoid/mongoid"
-gem 'rolify'
+gem "rolify", "~> 3.4.0"
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'zurb-foundation'
 

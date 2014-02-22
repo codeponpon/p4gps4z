@@ -25,18 +25,26 @@ Pagpos::Application.routes.draw do
 
     get 'send_fbchat' => 'api/v1/pagpos#fbchat'
 
+    namespace :store do
+      root to: 'dashboards#index'
+      get 'login' => 'stores#index', as: 'login'
+      post 'login' => 'stores#login'
+      get 'register' => 'stores#new'
+      post 'register' => 'stores#create'
+    end
+
   end
 
   namespace :api do
     namespace :v1  do
       devise_for :users
       root to: 'welcome#index'
-      
-      # Trackings always send :code and :token 
+
+      # Trackings always send :code and :token
       get 'trackings/:code/:token' => 'trackings#show', as: 'trackings'
       post 'trackings' => 'trackings#create'
       delete 'trackings' => 'tracking#destroy'
-      
+
       get 'force_get_data' => 'pagpos#force_get_data'
       get 'show' => 'pagpos#show'
       # get 'auth/:provider' => 'omniauth_callbacks#passthru'
@@ -47,7 +55,7 @@ Pagpos::Application.routes.draw do
   end
 
   mount Resque::Server, :at => "/resque"
-  # authenticate :user do 
+  # authenticate :user do
     # mount Resque::Server, :at => "/resque"
   # end
 
@@ -86,7 +94,7 @@ Pagpos::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

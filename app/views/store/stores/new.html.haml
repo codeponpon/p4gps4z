@@ -1,0 +1,13 @@
+.row
+  .small-6.large-centered.columns
+    %h2= t('signup.title')
+    = simple_form_for(resource, :as => resource_name, :url => store_register_path(resource_name)) do |f|
+      = f.error_notification
+      = render "shared/flash_message", flash: flash
+      .form-inputs
+        = f.input :email, :required => true, :autofocus => true
+        = f.input :password, :required => true
+        = f.input :password_confirmation, :required => true
+        = f.hidden_field :time_zone, value: DateTime.now.zone.to_i
+      .form-actions
+        = f.button :submit, t('signup.submit_btn')

@@ -1,0 +1,28 @@
+!!!
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+/[if IE 8] <html class="no-js lt-ie9" lang="en">
+/ [if gt IE 8]><!
+%html.no-js{lang: "en"}
+  / <![endif]
+  %head
+    %meta{charset: "utf-8"}/
+    / Uncomment to make IE8 render like IE7
+    / <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    / Set the viewport width to device width for mobile
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "PAGPOS - Package position"
+    = stylesheet_link_tag    "backend", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
+    = javascript_include_tag "backend", "vendor/custom.modernizr"
+    = csrf_meta_tags
+  %body
+    / ######################## Main Menu ########################
+    = render 'shared/navbar'
+
+    / ######################## Content ########################
+    = yield
+
+    / ######################## Footer ########################
+    = render 'shared/footer'
+    / ######################## Scripts ########################
