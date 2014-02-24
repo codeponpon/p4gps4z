@@ -94,50 +94,50 @@
     -#         %i.fa.fa-angle-right
     -#   / /.dropdown-tasks
     -# / /.dropdown
-    -# %li.dropdown
-    -#   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-    -#     %i.fa.fa-bell.fa-fw
-    -#     %i.fa.fa-caret-down
-    -#   %ul.dropdown-menu.dropdown-alerts
-    -#     %li
-    -#       %a{:href => "#"}
-    -#         %div
-    -#           %i.fa.fa-comment.fa-fw
-    -#           New Comment
-    -#           %span.pull-right.text-muted.small 4 minutes ago
-    -#     %li.divider
-    -#     %li
-    -#       %a{:href => "#"}
-    -#         %div
-    -#           %i.fa.fa-twitter.fa-fw
-    -#           3 New Followers
-    -#           %span.pull-right.text-muted.small 12 minutes ago
-    -#     %li.divider
-    -#     %li
-    -#       %a{:href => "#"}
-    -#         %div
-    -#           %i.fa.fa-envelope.fa-fw
-    -#           Message Sent
-    -#           %span.pull-right.text-muted.small 4 minutes ago
-    -#     %li.divider
-    -#     %li
-    -#       %a{:href => "#"}
-    -#         %div
-    -#           %i.fa.fa-tasks.fa-fw
-    -#           New Task
-    -#           %span.pull-right.text-muted.small 4 minutes ago
-    -#     %li.divider
-    -#     %li
-    -#       %a{:href => "#"}
-    -#         %div
-    -#           %i.fa.fa-upload.fa-fw
-    -#           Server Rebooted
-    -#           %span.pull-right.text-muted.small 4 minutes ago
-    -#     %li.divider
-    -#     %li
-    -#       %a.text-center{:href => "#"}
-    -#         %strong See All Alerts
-    -#         %i.fa.fa-angle-right
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %i.fa.fa-bell.fa-fw
+        %i.fa.fa-caret-down
+      %ul.dropdown-menu.dropdown-alerts
+        %li
+          %a{:href => "#"}
+            %div
+              %i.fa.fa-comment.fa-fw
+              New Comment
+              %span.pull-right.text-muted.small 4 minutes ago
+        %li.divider
+        %li
+          %a{:href => "#"}
+            %div
+              %i.fa.fa-twitter.fa-fw
+              3 New Followers
+              %span.pull-right.text-muted.small 12 minutes ago
+        %li.divider
+        %li
+          %a{:href => "#"}
+            %div
+              %i.fa.fa-envelope.fa-fw
+              Message Sent
+              %span.pull-right.text-muted.small 4 minutes ago
+        %li.divider
+        %li
+          %a{:href => "#"}
+            %div
+              %i.fa.fa-tasks.fa-fw
+              New Task
+              %span.pull-right.text-muted.small 4 minutes ago
+        %li.divider
+        %li
+          %a{:href => "#"}
+            %div
+              %i.fa.fa-upload.fa-fw
+              Server Rebooted
+              %span.pull-right.text-muted.small 4 minutes ago
+        %li.divider
+        %li
+          %a.text-center{:href => "#"}
+            %strong See All Alerts
+            %i.fa.fa-angle-right
     -#   / /.dropdown-alerts
     -# / /.dropdown
     %li.dropdown
@@ -171,15 +171,23 @@
           = t('backend.menu.dashboard')
       %li
         %a{:href => "#"}
-          %i.fa.fa-bar-chart-o.fa-fw
-          = t('backend.menu.sms_templates')
+          %i.fa.fa-home.fa-fw
+          = t('backend.menu.stores')
       %li
         %a{:href => "#"}
-          %i.fa.fa-bar-chart-o.fa-fw
+          %i.fa.fa-comment.fa-fw
+          = t('backend.menu.sms')
+      %li
+        %a{:href => "#"}
+          %i.fa.fa-envelope.fa-fw
+          = t('backend.menu.newsletters')
+      %li
+        %a{:href => "#"}
+          %i.fa.fa-users.fa-fw
           = t('backend.menu.customers')
       %li
         %a{:href => "#"}
-          %i.fa.fa-bar-chart-o.fa-fw
+          %i.fa.fa-gift.fa-fw
           = t('backend.menu.packages')
       %li
         %a{:href => "#"}
@@ -187,7 +195,7 @@
           = t('backend.menu.statistics')
       %li
         %a{:href => "#"}
-          %i.fa.fa-bar-chart-o.fa-fw
+          %i.fa.fa-list-alt.fa-fw
           = t('backend.menu.invoices')
           -# %span.fa.arrow
       -#   %ul.nav.nav-second-level

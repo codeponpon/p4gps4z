@@ -76,6 +76,9 @@ th:
   backend:
     menu:
       dashboard: 'Dashboard'
+      stores: 'Stores'
+      newsletters: 'Newsletters'
+      sms: 'SMS'
       sms_templates: 'SMS Templates'
       customers: 'Customers'
       packages: 'Packages'
