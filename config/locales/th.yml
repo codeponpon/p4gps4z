@@ -83,4 +83,7 @@ th:
       customers: 'Customers'
       packages: 'Packages'
       statistics: 'Statistics'
-      invlices: 'Invoices'
+      invoices: 'Invoices'
+      profile: 'User Profile'
+      setting: 'Setting'
+      logout: 'Logout'

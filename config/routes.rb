@@ -26,7 +26,8 @@ Pagpos::Application.routes.draw do
     get 'send_fbchat' => 'api/v1/pagpos#fbchat'
 
     namespace :store do
-      root to: 'dashboards#index'
+      root to: redirect(path: '/store/dashboard')
+      get 'dashboard' => 'dashboards#index'
       get 'login' => 'stores#index', as: 'login'
       post 'login' => 'stores#login'
       get 'register' => 'stores#new'

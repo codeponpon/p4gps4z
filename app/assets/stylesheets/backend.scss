@@ -347,3 +347,12 @@ table.dataTable thead .sorting:after {
 #side-menu.nav > li a:hover > i{
   font-size: 20px;
 }
+.dropdown-menu .divider{
+  margin: 0;
+}
+.dropdown-menu{
+  padding: 0;
+}
+.navbar-top-links .dropdown-menu li a {
+  padding: 8px 20px;
+}
