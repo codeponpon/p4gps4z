@@ -1,14 +1,28 @@
 #coding: utf-8
 
 module ApplicationHelper
+  def single_controller(name=nil)
+    unless name.blank?
+      case name
+      when 'stores'
+        single_name = 'store'
+      else
+        single_name = 'root'
+      end
+      return single_name
+    end
+  end
+
   def backend_menu(name=nil)
     name = name.to_s
     menu_name = "backend.menu.#{name}"
     link_name = 'backend.menu.dashboard';
     link_url  = '#';
+    rename_controller = single_controller(request.params[:controller])
     case name
     when 'dashboard'
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
+      link_url  = try("#{rename_controller}_dashboard_url")
     when 'stores'
       link_name = "<i class='fa fa-home fa-fw'></i> "
     when 'sms'

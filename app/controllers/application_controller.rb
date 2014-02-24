@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     request.referer
-    # new_tracking_path
   end
 
   def require_user

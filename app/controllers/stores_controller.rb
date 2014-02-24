@@ -1,8 +1,8 @@
-class Store::StoresController < Devise::RegistrationsController
+class StoresController < Devise::RegistrationsController
   before_filter :require_merchant, except: [:index]
   layout 'backend'
 
-	def resource_name
+  def resource_name
     :user
   end
 
@@ -18,12 +18,6 @@ class Store::StoresController < Devise::RegistrationsController
     redirect_to store_root_path if current_user.present?
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def lists
+  def dashboard
   end
 end

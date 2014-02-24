@@ -1,4 +1,6 @@
 Pagpos::Application.routes.draw do
+  get "stores/index"
+  get "stores/dashboard"
   get 'trackings' => 'trackings#new', as: 'new_tracking'
   get 'tracking/:code/:token' => 'trackings#show', as: 'tracking'
   post 'trackings' => 'trackings#create'
@@ -25,22 +27,49 @@ Pagpos::Application.routes.draw do
 
     get 'send_fbchat' => 'api/v1/pagpos#fbchat'
 
-    namespace :store do
-      root to: redirect(path: '/store/dashboard')
-      get 'dashboard' => 'dashboards#index'
-      get 'login' => 'stores#index', as: 'login'
-      post 'login' => 'stores#login'
-      get 'register' => 'stores#new'
-      post 'register' => 'stores#create'
+    # namespace :store do
+    #   root to: redirect(path: '/store/dashboard')
+    #   get 'dashboard' => 'dashboards#index'
+    #   get 'sms', shallow: true
+    # end
 
-      # get 'lists' => 'stores#lists'
-      # get 'sms' => 'sms#index'
-      # get 'newsletter' => 'newsletters#index'
-      # get 'customer' => 'users#index'
-      # get 'package' => 'packages#index'
-      # get 'statistic' => 'statistics#index'
-      # get 'invoice' => 'invoices#index'
+    # namespace :admin do
+    #   root to: redirect(path: '/admin/dashboard')
+    #   get 'dashboard' => 'dashboard#index'
+    # end
+
+    scope shallow_path: "store" do
+      get 'store' => redirect(path: '/stores/dashboard'), as: 'stores_root'
+      get 'store/dashboard' => 'stores#dashboard'
+      get 'store/login' => 'stores#index'
     end
+
+
+    scope shallow_path: "sms" do
+      get 'sms' => 'sms#index', as: 'sms_index'
+    end
+
+    scope shallow_path: "newsletter" do
+      get 'newsletters' => 'newsletters#index', as: 'newsletters_index'
+    end
+
+    scope shallow_path: "customer" do
+      get 'customers' => 'users#index', as: 'customers_index'
+    end
+
+    scope shallow_path: "package" do
+      get 'packages' => 'packages#index', as: 'packages_index'
+    end
+
+    scope shallow_path: "statistic" do
+      get 'statistics' => 'statistics#index', as: 'statistics_index'
+    end
+
+    scope shallow_path: "invoice" do
+      get 'invoices' => 'invoices#index', as: 'invoices_index'
+    end
+
+
   end
 
   namespace :api do
