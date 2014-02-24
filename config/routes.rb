@@ -32,8 +32,15 @@ Pagpos::Application.routes.draw do
       post 'login' => 'stores#login'
       get 'register' => 'stores#new'
       post 'register' => 'stores#create'
-    end
 
+      # get 'lists' => 'stores#lists'
+      # get 'sms' => 'sms#index'
+      # get 'newsletter' => 'newsletters#index'
+      # get 'customer' => 'users#index'
+      # get 'package' => 'packages#index'
+      # get 'statistic' => 'statistics#index'
+      # get 'invoice' => 'invoices#index'
+    end
   end
 
   namespace :api do

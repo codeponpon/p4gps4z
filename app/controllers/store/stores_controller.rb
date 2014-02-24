@@ -23,4 +23,7 @@ class Store::StoresController < Devise::RegistrationsController
 
   def create
   end
+
+  def lists
+  end
 end
