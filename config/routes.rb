@@ -41,7 +41,7 @@ Pagpos::Application.routes.draw do
     # end
 
     scope shallow_path: "store" do
-      get 'store' => redirect(path: '/stores/dashboard'), as: 'stores_root'
+      get 'store' => redirect(path: '/store/dashboard'), as: 'stores_root'
       get 'store/dashboard' => 'stores#dashboard'
       get 'store/login' => 'stores#index'
       get 'store/lists' => 'stores#list'

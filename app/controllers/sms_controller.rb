@@ -1,5 +1,5 @@
 class SmsController < ApplicationController
-  before_filter :require_merchant, except: [:index]
+  before_filter :require_merchant
   layout 'backend'
 
   def index

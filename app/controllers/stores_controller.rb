@@ -19,6 +19,7 @@ class StoresController < Devise::RegistrationsController
   end
 
   def dashboard
+    @page_title = I18n.t('backend.menu.dashboard')
   end
 
   def list
