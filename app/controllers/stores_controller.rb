@@ -15,9 +15,12 @@ class StoresController < Devise::RegistrationsController
   end
 
   def index
-    redirect_to store_root_path if current_user.present?
+    redirect_to stores_root_path if current_user.present?
   end
 
   def dashboard
+  end
+
+  def list
   end
 end

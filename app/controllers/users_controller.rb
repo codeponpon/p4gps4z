@@ -33,4 +33,7 @@ class UsersController < Devise::RegistrationsController
   def account_update_params
     params.require(:user).permit(:password, :password_confirmation, :current_password, :reminder_when, :reminder_by, :phone_no, :email, :name, :gender, :time_zone)
   end
+
+  def profile
+  end
 end

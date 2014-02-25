@@ -16,36 +16,46 @@ module ApplicationHelper
   def backend_menu(name=nil)
     name = name.to_s
     menu_name = "backend.menu.#{name}"
-    link_name = 'backend.menu.dashboard';
     link_url  = '#';
-    rename_controller = single_controller(request.params[:controller])
+    rename_controller = request.path.split('/')[1]
     case name
     when 'dashboard'
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
       link_url  = try("#{rename_controller}_dashboard_url")
     when 'stores'
       link_name = "<i class='fa fa-home fa-fw'></i> "
+      link_url  = try("#{rename_controller}_lists_url")
     when 'sms'
       link_name = "<i class='fa fa-comment fa-fw'></i> "
+      link_url  = try("#{rename_controller}_sms_url")
     when 'newsletters'
       link_name = "<i class='fa fa-envelope fa-fw'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'customers'
       link_name = "<i class='fa fa-users fa-fw'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'packages'
       link_name = "<i class='fa fa-gift fa-fw'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'statistics'
       link_name = "<i class='fa fa-bar-chart-o fa-fw'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'invoices'
       link_name = "<i class='fa fa-money fa-fw'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'profile'
       link_name = "<i class='fa fa-user fa-fw'></i> "
+      link_url  = user_profile_url
     when 'setting'
       link_name = "<i class='fa fa-gear fa-fw'></i> "
     when 'logout'
       link_name = "<i class='fa fa-sign-out fa-fw'></i> "
+      link_url  = destroy_user_session_url
     else
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
+      link_url  = try("#{rename_controller}_dashboard_url")
     end
+    link_url  = try("#{rename_controller}_#{name}_url") if link_url.eql?('#')
     return link_to raw(link_name + I18n.t(menu_name).capitalize), link_url
   end
 

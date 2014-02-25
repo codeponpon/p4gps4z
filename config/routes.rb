@@ -1,4 +1,6 @@
 Pagpos::Application.routes.draw do
+  get "newsletters/index"
+  get "sms/index"
   get "stores/index"
   get "stores/dashboard"
   get 'trackings' => 'trackings#new', as: 'new_tracking'
@@ -42,33 +44,15 @@ Pagpos::Application.routes.draw do
       get 'store' => redirect(path: '/stores/dashboard'), as: 'stores_root'
       get 'store/dashboard' => 'stores#dashboard'
       get 'store/login' => 'stores#index'
+      get 'store/lists' => 'stores#list'
+
+      get 'store/sms' => 'sms#index'
+      get 'store/newsletters' => 'newsletters#index'
+      get 'store/customers' => 'users#list'
+      get 'store/packages' => 'packages#index'
+      get 'store/statistics' => 'statistics#index'
+      get 'store/invoices' => 'invoices#index'
     end
-
-
-    scope shallow_path: "sms" do
-      get 'sms' => 'sms#index', as: 'sms_index'
-    end
-
-    scope shallow_path: "newsletter" do
-      get 'newsletters' => 'newsletters#index', as: 'newsletters_index'
-    end
-
-    scope shallow_path: "customer" do
-      get 'customers' => 'users#index', as: 'customers_index'
-    end
-
-    scope shallow_path: "package" do
-      get 'packages' => 'packages#index', as: 'packages_index'
-    end
-
-    scope shallow_path: "statistic" do
-      get 'statistics' => 'statistics#index', as: 'statistics_index'
-    end
-
-    scope shallow_path: "invoice" do
-      get 'invoices' => 'invoices#index', as: 'invoices_index'
-    end
-
 
   end
 

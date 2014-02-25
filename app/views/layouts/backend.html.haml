@@ -18,7 +18,9 @@
     = csrf_meta_tags
   %body
     #wrapper
-      - if request.params[:controller].eql?('stores') && !request.params[:action].eql?('index')
+      - if request.params[:controller].eql?('stores') && request.params[:action].eql?('index')
+        = yield
+      - else
         / ######################## Main Menu ########################
         = render 'shared/navbar_backend'
 
@@ -26,9 +28,7 @@
         #page-wrapper
           .row
             .col-lg-12
-              %h1.page-header Dashboard
+              %h1.page-header= @dashboard_title.present? ? @dahsboard_title : request.params[:controller].capitalize
             / /.col-lg-12
           / /.row
           = yield
-      - else
-        = yield
