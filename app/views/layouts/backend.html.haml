@@ -18,7 +18,7 @@
     = csrf_meta_tags
   %body
     #wrapper
-      - if request.params[:controller].eql?('stores') && request.params[:action].eql?('index')
+      - if request.params[:controller].eql?('stores') && ['index', 'register', 'forgot_password'].include?(request.params[:action])
         = yield
       - else
         / ######################## Main Menu ########################

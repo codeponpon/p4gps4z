@@ -26,9 +26,11 @@ th:
     donot_recieve_password: "ไม่ได้รับรหัสผ่าน?"
     donot_recieve_unlock_password: "ไม่ได้รับรหัสปลดล็อคเพื่อเข้าสู่ระบบ?"
   signup:
+    description: 'ยังไม่ได้เป็นสมาชิกรึเปล่าค่ะ?'
     title: 'สมัครสมาชิก'
     submit_btn: "สมัครสมาชิก"
   signin:
+    description: 'เป็นสมาชิกอยู่แล้ว?'
     title: 'เข้าสู่ระบบ'
     submit_btn: "เข้าสู่ระบบ"
     remember_me: 'จำฉันไว้ในระบบ'

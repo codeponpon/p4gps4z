@@ -31,6 +31,7 @@ Pagpos::Application.configure do
 
   # these options are only needed if you choose smtp delivery
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.default_url_options = { :host => "localhost", :port => 3000 }
   PUBLIC_SUBDOMAIN = false
-  
+
 end

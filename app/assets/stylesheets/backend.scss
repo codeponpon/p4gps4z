@@ -356,3 +356,6 @@ table.dataTable thead .sorting:after {
 .navbar-top-links .dropdown-menu li a {
   padding: 8px 20px;
 }
+label.required.control-label > abbr {
+  color: red;
+}

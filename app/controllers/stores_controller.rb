@@ -1,5 +1,5 @@
 class StoresController < Devise::RegistrationsController
-  before_filter :require_merchant, except: [:index]
+  before_filter :require_merchant, except: [:index, :register, :forgot_password]
   layout 'backend'
 
   def resource_name
@@ -23,5 +23,11 @@ class StoresController < Devise::RegistrationsController
   end
 
   def list
+  end
+
+  def register
+  end
+
+  def forgot_password
   end
 end

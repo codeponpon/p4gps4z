@@ -44,6 +44,8 @@ Pagpos::Application.routes.draw do
       get 'store' => redirect(path: '/store/dashboard'), as: 'stores_root'
       get 'store/dashboard' => 'stores#dashboard'
       get 'store/login' => 'stores#index'
+      get 'store/register' => 'stores#register'
+      get 'store/recovery_password' => 'stores#forgot_password'
       get 'store/lists' => 'stores#list'
 
       get 'store/sms' => 'sms#index'
