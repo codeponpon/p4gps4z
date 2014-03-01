@@ -255,13 +255,13 @@ Devise.setup do |config|
   # PAGPOSDEV
   require "omniauth-facebook"
   # Production
-  config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+  # config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
   # Staging
   # config.omniauth :facebook, "531645936919748", "bcabdbc513e0160fecdd305b031d2377", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
   # Development
-  # config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+  config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
   # require "omniauth-google-oauth2"
   # config.omniauth :google_oauth2, "872969710494.apps.googleusercontent.com", "EIB1LGGJGdapLbgVrWuLTCxm", { access_type: "offline", approval_prompt: "" }

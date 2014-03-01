@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     request.referer
   end
 
+  def after_sign_out_path_for(resource)
+    request.referrer
+  end
+
   def require_user
     if current_user.present?
       return @user = current_user
@@ -33,10 +37,11 @@ class ApplicationController < ActionController::Base
       return @user = current_user
     end
 
-    token = params[:token].present? ? params[:token] : params[:tracking][:token].present? ? params[:tracking][:token] : nil
+    token = params[:token].present? ? params[:token] : params[:tracking].present? && params[:tracking][:token].present? ? params[:tracking][:token] : nil
     @user = User.where(_id: token).first
     if @user.blank?
-      return render status: 400, message: 'Bad request', json: { status: false, message: 'Invalid user' }
+      flash[:alert] = 'Permission Access Denied or Please login again'
+      return redirect_to pagpos_url
     end
   end
 
