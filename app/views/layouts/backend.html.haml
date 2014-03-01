@@ -18,7 +18,7 @@
     = csrf_meta_tags
   %body
     #wrapper
-      - if request.params[:controller].eql?('stores') && ['index', 'register', 'forgot_password'].include?(request.params[:action])
+      - if menu_disabled?
         = yield
       - else
         / ######################## Main Menu ########################

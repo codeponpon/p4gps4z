@@ -14,7 +14,11 @@ Pagpos::Application.routes.draw do
   post 'pagpos' => "pagpos#create"
   get 'pagpos/:code' => "pagpos#show" #, as: "pagpos_result"
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "omniauth_callbacks",
+    :sessions => "sessions",
+    :passwords => "passwords"
+  }
   # get 'users/auth/facebook' => 'omniauth_callbacks#passthru'
   # get 'users/auth/google' => 'omniauth_callbacks#passthru'
   # get 'users/auth/twitter' => 'omniauth_callbacks#passthru'

@@ -344,6 +344,9 @@ table.dataTable thead .sorting:after {
 .page-header {
   margin: 20px 0;
 }
+#side-menu.nav > li > a:hover{
+  padding: 9px 15px;
+}
 #side-menu.nav > li a:hover > i{
   font-size: 20px;
 }

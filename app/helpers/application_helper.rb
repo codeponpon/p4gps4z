@@ -82,4 +82,27 @@ module ApplicationHelper
     return raw(menus)
   end
 
+  def menu_disabled?()
+    disable_is = [
+      {
+        controller: 'stores',
+        action: ['index', 'register', 'forgot_password']
+      },
+      {
+        controller: 'sessions',
+        action: ['new']
+      },
+      {
+        controller: 'passwords',
+        action: ['edit']
+      }
+    ]
+    controller = request.params[:controller]
+    action = request.params[:action]
+
+    disable_is.each do |item|
+      return true if item[:controller].eql?(controller) && item[:action].include?(action)
+    end
+    return false
+  end
 end
