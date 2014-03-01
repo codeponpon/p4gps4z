@@ -6,7 +6,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    return stores_root_url if request.params['reset_password_token'].present?
+    if((request.params['reset_password_token'].present? || ['sessions', 'passwords'].include?(request.params[:controller])) &&
+      (resource.has_role?(:merchant)))
+      return stores_root_url
+    elsif(resource.roles.blank?)
+      return root_url
+    end
     request.referer
   end
 
