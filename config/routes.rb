@@ -50,6 +50,9 @@ Pagpos::Application.routes.draw do
       get 'store/login' => 'stores#index'
       get 'store/register' => 'stores#register'
       get 'store/recovery_password' => 'stores#forgot_password'
+
+      get 'store/profile' => 'stores#profile'
+      post 'store/update_profile' => 'stores#update_profile'
       get 'store/lists' => 'stores#list'
 
       get 'store/sms' => 'sms#index'

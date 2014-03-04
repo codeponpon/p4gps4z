@@ -1,0 +1,39 @@
+.row
+  .col-lg-12
+    .col-lg-3 &nbsp;
+    .col-lg-6
+      = simple_form_for(resource, :as => resource_name, :url => store_update_profile_path(resource_name), :html => { :method => :put, role: 'form' }) do |f|
+        .col-lg-12
+          = f.error_notification
+          = render "shared/flash_message", flash: flash
+        %h4 ความปลอดภัย
+        = f.input :reset_password_token, :as => :hidden
+        = f.full_error :reset_password_token
+        .form-group
+          = f.label :password, "รหัสผ่าน"
+          = f.input :password, :required => true, :autofocus => true, label: false, :input_html => { class: 'form-control' }
+        .form-group
+          = f.label :password_confirmation, "ยืนยันรหัสผ่านอีกครั้ง"
+          = f.input :password_confirmation, :required => true, label: false, :input_html => { class: 'form-control' }
+        .form-group
+          = f.label :current_password, "รหัสผ่านปัจจุบัน"
+          = f.input :current_password, :hint => "we need your current password to confirm your changes", label: false, :input_html => { class: 'form-control' }
+        %h4 ข้อมูลร้านค้า/บริษัท
+        = f.fields_for :store_metadata do |m|
+          .form-group
+            = m.label :name, "ชื่อร้านค้า/บริษัท"
+            = m.input :name, required: true, label: false, input_html: { class: 'form-control' }
+          .form-group
+            = m.label :address, "ที่อยู่"
+            = m.input :address, required: true, label: false, input_html: { class: 'form-control' }
+          .form-group
+            = m.label :email, "อีเมล"
+            = m.input :email, required: true, label: false, input_html: { class: 'form-control' }
+          .form-group
+            = m.label :phone1, "เบอร์โทัศัพท์ 1"
+            = m.input :phone1, required: true, label: false, input_html: { class: 'form-control' }
+          .form-group
+            = m.label :phone2, "เบอร์โทัศัพท์ 2"
+            = m.input :phone2, required: true, label: false, input_html: { class: 'form-control' }
+        = f.submit 'บันทึก', class: 'button'
+    .col-lg-3 &nbsp;

@@ -45,7 +45,7 @@ module ApplicationHelper
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'profile'
       link_name = "<i class='fa fa-user fa-fw'></i> "
-      link_url  = user_profile_url
+      link_url  = store_profile_url
     when 'setting'
       link_name = "<i class='fa fa-gear fa-fw'></i> "
     when 'logout'

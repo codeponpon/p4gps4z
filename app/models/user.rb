@@ -4,6 +4,7 @@ class User
   rolify
 
   has_many :trackings
+  has_one :store_metadata, dependent: :destroy
 
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 

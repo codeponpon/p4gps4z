@@ -30,4 +30,8 @@ class StoresController < Devise::RegistrationsController
 
   def forgot_password
   end
+
+  def profile
+    @page_title = 'Profile details'
+  end
 end
