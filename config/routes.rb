@@ -1,4 +1,6 @@
 Pagpos::Application.routes.draw do
+  get "store_metadatas/create"
+  get "store_metadatas/update"
   get "newsletters/index"
   get "sms/index"
   get "stores/index"
@@ -52,7 +54,7 @@ Pagpos::Application.routes.draw do
       get 'store/recovery_password' => 'stores#forgot_password'
 
       get 'store/profile' => 'stores#profile'
-      post 'store/update_profile' => 'stores#update_profile'
+      patch 'store/profile' => 'stores#update_profile'
       get 'store/lists' => 'stores#list'
 
       get 'store/sms' => 'sms#index'

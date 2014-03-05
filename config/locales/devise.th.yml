@@ -49,6 +49,9 @@ th:
     users:
       user:
         updated: 'อัพเดทข้อมูลเรียบร้อยแล้ว'
+    stores:
+      user:
+        updated: 'Update successfull'
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

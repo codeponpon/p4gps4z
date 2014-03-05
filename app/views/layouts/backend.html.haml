@@ -29,6 +29,7 @@
           .row
             .col-lg-12
               %h1.page-header= @page_title.present? ? @page_title : request.params[:controller].capitalize
+              = render "shared/flash_message_backend", flash: flash
             / /.col-lg-12
           / /.row
           = yield

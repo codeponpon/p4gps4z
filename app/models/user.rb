@@ -4,7 +4,8 @@ class User
   rolify
 
   has_many :trackings
-  has_one :store_metadata, dependent: :destroy
+  embeds_one :store_detail
+  accepts_nested_attributes_for :store_detail, allow_destroy: true
 
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 
@@ -50,10 +51,10 @@ class User
   field :last_sign_in_ip,    :type => String
 
   ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
