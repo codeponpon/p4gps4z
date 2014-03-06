@@ -2,8 +2,8 @@
 $.extend(true, $.fn.dataTable.defaults, {
     "sDom": "<'row'<'col-sm-6'f><'col-sm-6'l>r>" + "t" + "<'row'<'col-sm-6'i><'col-sm-6'p>>",
     "oLanguage": {
-        "sLengthMenu": "_MENU_",
-        "sSearch": ""
+        "sLengthMenu": "_MENU_<i></i>",
+        "sSearch": "<div class='input-group'><span class=\"input-group-addon\"><i class=\"fa fa-search\"></i></span>_INPUT_</div>"
     },
     "fnPreDrawCallback": function(oSettings, json){
         $('.dataTables_filter input').attr('placeholder', 'Search')
@@ -14,8 +14,8 @@ $.extend(true, $.fn.dataTable.defaults, {
 /* Default class modification */
 $.extend($.fn.dataTableExt.oStdClasses, {
     "sWrapper": "dataTables_wrapper form-inline",
-    "sFilterInput": "form-control input-sm",
-    "sLengthSelect": "form-control input-sm pull-right"
+    "sFilterInput": "form-control",
+    "sLengthSelect": "form-control pull-right"
 });
 
 // In 1.10 we use the pagination renderers to draw the Bootstrap paging,

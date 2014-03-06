@@ -55,11 +55,11 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 table.dataTable thead .sorting {
-    background: url('../images/sort_both.png') no-repeat center right;
+    /*background: url('../images/sort_both.png') no-repeat center right;*/
 }
 
 table.dataTable thead .sorting_asc {
-    background: url('../images/sort_asc.png') no-repeat center right;
+    /*background: url('../images/sort_asc.png') no-repeat center right;*/
 }
 
 table.dataTable thead .sorting_desc {
@@ -230,4 +230,44 @@ div.DTFC_LeftBodyWrapper tbody tr:first-child td {
 div.DTFC_RightFootWrapper table,
 div.DTFC_LeftFootWrapper table {
     border-top: none;
+}
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+    border-radius: 0;
+}
+div.dataTables_filter {
+    /*position: absolute;
+    left: 10px;
+    top: -38px;*/
+}
+div.dataTables_filter input {
+    font-size: 13px;
+    padding: 2px 8px;
+}
+.dataTables_filter .input-group {
+    width: 180px !important;
+}
+div.dataTables_filter input, div.dataTables_length select {
+    border: 1px solid #BBBBBB;
+}
+
+.form-control .input input, .form-control .select select, .form-control .textarea textarea {
+    -moz-appearance: none;
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+    color: #404040;
+    display: block;
+    font: 13px/16px 'Open Sans',Helvetica,Arial,sans-serif;
+    height: 32px;
+    outline: 0 none;
+    padding: 8px 10px;
+    width: 100%;
 }
