@@ -59,7 +59,8 @@ Pagpos::Application.routes.draw do
 
       get 'store/sms' => 'sms#index'
       get 'store/newsletters' => 'newsletters#index'
-      get 'store/customers' => 'users#list'
+      get 'store/customers' => 'users#customer'
+      get 'store/users' => 'users#user'
       get 'store/packages' => 'packages#index'
       get 'store/statistics' => 'statistics#index'
       get 'store/invoices' => 'invoices#index'

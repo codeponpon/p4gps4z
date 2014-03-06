@@ -84,6 +84,7 @@ th:
       sms: 'SMS'
       sms_templates: 'SMS Templates'
       customers: 'Customers'
+      users: 'Users'
       packages: 'Packages'
       statistics: 'Statistics'
       invoices: 'Invoices'

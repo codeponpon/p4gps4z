@@ -1,5 +1,7 @@
 class UsersController < Devise::RegistrationsController
   before_filter :authenticate_user!
+  before_filter :require_merchant, only: [:customer, :user]
+  layout 'backend', only: [:customer, :user]
 
   def index
   end
@@ -35,5 +37,11 @@ class UsersController < Devise::RegistrationsController
   end
 
   def profile
+  end
+
+  def customer
+  end
+
+  def user
   end
 end

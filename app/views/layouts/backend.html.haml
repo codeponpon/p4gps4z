@@ -14,7 +14,11 @@
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "PAGPOS - Package position"
     = stylesheet_link_tag    "backend", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
+    = yield :stylesheets
+
     = javascript_include_tag "backend", "vendor/custom.modernizr"
+    = yield :javascripts
+
     = csrf_meta_tags
   %body
     #wrapper

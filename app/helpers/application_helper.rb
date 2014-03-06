@@ -34,11 +34,14 @@ module ApplicationHelper
     when 'customers'
       link_name = "<i class='fa fa-users fa-fw'></i> "
       # link_url  = try("#{rename_controller}_#{name}_url")
+    when 'users'
+      link_name = "<i class='glyphicon glyphicon-user'></i> "
+      # link_url  = try("#{rename_controller}_#{name}_url")
     when 'packages'
       link_name = "<i class='fa fa-gift fa-fw'></i> "
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'statistics'
-      link_name = "<i class='fa fa-bar-chart-o fa-fw'></i> "
+      link_name = "<i class='glyphicon glyphicon-stats'></i> "
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'invoices'
       link_name = "<i class='fa fa-money fa-fw'></i> "
