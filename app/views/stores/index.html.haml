@@ -7,7 +7,6 @@
         .panel-body
           = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :defaults => {:wrapper_html => {:class => 'form-group'}}) do |f|
             = f.error_notification
-            = render "shared/flash_message_backend", flash: flash
             %h2.text-center=t('signin.title')
             %fieldset
               .form-group

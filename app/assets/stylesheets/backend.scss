@@ -58,6 +58,7 @@ button, input, optgroup, select, textarea {
   color: #FFFFFF;
 }
 
+.alert-notice,
 .alert-box {
   background-color: #2BA6CB;
   border-color: #2284A1;
@@ -70,6 +71,10 @@ button, input, optgroup, select, textarea {
   margin-bottom: 1.25em;
   padding: 0.6875em 1.3125em 0.75em 0.6875em;
   position: relative;
+}
+
+.alert-dismissable .close {
+  right: 0;
 }
 
 @media(min-width:768px) {
