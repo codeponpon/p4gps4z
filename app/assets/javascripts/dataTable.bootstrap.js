@@ -1,13 +1,15 @@
 /* Set the defaults for DataTables initialisation */
 $.extend(true, $.fn.dataTable.defaults, {
-    "sDom": "<'row'<'col-sm-6'f><'col-sm-6'l>r>" + "t" + "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+    // "sDom": "<'row'<'col-sm-6'f><'col-sm-6'>r>" + "t" + "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+    "sDom": "<'row'<'col-sm-6'f><'col-sm-6'>r>" + "t",
     "oLanguage": {
-        "sLengthMenu": "_MENU_<i></i>",
-        "sSearch": "<div class='input-group'><span class=\"input-group-addon\"><i class=\"fa fa-search\"></i></span>_INPUT_</div>"
+        "sSearch": "<div class='input-group'><span class=\"input-group-addon\"><i class=\"fa fa-search\"></i></span>_INPUT_</div>",
+        "sInfo": "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_"
     },
     "fnPreDrawCallback": function(oSettings, json){
         $('.dataTables_filter input').attr('placeholder', 'Search')
-    }
+    },
+    "iDisplayLength": 25
 });
 
 

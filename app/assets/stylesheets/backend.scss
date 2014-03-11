@@ -1,3 +1,6 @@
+/**
+ *require "will_paginate-bootstrap"
+ */
 @import "bootstrap";
 @import "font-awesome/font-awesome";
 
@@ -414,4 +417,7 @@ table.dataTable thead .sorting:after {
 }
 label.required.control-label > abbr {
   color: red;
+}
+.pagination.pagination {
+  float: right;
 }

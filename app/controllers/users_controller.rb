@@ -43,5 +43,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def user
+    page = params[:page].present? ? params[:page] : 1
+    @users = User.paginate(:page => page, :per_page => 20)
   end
 end

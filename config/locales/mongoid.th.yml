@@ -26,3 +26,6 @@ th:
           message: 'unknown attribute %{message}'
           summary: 'unknown attribute %{summary}'
           resolution: 'unknown attribute %{resolution}'
+        document_not_found:
+          message: 'Record not found %{message}'
+          summary: 'Record not found %{summary}'

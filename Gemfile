@@ -87,6 +87,8 @@ gem 'twilio-ruby'
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end
+gem "will_paginate_mongoid"
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'better_errors'

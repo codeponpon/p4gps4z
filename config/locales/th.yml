@@ -1,4 +1,7 @@
 th:
+  will_paginate:
+    next: 'ถัดไป'
+    previous: 'ก่อนหน้า'
   pagpos:
     title: 'PAGPOS'
     slogan: 'Package Position Notification System'
