@@ -80,6 +80,7 @@ class User
                             time_zone: auth.extra.raw_info.timezone,
                             gender: auth.extra.raw_info.gender
                           )
+        user.roles.create!(name: 'user')
       end
 
     end
