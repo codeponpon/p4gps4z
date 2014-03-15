@@ -41,6 +41,13 @@ class UsersController < Devise::RegistrationsController
   end
 
   def customer
+    @page_title = I18n.t('page_title.customers')
+    page = params[:page].present? ? params[:page] : 1
+    user_ids = []
+    Role.all.map(&:user_ids).each_with_index do |user_id, i|
+      user_ids << user_id[i].to_s
+    end
+    @users = User.in(_id: user_ids).paginate(:page => page, :per_page => 20)
   end
 
   def user

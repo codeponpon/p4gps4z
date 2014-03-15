@@ -9,22 +9,19 @@
               %i.glyphicon.glyphicon-plus
               Add Customer
       .table-responsive
-        %table#dataTables.table.table-striped.table-bordered.table-hover
+        %table#dataTables.table.table-striped.table-hover.dataTable
           %thead
             %tr
-              %th id
-              %th email
               %th name
-              %th roles
-              %th
+              %th email
+              %th Phone No.
           %tbody
             - @users.each_with_index do |u, i|
               %tr{class: (i%2==0) ? 'odd' : 'even'}
-                %td=u.id
-                %td=u.email
                 %td=u.name
-                %td=u.roles.map(&:name).join(', ')
+                %td=u.email
                 %td
+                  =u.phone_no
                   .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
                     %button.btn.btn-xm.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
                       %i.fa.fa-cog.fa-lg
@@ -34,13 +31,14 @@
                           %i.fa.fa-file.fa-lg.fa-fw.txt-color-greenLight
                           = succeed "dit" do
                             %u E
-                      %li.divider
                       %li
                         %a{href: "javascript:void(0);"}
                           %i.fa.fa-times.fa-lg.fa-fw.txt-color-red
                           = succeed "elete" do
                             %u D
                       %li.divider
+                      %li.text-align-center
+                        %a{href: "javascript:void(0);"} Cancel
         / /.table-responsive
       / /.panel-body
       = will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails
