@@ -14,8 +14,8 @@
             %tr
               %th email
               %th name
-              %th roles
-              %th
+              %th{width: 150} roles
+              %th{width: 250}
           %tbody
             - @users.each_with_index do |u, i|
               %tr{class: (i%2==0) ? 'odd' : 'even'}
@@ -23,13 +23,14 @@
                 %td=u.name
                 %td=u.roles.map(&:name).join(', ')
                 %td
+                  =[pluralize(u.customers.count, 'customer'), pluralize(u.merchants.count, 'merchant')].join(', ')
                   .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
                     %button.btn.btn-xs.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
                       %i.fa.fa-cog.fa-lg
                     %ul.dropdown-menu.dropdown-menu-xs.pull-right
                       %li
                         %a{href: "javascript:void(0);"}
-                          %i.fa.fa-file.fa-lg.fa-fw.txt-color-greenLight
+                          %i.fa.fa-pencil.fa-lg.fa-fw.txt-color-greenLight
                           = succeed "dit" do
                             %u E
                       %li.divider
