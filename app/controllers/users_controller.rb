@@ -2,6 +2,7 @@ class UsersController < Devise::RegistrationsController
   before_filter :authenticate_user!
   before_filter :require_merchant, only: [:customer]
   before_filter :require_admin, only: [:user]
+
   layout 'backend', only: [:customer, :user]
 
   def index

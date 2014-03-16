@@ -7,6 +7,9 @@ class User
   embeds_one :store_detail
   accepts_nested_attributes_for :store_detail, allow_destroy: true
 
+  has_and_belongs_to_many :customers, :class_name => 'User', :inverse_of => :merchants
+  has_and_belongs_to_many :merchants, :class_name => 'User', :inverse_of => :customers
+
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 
   # Include default devise modules. Others available are:

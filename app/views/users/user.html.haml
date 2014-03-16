@@ -7,12 +7,11 @@
           %a.btn.btn-primary
             %strong
               %i.glyphicon.glyphicon-plus
-              Add Customer
+              Add
       .table-responsive
-        %table#dataTables.table.table-striped.table-bordered.table-hover
+        %table#dataTables.table.table-striped.table-hover.dataTable
           %thead
             %tr
-              %th id
               %th email
               %th name
               %th roles
@@ -20,13 +19,12 @@
           %tbody
             - @users.each_with_index do |u, i|
               %tr{class: (i%2==0) ? 'odd' : 'even'}
-                %td=u.id
                 %td=u.email
                 %td=u.name
                 %td=u.roles.map(&:name).join(', ')
                 %td
                   .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
-                    %button.btn.btn-xm.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
+                    %button.btn.btn-xs.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
                       %i.fa.fa-cog.fa-lg
                     %ul.dropdown-menu.dropdown-menu-xs.pull-right
                       %li
