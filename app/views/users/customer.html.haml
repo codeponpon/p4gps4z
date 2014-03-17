@@ -4,10 +4,7 @@
     .panel-body
       .inbox-checkbox-triggered
         .btn-group.pull-right
-          %a.btn.btn-primary
-            %strong
-              %i.glyphicon.glyphicon-plus
-              Add
+          = link_to raw("<i class='glyphicon glyphicon-plus'></i> #{t('backend.add')}"), store_add_customer_url, class: 'btn btn-primary'
       .table-responsive
         %table#dataTables.table.table-striped.table-hover.dataTable
           %thead

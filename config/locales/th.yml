@@ -94,5 +94,7 @@ th:
       profile: 'User Profile'
       setting: 'Setting'
       logout: 'Logout'
+    button:
+      add: 'Add'
   page_title:
     customers: 'Customers'

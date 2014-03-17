@@ -4,16 +4,14 @@
     .panel-body
       .inbox-checkbox-triggered
         .btn-group.pull-right
-          %a.btn.btn-primary
-            %strong
-              %i.glyphicon.glyphicon-plus
-              Add
+          = link_to raw("<i class='glyphicon glyphicon-plus'></i> #{t('backend.add')}"), store_add_customer_url(role: 'admin'), class: 'btn btn-primary'
       .table-responsive
         %table#dataTables.table.table-striped.table-hover.dataTable
           %thead
             %tr
               %th email
               %th name
+              %th{width: 150} Phone no.
               %th{width: 150} roles
               %th{width: 250}
           %tbody
@@ -21,11 +19,12 @@
               %tr{class: (i%2==0) ? 'odd' : 'even'}
                 %td=u.email
                 %td=u.name
+                %td=u.phone_no
                 %td=u.roles.map(&:name).join(', ')
                 %td
                   =[pluralize(u.customers.count, 'customer'), pluralize(u.merchants.count, 'merchant')].join(', ')
                   .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
-                    %button.btn.btn-xs.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
+                    %button.btn.btn-default.txt-color-blue.dropdown-toggle{"data-toggle" => "dropdown"}
                       %i.fa.fa-cog.fa-lg
                     %ul.dropdown-menu.dropdown-menu-xs.pull-right
                       %li
