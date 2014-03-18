@@ -98,3 +98,5 @@ th:
       add: 'Add'
   page_title:
     customers: 'Customers'
+    add_customer: 'Add Customer'
+    edit_customer: 'Edit Customer'

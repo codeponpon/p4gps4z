@@ -53,9 +53,16 @@ class UsersController < Devise::RegistrationsController
   end
 
   def add_customer
+    @page_title = I18n.t('page_title.add_customer')
+    @user = User.new
+  end
+
+  def edit_customer
+    @page_title = I18n.t('page_title.edit_customer')
   end
 
   def create_customer
+    @user = User.new(params[:user])
   end
 
   def update_customer
