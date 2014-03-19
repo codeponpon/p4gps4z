@@ -89,7 +89,7 @@ module ApplicationHelper
     disable_is = [
       {
         controller: 'stores',
-        action: ['index', 'register', 'forgot_password']
+        action: ['index', 'register', 'forgot_password', 'create']
       },
       {
         controller: 'sessions',

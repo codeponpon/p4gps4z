@@ -19,7 +19,8 @@ Pagpos::Application.routes.draw do
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",
     :sessions => "sessions",
-    :passwords => "passwords"
+    :passwords => "passwords",
+    :registrations => "stores"
   }
   # get 'users/auth/facebook' => 'omniauth_callbacks#passthru'
   # get 'users/auth/google' => 'omniauth_callbacks#passthru'
@@ -51,6 +52,7 @@ Pagpos::Application.routes.draw do
       get 'store/dashboard' => 'stores#dashboard'
       get 'store/login' => 'stores#index'
       get 'store/register' => 'stores#register'
+      post 'store/register' => 'stores#create'
       get 'store/recovery_password' => 'stores#forgot_password'
 
       get 'store/profile' => 'stores#profile'

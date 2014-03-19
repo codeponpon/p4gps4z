@@ -23,6 +23,10 @@
   %body
     #wrapper
       - if menu_disabled?
+        .container
+          .row
+            .col-lg-12.text-center
+              = render "shared/flash_message_backend", flash: flash
         = yield
       - else
         / ######################## Main Menu ########################
