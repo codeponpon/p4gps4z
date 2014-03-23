@@ -34,10 +34,6 @@ class UsersController < Devise::RegistrationsController
     end
   end
 
-  def account_update_params
-    params.require(:user).permit(:password, :password_confirmation, :current_password, :reminder_when, :reminder_by, :phone_no, :email, :name, :gender, :time_zone)
-  end
-
   def profile
   end
 
@@ -62,7 +58,19 @@ class UsersController < Devise::RegistrationsController
   end
 
   def create_customer
-    @user = User.new(params[:user])
+    email = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
+    password = Devise.friendly_token
+    params[:user][:email] = email
+    params[:user][:password] = password
+    params[:user][:password_confirmation] = password
+
+    @user = current_user.customers.new(customer_params)
+    if @user.save
+      flash[:success] = I18n.t('user.add_customer.success')
+      return redirect_to store_customers_url
+    else
+      render :add_customer
+    end
   end
 
   def update_customer
@@ -70,4 +78,13 @@ class UsersController < Devise::RegistrationsController
 
   def destroy_customer
   end
+
+  def customer_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_no, :reminder_by, :gender, :user_reminder_when)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:password, :password_confirmation, :current_password, :reminder_when, :reminder_by, :phone_no, :email, :name, :gender, :time_zone)
+  end
+
 end

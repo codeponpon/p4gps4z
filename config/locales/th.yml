@@ -51,6 +51,8 @@ th:
     gender:
       male: 'ผู้ชาย'
       female: 'ผู้หญิง'
+    add_customer:
+      success: 'Add customer success'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'

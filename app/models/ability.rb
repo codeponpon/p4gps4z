@@ -10,7 +10,6 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :merchant
-      cannot :read, User, User.has_role?(:merchant)
     elsif user.has_role? :marketer
     end
   end

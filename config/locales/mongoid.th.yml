@@ -21,6 +21,7 @@ th:
               invalid: 'หมายเลขโทรศัพท์ไม่ถูกต้อง'
             email:
               blank: 'กรุณากรอกอีเมลให้ถูกต้อง'
+              taken: 'อีเมล์นี้มีการลงทะเบียนในระบบแล้ว'
       messages:
         unknown_attribute:
           message: 'unknown attribute %{message}'
@@ -28,4 +29,3 @@ th:
           resolution: 'unknown attribute %{resolution}'
         document_not_found:
           message: 'Record not found %{message}'
-          summary: 'Record not found %{summary}'
