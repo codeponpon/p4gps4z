@@ -43,9 +43,9 @@
             = f.input :reminder_when, collection: {"Status change" => "status_changed", "Specific post" => "specific_post", "Specific time" => "specific_time"}, selected: @user.reminder_when.to_sym, label: false, disabled: true
         .row
           .large-6.columns ช่่องทางแจ้งเตือน
-          .large-6.columns 
+          .large-6.columns
             = f.input :reminder_by, collection: {"Email" => "email" , "SMS" => "sms"}, selected: @user.reminder_by.to_sym, label: false
-            /, "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook" 
+            /, "WhatsApp" => "whatsapp", "Facebook Chat" => "facebook"
         .row
           .large-6.columns หมายเลขโทรศัพท์
           .large-6.columns
@@ -55,14 +55,4 @@
             = f.submit 'บันทึก', class: 'button'
     .large-3.columns &nbsp;
 
-:javascript
-$(document).ready(function(){
-  if($('#user_reminder_by').val() == 'sms') $('#user_phone_no').addClass('required');
-  $('#user_reminder_by').on('change', function(){
-    if($(this).val() == 'sms'){
-      $('#user_phone_no').addClass('required');
-    }else{
-      $('#user_phone_no').removeClass('required');
-    }
-  });  
-});
+= render "shared/required_remider"
