@@ -67,7 +67,7 @@ Pagpos::Application.routes.draw do
       get 'store/edit_customer' => 'users#edit_customer'
       post 'store/create_customer' => 'users#create_customer'
       patch 'store/update_customer' => 'users#update_customer'
-      delete 'store/destroy_customer' => 'users#destroy_customer'
+      delete 'store/destroy_customer/:id' => 'users#destroy_customer', as: 'store_destroy_customer'
 
       get 'store/users' => 'users#user'
       get 'store/packages' => 'packages#index'

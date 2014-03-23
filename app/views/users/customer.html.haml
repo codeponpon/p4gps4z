@@ -18,22 +18,22 @@
               %tr{class: (i%2==0) ? 'odd' : 'even'}
                 %td=u.name
                 %td=u.reminder_by.upcase
-                %td=u.email
+                %td
+                  - unless u.email.scan('@pagpos.com')
+                    =u.email
                 %td
                   =u.phone_no
                   .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
                     %a{href: "javascript:void(0);"}
                       %i.fa.fa-file.fa-lg.fa-fw.txt-color-greenLight
-                      = succeed "tail" do
+                      = succeed "etail" do
                         %u D
                     %a{href: "javascript:void(0);"}
                       %i.fa.fa-pencil.fa-lg.fa-fw.txt-color-greenLight
                       = succeed "dit" do
                         %u E
-                    %a{href: "javascript:void(0);"}
-                      %i.fa.fa-times.fa-lg.fa-fw.txt-color-red
-                      = succeed "elete" do
-                        %u D
+                    = link_to raw("<i class='fa fa-times fa-lg fa-fw'></i> Delete"), store_destroy_customer_url(u), method: :delete, data: { confirm: "Do you really want to delete customer?" }
+
         / /.table-responsive
       / /.panel-body
       = will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails

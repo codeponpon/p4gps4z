@@ -53,6 +53,8 @@ th:
       female: 'ผู้หญิง'
     add_customer:
       success: 'Add customer success'
+    destroy_customer:
+      success: 'Delete success'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'

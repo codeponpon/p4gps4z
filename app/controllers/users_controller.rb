@@ -77,6 +77,13 @@ class UsersController < Devise::RegistrationsController
   end
 
   def destroy_customer
+    user = User.where(_id: params[:id]).first
+    if user.destroy
+      flash[:success] = I18n.t('user.destroy_customer.success')
+    else
+      flash[:error] = user.errors.full_messages
+    end
+    return redirect_to store_customers_url
   end
 
   def customer_params
