@@ -35,7 +35,7 @@ module ApplicationHelper
       link_name = "<i class='fa fa-users fa-fw'></i> "
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'users'
-      link_name = "<i class='glyphicon glyphicon-user'></i> "
+      link_name = "<i class='glyphicon glyphicon-user'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'packages'
       link_name = "<i class='fa fa-gift fa-fw'></i> "
@@ -58,8 +58,11 @@ module ApplicationHelper
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
       link_url  = try("#{rename_controller}_dashboard_url")
     end
-    link_url  = try("#{rename_controller}_#{name}_url") if link_url.eql?('#')
-    return link_to raw(link_name + I18n.t(menu_name).capitalize), link_url
+
+    unless link_name.blank?
+      link_url  = try("#{rename_controller}_#{name}_url") if link_url.eql?('#')
+      return link_to raw(link_name + I18n.t(menu_name).capitalize), link_url
+    end
   end
 
   def menu_builder(*lists, attrs)
@@ -78,14 +81,14 @@ module ApplicationHelper
       if menu.eql?(:divider)
         menus += '<li class="divider"></li>'
       else
-        menus += '<li>' + backend_menu(menu) + '</li>'
+        menus += '<li class="' + menu.to_s + '">' + backend_menu(menu) + '</li>' unless backend_menu(menu).blank?
       end
     end
     menus += "</ul>"
     return raw(menus)
   end
 
-  def menu_disabled?()
+  def menu_disabled?
     disable_is = [
       {
         controller: 'stores',
