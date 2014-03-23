@@ -1,4 +1,4 @@
-= simple_form_for(@user, :url => store_create_customer_path(@user), :html => {role: 'form' }) do |f|
+= simple_form_for(@user, :url => store_customer_url(@user), :html => {role: 'form' }) do |f|
   .form-group
     .large-12.columns
       = f.error_notification

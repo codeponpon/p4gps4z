@@ -28,11 +28,8 @@
                       %i.fa.fa-file.fa-lg.fa-fw.txt-color-greenLight
                       = succeed "etail" do
                         %u D
-                    %a{href: "javascript:void(0);"}
-                      %i.fa.fa-pencil.fa-lg.fa-fw.txt-color-greenLight
-                      = succeed "dit" do
-                        %u E
-                    = link_to raw("<i class='fa fa-times fa-lg fa-fw'></i> Delete"), store_destroy_customer_url(u), method: :delete, data: { confirm: "Do you really want to delete customer?" }
+                    = link_to raw("<i class='fa fa-pencil fa-lg fa-fw'></i> Edit"), store_edit_customer_url(u)
+                    = link_to raw("<i class='fa fa-times fa-lg fa-fw'></i> Delete"), store_customer_url(u), method: :delete, data: { confirm: "Do you really want to delete customer?" }
 
         / /.table-responsive
       / /.panel-body

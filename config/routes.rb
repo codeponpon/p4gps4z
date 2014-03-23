@@ -64,10 +64,11 @@ Pagpos::Application.routes.draw do
 
       get 'store/customers' => 'users#customer'
       get 'store/add_customer' => 'users#add_customer'
-      get 'store/edit_customer' => 'users#edit_customer'
-      post 'store/create_customer' => 'users#create_customer'
-      patch 'store/update_customer' => 'users#update_customer'
-      delete 'store/destroy_customer/:id' => 'users#destroy_customer', as: 'store_destroy_customer'
+      get 'store/customer/:id' => 'users#edit_customer', as: 'store_edit_customer'
+      get 'store/customer/:id' => 'user#show_customer', as: 'store_customer'
+      post 'store/customer' => 'users#create_customer'
+      patch 'store/customer/:id' => 'users#update_customer'
+      delete 'store/customer/:id' => 'users#destroy_customer'
 
       get 'store/users' => 'users#user'
       get 'store/packages' => 'packages#index'

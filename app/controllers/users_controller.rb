@@ -3,7 +3,7 @@ class UsersController < Devise::RegistrationsController
   before_filter :require_merchant, only: [:customer, :add_customer]
   before_filter :require_admin, only: [:user]
 
-  layout 'backend', only: [:customer, :user, :add_customer, :create_customer, :update_customer, :destroy_customer]
+  layout 'backend', only: [:customer, :user, :add_customer, :edit_customer, :create_customer, :update_customer, :destroy_customer]
 
   def index
   end
@@ -48,6 +48,10 @@ class UsersController < Devise::RegistrationsController
     @users = User.paginate(:page => page, :per_page => 20)
   end
 
+  def show_customer
+    @user = User.where(_id: params[:id]).first
+  end
+
   def add_customer
     @page_title = I18n.t('page_title.add_customer')
     @user = User.new
@@ -55,6 +59,8 @@ class UsersController < Devise::RegistrationsController
 
   def edit_customer
     @page_title = I18n.t('page_title.edit_customer')
+    @user = User.where(_id: params[:id]).first
+    @user.email = nil if @user.email.scan('@pagpos.com')
   end
 
   def create_customer
@@ -74,6 +80,15 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update_customer
+    email = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
+    params[:user][:email] = email
+    update_result = User.where(_id: params[:id]).first
+    if update_result.update_attributes(account_update_params)
+      flash[:success] = I18n.t('user.update_customer.success')
+      return redirect_to store_customers_url
+    else
+      render :edit_customer
+    end
   end
 
   def destroy_customer
