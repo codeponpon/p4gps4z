@@ -3,7 +3,7 @@ class UsersController < Devise::RegistrationsController
   before_filter :require_merchant, only: [:customer, :add_customer]
   before_filter :require_admin, only: [:user]
 
-  layout 'backend', only: [:customer, :user, :add_customer, :edit_customer, :create_customer, :update_customer, :destroy_customer]
+  layout 'backend', only: [:customer, :user, :add_customer, :edit_customer, :detail_customer, :create_customer, :update_customer, :destroy_customer]
 
   def index
   end
@@ -48,8 +48,10 @@ class UsersController < Devise::RegistrationsController
     @users = User.paginate(:page => page, :per_page => 20)
   end
 
-  def show_customer
+  def detail_customer
+    @page_title = I18n.t('page_title.detail_customer')
     @user = User.where(_id: params[:id]).first
+    @tracking = @user.trackings.new
   end
 
   def add_customer

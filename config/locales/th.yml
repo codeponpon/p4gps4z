@@ -1,4 +1,5 @@
 th:
+  website_title: 'PAGPOS'
   will_paginate:
     next: 'ถัดไป'
     previous: 'ก่อนหน้า'
@@ -106,3 +107,4 @@ th:
     customers: 'Customers'
     add_customer: 'Add Customer'
     edit_customer: 'Edit Customer'
+    detail_customer: 'User Detail'

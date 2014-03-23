@@ -111,4 +111,8 @@ module ApplicationHelper
     end
     return false
   end
+
+  def page_title(separator = " – ")
+    [content_for(:title), I18n.t('website_title')].compact.join(separator)
+  end
 end
