@@ -42,10 +42,11 @@ class TrackingsController < ApplicationController
     @tracking = @user.trackings.new(code: @code)
     if @tracking.save
       flash[:notice] = "Add tracking code successfully"
-      redirect_to :action => "new"
+      redirect_to request.referer
       # return render :status => 200, message: 'OK', :json => { success: true, message: "Add tracking code successfully"}
     else
-      render :action => "new"
+      flash[:error] = @tracking.errors.full_messages
+      redirect_to request.referer
       # return render :status => 400, message: 'Bad request', :json => { success: false, errors: @track.errors.full_messages[0]}
     end
   end

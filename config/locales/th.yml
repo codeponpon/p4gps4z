@@ -67,6 +67,7 @@ th:
     delete_btn: 'ลบ'
     placeholder_tracking_id: 'รหัสพัสดุ'
     add_btn: 'ค้นหา'
+    track_btn: 'ติดตามและแจ้งเตือน'
     delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
   tracking_status:
     default_status: 'รอดำเนินการ'

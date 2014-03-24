@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if current_user.present?
+    if current_user.present? && params[:token].blank?
       return @user = current_user
     end
 
