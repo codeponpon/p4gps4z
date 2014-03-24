@@ -49,8 +49,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def detail_customer
+    page = params[:page].present? ? params[:page] : 1
     @page_title = I18n.t('page_title.detail_customer')
     @user = User.where(_id: params[:id]).first
+    @user_trackings = @user.trackings.paginate(:page => page, :per_page => 20)
     @tracking = @user.trackings.new
   end
 

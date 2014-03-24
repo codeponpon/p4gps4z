@@ -25,6 +25,9 @@
             %th{width: "200"}
         %tbody
         - @user.trackings.each do |t|
+          - if t.blank?
+            %tr
+              %tr{colspan: 3} Empty Record
           / Prevent show record when input invalid tracking code
           - unless t.new_record?
             %tr
@@ -36,4 +39,10 @@
               %td
                 = link_to t("trackings.details_btn"), tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
                 = link_to t("trackings.delete_btn"), tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => t('trackings.delete_confirmation')
+      = will_paginate @user_trackings, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails
     .col-lg-3 &nbsp;
+
+= content_for :stylesheets do
+  = stylesheet_link_tag 'dataTable.bootstrap'
+= content_for :javascripts do
+  = javascript_include_tag 'jquery.dataTables', 'dataTable.bootstrap'
