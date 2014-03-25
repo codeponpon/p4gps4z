@@ -23,7 +23,7 @@
                     =u.email
                 %td
                   =u.phone_no
-                  .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
+                  .btn-group.display-inline.pull-right.text-align-left
                     = link_to raw("<i class='fa fa-file fa-lg fa-fw'></i> Detail"), store_customer_url(u)
                     = link_to raw("<i class='fa fa-pencil fa-lg fa-fw'></i> Edit"), store_edit_customer_url(u)
                     = link_to raw("<i class='fa fa-times fa-lg fa-fw'></i> Delete"), store_customer_url(u), method: :delete, data: { confirm: "Do you really want to delete customer?" }

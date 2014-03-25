@@ -23,13 +23,13 @@ module ApplicationHelper
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
       link_url  = try("#{rename_controller}_dashboard_url")
     when 'stores'
-      link_name = "<i class='fa fa-home fa-fw'></i> "
+      link_name = "<i class='fa fa-home fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       link_url  = try("#{rename_controller}_lists_url")
     when 'sms'
       link_name = "<i class='fa fa-comment fa-fw'></i> "
       link_url  = try("#{rename_controller}_sms_url")
     when 'newsletters'
-      link_name = "<i class='fa fa-envelope fa-fw'></i> "
+      link_name = "<i class='fa fa-envelope fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'customers'
       link_name = "<i class='fa fa-users fa-fw'></i> "
@@ -38,13 +38,13 @@ module ApplicationHelper
       link_name = "<i class='glyphicon glyphicon-user'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'packages'
-      link_name = "<i class='fa fa-gift fa-fw'></i> "
+      link_name = "<i class='fa fa-gift fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'statistics'
-      link_name = "<i class='glyphicon glyphicon-stats'></i> "
+      link_name = "<i class='glyphicon glyphicon-stats'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'invoices'
-      link_name = "<i class='fa fa-money fa-fw'></i> "
+      link_name = "<i class='fa fa-money fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'profile'
       link_name = "<i class='fa fa-user fa-fw'></i> "

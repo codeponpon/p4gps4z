@@ -23,7 +23,7 @@
           %thead
             %tr
               %th{width: "140"}= t('trackings.tracking_code')
-              %th{width: "100"}= t('trackins.status')
+              %th{width: "100"}= t('trackings.status')
               %th{width: "200"}
           %tbody
           - @user_trackings.each_with_index do |t, i|
@@ -33,8 +33,9 @@
                 - status = t.status == 'done' ? 'label-success' : t.status == 'pending' ? 'label-default' : 'label-danger'
                 %span{class: "#{status} radius label"}= t("tracking_status.#{t.status}")
               %td
-                = link_to raw("<i class='glyphicon glyphicon-info-sign'></i> #{t("trackings.details_btn")}"), tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
-                = link_to raw("<i class='glyphicon glyphicon-remove-sign'></i> #{t("trackings.delete_btn")}"), tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => t('trackings.delete_confirmation')
+                .btn-group.display-inline.pull-right.text-align-left
+                  = link_to raw("<i class='glyphicon glyphicon-info-sign'></i> #{t("trackings.details_btn")}"), tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
+                  = link_to raw("<i class='glyphicon glyphicon-remove-sign'></i> #{t("trackings.delete_btn")}"), tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => t('trackings.delete_confirmation')
       = will_paginate @user_trackings, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails
     .col-lg-3 &nbsp;
 
