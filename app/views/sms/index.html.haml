@@ -1,1 +1,17 @@
 .row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        %span.pull-right
+          %ul.nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.fa.fa-cog.fa-fw
+                %i.fa.fa-caret-down
+              = menu_builder :day, :divider, :week, :divider, :month, :divider, :year, {id: '', class: 'dropdown-menu'}
+
+        %span.pull-left
+          SMS Analytics
+      .panel-body
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+  / /.col-lg-12

@@ -338,15 +338,28 @@ table.dataTable thead .sorting:after {
 }
 
 .dropdown-menu ,
-.panel {
+.panel,
+.panel-heading {
   border-radius: 0;
+}
+.panel-heading span:last-child {
+  padding: 5px 0;
+}
+.panel-heading span ul.nav {
+  margin: -10px -15px;;
+}
+.panel-primary > .panel-heading {
+  text-align: center;
+}
+.panel-default > div {
+  height: 42px;
 }
 .panel-default > .panel-heading {
   text-align: center;
   margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
+  padding: 10px 15px;
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #DDDDDD
 }
 .center {
   margin: 0 auto;
@@ -400,10 +413,14 @@ table thead {
 }
 .dropdown-menu > li > a {
   padding: 10px 20px;
+  text-align: left;
 }
 .btn {
   box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.05) inset;
 }
 table#dataTables tbody tr td{
   line-height: 35px;
+}
+.text-left {
+  text-align: left !important;
 }

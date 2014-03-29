@@ -102,6 +102,10 @@ th:
       profile: 'User Profile'
       setting: 'Setting'
       logout: 'Logout'
+      day: 'วัน'
+      week: 'สัปดาห์'
+      month: 'เดือน'
+      year: 'ปี'
     button:
       add: 'Add'
   page_title:
