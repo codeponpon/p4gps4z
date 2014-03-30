@@ -26,6 +26,8 @@ Pagpos::Application.routes.draw do
   # get 'users/auth/google' => 'omniauth_callbacks#passthru'
   # get 'users/auth/twitter' => 'omniauth_callbacks#passthru'
 
+  get 'templates' => 'welcome#templates'
+
   devise_scope :user do
     # root to: 'devise/sessions#new'
     root to: 'welcome#index'

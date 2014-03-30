@@ -354,6 +354,16 @@ table.dataTable thead .sorting:after {
 .panel-default > div.customer-header {
   height: 42px;
 }
+.panel-default > div.customer-header .nav.nav-tabs {
+  margin-top: -10px;
+}
+.panel-default > div.customer-header .nav.nav-tabs > li.active > a {
+  border-radius: 0;
+  border-top-width: 0 !important;
+  box-shadow: 0 -2px 0 #57889C;
+  margin-top: 1px !important;
+  outline: none;
+}
 .panel-default > .panel-heading {
   text-align: center;
   margin: 0;
@@ -454,4 +464,7 @@ ul.list li.info span {
   line-height: 34px;
   margin: 0;
   text-transform: none;
+}
+.well {
+  border-radius: 0;
 }
