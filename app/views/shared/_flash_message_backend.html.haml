@@ -1,4 +1,5 @@
 - flash.each do |type, message|
+  - type = 'danger' if type.eql?(:alert)
   %div{class: "alert alert-#{type} alert-dismissable"}
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
     = message.class.eql?(String)? message : message.join(', ')
