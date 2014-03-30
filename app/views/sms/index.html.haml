@@ -13,5 +13,26 @@
         %span.pull-left
           SMS Analytics
       .panel-body
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+        .col-lg-8
+          #line-chart
+        .col-lg-4
+          %ul.list
+            %li.info
+              %h5
+                Package
+                %span.text-primary LITE (Free)
+            %li.info
+              %h5
+                Credit/Month
+                %span.text-primary 150 SMS
+            %li.info
+              %h5
+                Sent
+                %span.text-primary 47/150 SMS
+            %li.info
+              %h5
+                Sent to Users
+                %span.text-primary 171
   / /.col-lg-12
+= content_for :javascripts do
+  = javascript_include_tag 'charts'

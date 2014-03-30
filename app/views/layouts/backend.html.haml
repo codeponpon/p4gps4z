@@ -13,10 +13,10 @@
     / Set the viewport width to device width for mobile
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
     %title= page_title
-    = stylesheet_link_tag    "backend", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
+    = stylesheet_link_tag    "backend", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries", "morris-0.4.3.min"
     = yield :stylesheets
 
-    = javascript_include_tag "backend", "vendor/custom.modernizr"
+    = javascript_include_tag "backend", "vendor/custom.modernizr", "raphael-min", "morris-0.4.3.min"
     = yield :javascripts
 
     = csrf_meta_tags

@@ -424,3 +424,34 @@ table#dataTables tbody tr td{
 .text-left {
   text-align: left !important;
 }
+ul.list {
+  display: block;
+  list-style: none outside none;
+  margin: 10px 0 0;
+  padding: 0;
+  text-align: right;
+}
+ul.list li.info {
+  -moz-box-sizing: content-box;
+  padding: 10px 0;
+  overflow: hidden;
+  text-align: left;
+  min-width: 70px;
+}
+ul.list li.info h5 {
+  border: 0 none;
+  color: #555555;
+  float: left;
+  font-weight: 400;
+  margin: -3px 0 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+ul.list li.info span {
+  // color: #636363;
+  display: block;
+  font-size: 32px;
+  line-height: 34px;
+  margin: 0;
+  text-transform: none;
+}
