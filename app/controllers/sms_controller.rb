@@ -4,4 +4,8 @@ class SmsController < ApplicationController
 
   def index
   end
+
+  def packages
+    @page_title = I18n.t('page_title.packages')
+  end
 end

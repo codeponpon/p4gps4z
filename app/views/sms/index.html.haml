@@ -22,11 +22,12 @@
                 Package
                 %span.text-primary
                   LITE (Free)
-                  = link_to "UPGRADE", "#", class: "btn btn-success btn-lg"
             %li.info
               %h5
                 Credit/Month
-                %span.text-primary 150
+                %span.text-primary
+                  150
+                  = link_to "ADD SMS", store_sms_packages_url, class: "btn btn-success btn-lg"
             %li.info
               %h5
                 Sent

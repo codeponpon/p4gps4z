@@ -113,3 +113,4 @@ th:
     add_customer: 'Add Customer'
     edit_customer: 'Edit Customer'
     detail_customer: 'User Detail'
+    packages: 'Packages'
