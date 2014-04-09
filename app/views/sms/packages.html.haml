@@ -10,9 +10,9 @@
           .the-price
             %h1
               = c.credit
-              %span.subscript= c.unit
+              %span.subscript= c.unit.upcase
             %h1
               #{c.currency_symbold}#{c.price}
-              %span.subscript= c.currency
+              %span.subscript= c.currency.upcase
         .panel-footer.no-padding.text-align-center
           = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block"
