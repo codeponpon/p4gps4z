@@ -7,5 +7,6 @@ class SmsController < ApplicationController
 
   def packages
     @page_title = I18n.t('page_title.packages')
+    @campaigns = Campaign.all
   end
 end

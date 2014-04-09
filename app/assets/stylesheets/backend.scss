@@ -339,7 +339,7 @@ table.dataTable thead .sorting:after {
 
 .ribbon {
   position: absolute;
-  right: 11px;
+  right: 11px !important;
   top: -4px;
 }
 img {
@@ -664,8 +664,10 @@ img {
 .pricing-big {
   border: 0 none !important;
 }
+.pricing-big .panel-footer,
+.pricing-big .panel-footer .btn,
 .pricing-big .panel-heading {
-  border-radius: 5px 5px 0 0;
+  border-radius: 0 !important;
 }
 .pricing-big .panel-title {
   border-radius: 5px 5px 0 0;

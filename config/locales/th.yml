@@ -108,6 +108,7 @@ th:
       year: 'ปี'
     button:
       add: 'Add'
+      buy: 'buy'
   page_title:
     customers: 'Customers'
     add_customer: 'Add Customer'

@@ -10,6 +10,8 @@ class User
   has_and_belongs_to_many :customers, :class_name => 'User', :inverse_of => :merchants
   has_and_belongs_to_many :merchants, :class_name => 'User', :inverse_of => :customers
 
+  has_many :campaigns_users
+
   validates :phone_no, presence: true, :if => "reminder_by.eql?('sms')", :format => { with: /\A[0]/ }
 
   # Include default devise modules. Others available are:

@@ -1,98 +1,18 @@
 .row
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-orange
-      .panel-heading
-        %h3.panel-title
-          Bronze
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            100
-            %span.subscript SMS
-          %h1
-            250
-            %span.subscript Bath
-          %small 2.50 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-orange.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-purple
-      = image_tag "ribbon.png", class: 'ribbon'
-      .panel-heading
-        %h3.panel-title
-          Silver
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            300
-            %span.subscript SMS
-          %h1
-            600
-            %span.subscript Bath
-          %small 2.00 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-purple.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-greenLight
-      .panel-heading
-        %h3.panel-title
-          Gold
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            500
-            %span.subscript SMS
-          %h1
-            875
-            %span.subscript Bath
-          %small 1.75 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-greenLight.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-blue
-      .panel-heading
-        %h3.panel-title
-          Diamond
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            750
-            %span.subscript SMS
-          %h1
-            1,125
-            %span.subscript Bath
-          %small 1.50 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-blue.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-redLight
-      .panel-heading
-        %h3.panel-title
-          Gold
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            1,500
-            %span.subscript SMS
-          %h1
-            1,500
-            %span.subscript Bath
-          %small 1.00 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-redLight.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
-  .col-xs-12.col-sm-4.col-md-2
-    .panel.panel-pink
-      .panel-heading
-        %h3.panel-title
-          Diamond
-      .panel-body.no-padding.text-align-center
-        .the-price
-          %h1
-            2,000+
-            %span.subscript SMS
-          %h1
-            X,XXX
-            %span.subscript Bath
-          %small < 1 / SMS
-      .panel-footer.no-padding
-        %a.btn.bg-color-pink.txt-color-white.btn-block{href: "javascript:void(0);", role: "button"} BUY
+  - @campaigns.each do |c|
+    .col-xs-12.col-sm-6.col-md-3
+      %div{class: "panel panel-#{c.color} pricing-big"}
+        = image_tag "ribbon.png", class: 'ribbon' if c.popular
+        .panel-heading
+          %h3.panel-title
+            = c.name
+        .panel-body.no-padding.text-align-center
+          .the-price
+            %h1
+              = c.credit
+              %span.subscript= c.unit
+            %h1
+              #{c.currency_symbold}#{c.price}
+              %span.subscript= c.currency
+        .panel-footer.no-padding.text-align-center
+          = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block"
