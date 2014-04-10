@@ -4,4 +4,6 @@ class CampaignsUser
 
   belongs_to :campaign
   belongs_to :user
+
+  field :expire_date, type: DateTime
 end

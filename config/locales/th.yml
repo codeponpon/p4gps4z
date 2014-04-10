@@ -115,3 +115,4 @@ th:
     edit_customer: 'Edit Customer'
     detail_customer: 'User Detail'
     packages: 'Packages'
+    campaigns: 'Campaigns'

@@ -61,7 +61,7 @@ Pagpos::Application.routes.draw do
       patch 'store/profile' => 'stores#update_profile'
       get 'store/lists' => 'stores#list'
 
-      get 'store/sms' => 'sms#index'
+      get 'store/sms/(:filter)' => 'sms#index', as: 'store_sms'
       get 'store/sms/packages' => 'sms#packages'
 
       get 'store/newsletters' => 'newsletters#index'

@@ -19,14 +19,9 @@
           %ul.list
             %li.info
               %h5
-                Package
+                Credit
                 %span.text-primary
-                  LITE (Free)
-            %li.info
-              %h5
-                Credit/Month
-                %span.text-primary
-                  150
+                  = @credit
                   = link_to "ADD SMS", store_sms_packages_url, class: "btn btn-success btn-lg"
             %li.info
               %h5

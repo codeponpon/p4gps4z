@@ -54,6 +54,18 @@ module ApplicationHelper
     when 'logout'
       link_name = "<i class='fa fa-sign-out fa-fw'></i> "
       link_url  = destroy_user_session_url
+    when 'day'
+      link_name = "<i class='fa fa-sign-out fa-fw'></i> "
+      link_url  = store_sms_url('day')
+    when 'week'
+      link_name = "<i class='fa fa-sign-out fa-fw'></i> "
+      link_url  = store_sms_url('week')
+    when 'month'
+      link_name = "<i class='fa fa-sign-out fa-fw'></i> "
+      link_url  = store_sms_url('month')
+    when 'year'
+      link_name = "<i class='fa fa-sign-out fa-fw'></i> "
+      link_url  = store_sms_url('year')
     else
       link_name = "<i class='fa fa-dashboard fa-fw'></i> "
       link_url  = try("#{rename_controller}_dashboard_url")
