@@ -18,19 +18,15 @@
         .col-lg-4
           %ul.list
             %li.info
-              %h5
-                Credit
-                %span.text-primary
-                  = @credit
-                  = link_to "ADD SMS", store_sms_packages_url, class: "btn btn-success btn-lg"
+              = link_to "ADD CREDIT", store_sms_packages_url, class: "btn btn-success btn-lg"
             %li.info
               %h5
-                Sent
-                %span.text-primary 47/150
+                Sent/Credit
+                %span.text-primary="#{@credit_used}/#{@credit}"
             %li.info
               %h5
                 Sent to Users
-                %span.text-primary 171
+                %span.text-primary= pluralize(@customer_count, 'user')
   / /.col-lg-12
 = content_for :javascripts do
   = javascript_include_tag 'charts'

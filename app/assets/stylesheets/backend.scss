@@ -877,3 +877,16 @@ ul.list li.info span {
 .well {
   border-radius: 0;
 }
+.btn-lg {
+  font-size: 18px !important;
+  padding: 10px 16px !important;
+}
+.btn:active {
+  left: 1px;
+  position: relative;
+  top: 1px;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: none;
+  outline-offset: 0;
+}
