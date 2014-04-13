@@ -97,6 +97,7 @@ th:
       customers: 'Customers'
       users: 'Users'
       packages: 'Packages'
+      campaigns: 'Campaigns'
       statistics: 'Statistics'
       invoices: 'Invoices'
       profile: 'User Profile'
