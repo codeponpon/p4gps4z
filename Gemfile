@@ -55,6 +55,8 @@ gem 'xmpp4r_facebook'
 
 # gem 'aws-sdk', '~> 1.3.4'
 
+gem 'paypal-sdk-rest'
+
   # bundle exec rake doc:rails generates the API under doc/api.
 
 # Use ActiveModel has_secure_password

@@ -18,13 +18,9 @@
             %li.info.text-align-center
               = link_to "ADD CREDIT", store_campaigns_url, class: "btn btn-success btn-lg"
             %li.info.text-align-center
-              %h5.text-align-center
+              %h2.text-align-center
                 Sent/Credit
                 %span.text-primary="#{@credit_used}/#{@credit}"
-            %li.info.text-align-center
-              %h5.text-align-center
-                Sent to Users
-                %span.text-primary= pluralize(@customer_count, 'user')
   / /.col-lg-12
 = content_for :javascripts do
   = javascript_include_tag 'charts'

@@ -47,7 +47,7 @@ module ApplicationHelper
       link_name = "<i class='fa fa-money fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       # link_url  = try("#{rename_controller}_#{name}_url")
     when 'campaigns'
-      link_name = "<i class='fa fa-money fa-fw'></i> " if current_user.has_any_role?(:admin, :god, :merchant)
+      link_name = "<i class='glyphicon glyphicon-briefcase'></i> " if current_user.has_any_role?(:admin, :god, :merchant)
       link_url  = try("#{rename_controller}_#{name}_url")
     when 'profile'
       link_name = "<i class='fa fa-user fa-fw'></i> "

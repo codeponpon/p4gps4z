@@ -857,6 +857,11 @@ ul.list li.info {
   text-align: left;
   min-width: 70px;
 }
+ul.list li.info h3,
+ul.list li.info h4,
+ul.list li.info h2 {
+  text-transform: uppercase;
+}
 ul.list li.info h5 {
   border: 0 none;
   color: #555555;
