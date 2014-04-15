@@ -1,20 +1,20 @@
 test: &default
 
   # Credentials for REST APIs
-  client_id: EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM
-  client_secret: EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM
+  client_id: AePf_hCrGHwZuEJN0j8yNwNoNAFcFnwfHZryMYLcFSZLypo1w2FAj7sGJQdK
+  client_secret: EFYgrhBsktlQWxEHOnWYrcd8LV4c64OFrPJuksW4dCrrEyNspLTt0Y6PsNF1
 
   # Mode can be 'live' or 'sandbox'
   mode: sandbox
 
   # Credentials for Classic APIs
-  app_id: APP-80W284485P519543T
-  username: jb-us-seller_api1.paypal.com
-  password: WX4WTU3S8MY44S7F
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy
+  app_id: PAGPOSPayment
+  username: work-2009-facilitator_api1.windowslive.com
+  password: 1397581357
+  signature: AhsCG3FDWgTA7NVkA7zEeldLPt6PAdKXsBkDU1Id62FTuiLmX31CXRb5
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: Platform.sdk.seller@gmail.com
+  sandbox_email_address: work-2009-facilitator@windowslive.com
 
   # # IP Address
   # ip_address: 127.0.0.1
