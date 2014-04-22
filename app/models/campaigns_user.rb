@@ -5,5 +5,5 @@ class CampaignsUser
   belongs_to :campaign
   belongs_to :user
 
-  payment_gateway type: String
+  field :payment_gateway, type: String, default: ''
 end

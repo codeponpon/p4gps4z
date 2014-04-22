@@ -24,6 +24,11 @@ class SmsController < ApplicationController
     @campaigns = Campaign.all
   end
 
+  def buy_package
+    @page_title = I18n.t('page_title.buy_package')
+    @campaign = Campaign.where(id: params[:id]).first
+  end
+
   private
     def search_by
       params[:filter] = 'day' unless params[:filter]

@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.metisMenu
+//= require jquery.maskedinput
 
 
 $(function() {
@@ -16,5 +17,10 @@ $(function() {
       $('div.sidebar-collapse').removeClass('collapse');
     }
   });
+
+ var checkout_form = $('#checkout-form');
+ checkout_form.find('#card_number').mask('9999 9999 9999 9999');
+ checkout_form.find('#ccv2').mask('999');
+ checkout_form.find('#expire_year').mask('9999');
 
 });

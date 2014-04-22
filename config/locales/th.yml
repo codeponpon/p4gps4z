@@ -29,6 +29,8 @@ th:
     forget_password: "ลืมรหัสผ่าน?"
     donot_recieve_password: "ไม่ได้รับรหัสผ่าน?"
     donot_recieve_unlock_password: "ไม่ได้รับรหัสปลดล็อคเพื่อเข้าสู่ระบบ?"
+  form:
+    submit: 'Submit'
   signup:
     description: 'ยังไม่ได้เป็นสมาชิกรึเปล่าค่ะ?'
     title: 'สมัครสมาชิก'
@@ -97,7 +99,7 @@ th:
       customers: 'Customers'
       users: 'Users'
       packages: 'Packages'
-      campaigns: 'Campaigns'
+      campaigns: 'SMS Packages'
       statistics: 'Statistics'
       invoices: 'Invoices'
       profile: 'User Profile'
@@ -116,4 +118,8 @@ th:
     edit_customer: 'Edit Customer'
     detail_customer: 'User Detail'
     packages: 'Packages'
-    campaigns: 'Campaigns'
+    campaigns: 'SMS Packages'
+    buy_package: 'Buy Package'
+  text:
+    package:
+      payment_info: 'Payment Information'

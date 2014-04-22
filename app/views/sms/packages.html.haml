@@ -16,4 +16,13 @@
                 #{c.currency_symbold}#{c.price}
                 %span.subscript= c.currency.upcase
           .panel-footer.no-padding.text-align-center
-            = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block"
+            = link_to t('backend.button.buy').upcase, store_buy_package_url(c), role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block", "data-target" => "#myModal", "data-toggle" => "modal"
+= render "shared/modalbox_credit_card_form"
+= content_for :javascripts do
+  :javascript
+    $(document).ready( function() {
+      $('#myModal').modal({
+        backdrop: true,
+        show: false
+      });
+    } );
