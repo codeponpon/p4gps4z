@@ -20,7 +20,7 @@ $(function() {
 
  var checkout_form = $('#checkout-form');
  checkout_form.find('#card_number').mask('9999 9999 9999 9999');
- checkout_form.find('#ccv2').mask('999');
+ checkout_form.find('#cvv2').mask('999');
  checkout_form.find('#expire_year').mask('9999');
 
 });
