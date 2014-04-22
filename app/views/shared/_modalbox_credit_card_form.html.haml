@@ -60,6 +60,9 @@
                 %section.col.col-3
                   %label.input
                     = text_field_tag 'expire_year', nil, :placeholder => "2022"
+              %footer
+                %button.btn.btn-primary{:type => "button"}=t('form.submit')
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}=t('form.cancel')
             -# %fieldset
             -#   %legend Optional
             -#   .row
@@ -348,8 +351,8 @@
             -#   %section
             -#     %label.textarea
             -#       %textarea{:name => "info", :placeholder => "Additional info", :rows => "3"}
-        .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
-            Cancel
-          %button.btn.btn-primary{:type => "button"}=t('form.submit')
+        -# .modal-footer
+        -#   %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
+        -#     Cancel
+        -#   %button.btn.btn-primary{:type => "button"}=t('form.submit')
       / /.modal-content

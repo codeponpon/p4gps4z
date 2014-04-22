@@ -31,6 +31,8 @@ th:
     donot_recieve_unlock_password: "ไม่ได้รับรหัสปลดล็อคเพื่อเข้าสู่ระบบ?"
   form:
     submit: 'Submit'
+    cancel: 'Cancel'
+    reset: 'Reset'
   signup:
     description: 'ยังไม่ได้เป็นสมาชิกรึเปล่าค่ะ?'
     title: 'สมัครสมาชิก'
