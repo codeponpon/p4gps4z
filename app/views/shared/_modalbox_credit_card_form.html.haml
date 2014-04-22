@@ -6,38 +6,38 @@
           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
           %h4#myModalLabel.modal-title= t('text.package.payment_info')
         .modal-body
-          %form#checkout-form.smart-form{:action => "", :novalidate => "novalidate"}
+          = form_tag store_buy_package_path('__PACKAGE_ID__'), :method => 'POST', :id => 'checkout-form', :class => 'smart-form' do
             %fieldset
               %section
                 .inline-group
                   %label.radio
-                    %input{:checked => "", :name => "type", :type => "radio"}
-                      %i>
-                      Visa
+                    = radio_button_tag "type", "Visa", true
+                    %i>
+                    Visa
                   %label.radio
-                    %input{:name => "type", :type => "radio"}
-                      %i>
-                      MasterCard
+                    = radio_button_tag "type", "mastercard", false
+                    %i>
+                    MasterCard
                   %label.radio
-                    %input{:name => "type", :type => "radio"}
-                      %i>
-                      American Express
+                    = radio_button_tag "type", "discover", false
+                    %i>
+                    Discover
               .row
                 %section.col.col-6
                   %label.input
                     %i.icon-prepend.fa.fa-user
-                    %input{:name => "first_name", :placeholder => "First name on card", :type => "text"}
+                    = text_field_tag 'first_name', nil, :placeholder => "First name on card", id: 'first_name'
                 %section.col.col-6
                   %label.input
                     %i.icon-prepend.fa.fa-user
-                    %input{:name => "last_name", :placeholder => "Last name on card", :type => "text"}
+                    = text_field_tag 'last_name', nil, :placeholder => "Last name on card", id: 'last_name'
               .row
                 %section.col.col-10
                   %label.input
-                    %input#card_number{:name => "number", :placeholder => "Card number", :type => "text"}
+                    = text_field_tag 'number', nil, :placeholder => "1234 5678 9012 3456", id: 'card_number'
                 %section.col.col-2
                   %label.input
-                    %input#cvv2{:name => "cvv2", :placeholder => "CVV2", :type => "text"}
+                    = text_field_tag 'cvv2', nil, :placeholder => "789", id: 'cvv2'
               .row
                 %label.label.col.col-4 Expiration date
                 %section.col.col-5
@@ -59,7 +59,7 @@
                     %i
                 %section.col.col-3
                   %label.input
-                    %input#expire_year{:name => "expire_year", :placeholder => "Year", :type => "text"}
+                    = text_field_tag 'expire_year', nil, :placeholder => "2022"
             -# %fieldset
             -#   %legend Optional
             -#   .row

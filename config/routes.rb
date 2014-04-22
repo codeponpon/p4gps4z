@@ -62,9 +62,9 @@ Pagpos::Application.routes.draw do
       get 'store/lists' => 'stores#list'
 
       get 'store/sms/packages' => 'sms#packages', as: 'store_campaigns'
-      get 'store/sms/packages/(:id)/buy' => 'sms#buy_package', as: 'store_buy_package'
+      post 'store/sms/packages/(:id)/buy' => 'sms#buy_package', as: 'store_buy_package'
+      # post 'store/sms/packages/(:id)/paid' => 'sms#paid_package', as: 'store_paid_package'
       get 'store/sms/(:filter)' => 'sms#index', as: 'store_sms'
-
       get 'store/newsletters' => 'newsletters#index'
 
       get 'store/customers' => 'users#customer'
