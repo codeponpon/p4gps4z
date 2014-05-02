@@ -28,6 +28,9 @@ Pagpos::Application.routes.draw do
 
   get 'templates' => 'welcome#templates'
 
+  get 'user_agreement' => 'welcome#user_agreement'
+  get 'privacy' => 'welcome#privacy'
+
   devise_scope :user do
     # root to: 'devise/sessions#new'
     root to: 'welcome#index'
@@ -66,6 +69,9 @@ Pagpos::Application.routes.draw do
       # post 'store/sms/packages/(:id)/paid' => 'sms#paid_package', as: 'store_paid_package'
       get 'store/sms/(:filter)' => 'sms#index', as: 'store_sms'
       get 'store/newsletters' => 'newsletters#index'
+
+      get 'store/sms/buy_package/test/callback' => 'sms#buy_package_callback', as: 'store_buy_package_test_callback'
+      get 'store/sms/buy_package/live/callback' => 'sms#buy_package_callback', as: 'store_buy_package_live_callback'
 
       get 'store/customers' => 'users#customer'
       get 'store/add_customer' => 'users#add_customer'

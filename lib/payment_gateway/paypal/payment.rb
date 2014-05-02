@@ -40,11 +40,8 @@ module PaypalPayment
         :description => params[:payment_transaction_description] }]})
 
     # Create Payment and return the status(true or false)
-    if @payment.create
-      return @payment     # Payment Id
-    else
-      return @payment  # Error Hash
-    end
+    @payment.create
+    return @payment
   end
 
   def self.details(payment_id=nil, payer_id=nil, count=10)

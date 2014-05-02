@@ -7,7 +7,7 @@ class SmsController < ApplicationController
 
   def index
     @credit = 0;
-    @sent = 0;
+    @sent   = 0;
     @campaigns.each do |cu|
       @credit += cu.campaign.credit
     end
@@ -23,19 +23,33 @@ class SmsController < ApplicationController
 
   def packages
     @page_title = I18n.t('page_title.campaigns')
-    @campaigns = Campaign.all
+    @campaigns  = Campaign.all
   end
 
   def buy_package
     @page_title = I18n.t('page_title.buy_package')
     @campaign = Campaign.where(id: params[:id]).first
-    debugger
+    if params[:type].downcase.eql?('visa') || params[:type].downcase.eql?('mastercard')
+      result = Pagment::Paypal.with_credit_card(validate_require_params)
+      if result.id.nil? && result.error.present?
+        # ERROR
+      else
+        # DONE
+      end
+    end
   end
 
   private
+    def validate_require_params
+      require_params = ["intent", "payment_method", "type", "number", "expire_month", "expire_year", "cvv2", "first_name", "last_name", "line1", "city", "state", "postal_code", "country_code", "campaign_name", "campaign_name", "campaign_price", "currency", "quantity", "total", "currency", "payment_transaction_description"]
+      params.delete_if do |param|
+        !require_params.include?(param)
+      end
+   end
+
     def search_by
       params[:filter] = 'day' unless params[:filter]
-      @trackings = []
+      @trackings      = []
       @customer_count = 0;
       case params[:filter]
       when 'all'
