@@ -1,3 +1,5 @@
+require 'payment_gateway/payment' #if Rails.env.production? || Rails.env.staging?
+
 class SmsController < ApplicationController
   before_filter :require_merchant
   before_filter :search_by
@@ -27,6 +29,7 @@ class SmsController < ApplicationController
   def buy_package
     @page_title = I18n.t('page_title.buy_package')
     @campaign = Campaign.where(id: params[:id]).first
+    debugger
   end
 
   private

@@ -1,8 +1,8 @@
-require 'paypay/payment'
+require Rails.root.join('lib', 'payment_gateway', 'paypal', 'payment.rb').to_path
 
 class Payment
   module Paypal
-    incude PaypalPayment
+    include PaypalPayment
 
     def self.with_paypal(params={})
       payment_with_paypal(params)

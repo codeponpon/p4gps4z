@@ -16,13 +16,22 @@
                 #{c.currency_symbold}#{c.price}
                 %span.subscript= c.currency.upcase
           .panel-footer.no-padding.text-align-center
-            = link_to t('backend.button.buy').upcase, store_buy_package_url(c), role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block", "data-target" => "#myModal", "data-toggle" => "modal"
+            = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block buy_package", "data-target" => "#myModal", "data-toggle" => "modal", "data-package-id" => c.id
 = render "shared/modalbox_credit_card_form"
 = content_for :javascripts do
   :javascript
     $(document).ready( function() {
+      $old_package_id = '__PACKAGE_ID__';
       $('#myModal').modal({
         backdrop: true,
         show: false
+      });
+      $('.buy_package').on('click', function(){
+        $current_package_id = $(this).data('package-id');
+        $('#myModal').on('show.bs.modal', function(){
+          $buy_package_url = $(this).find('form#checkout-form').attr('action').replace($old_package_id, $current_package_id);
+          $(this).find('form#checkout-form').attr('action', $buy_package_url);
+          $old_package_id = $current_package_id;
+        });
       });
     } );
