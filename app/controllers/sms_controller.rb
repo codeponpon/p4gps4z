@@ -34,9 +34,9 @@ class SmsController < ApplicationController
     if params[:type].downcase.eql?('visa') || params[:type].downcase.eql?('mastercard')
       result = Pagment::Paypal.with_credit_card(validate_require_params)
       if result.id.nil? && result.error.present?
-        # ERROR
+        # Show error message
       else
-        # DONE
+        # Go to another page eg. invoice
       end
     end
   end

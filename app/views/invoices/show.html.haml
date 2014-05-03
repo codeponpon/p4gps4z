@@ -1,0 +1,109 @@
+.row
+  .padding-10
+    %br
+    .pull-left
+      %img{:alt => "invoice icon", :height => "32", :src => "http://192.241.236.31/test4.smartadmin/img/logo-blacknwhite.png", :width => "150"}
+        %address
+          %br
+            %strong SmartAdmin, Inc.
+            %br
+              231 Ajax Rd,
+              %br
+                Detroit MI - 48212, USA
+                %br
+                  %abbr{:title => "Phone"} P:
+                  (123) 456-7890
+    .pull-right
+      %h1.font-400 invoice
+    .clearfix
+    %br
+      %br
+        .row
+          .col-sm-9
+            %h4.semi-bold Rogers, Inc.
+            %address
+              %strong Mr. Simon Hedger
+              %br
+                342 Mirlington Road,
+                %br
+                  Calfornia, CA 431464
+                  %br
+                    %abbr{:title => "Phone"} P:
+                    (467) 143-4317
+          .col-sm-3
+            %div
+              %div
+                %strong INVOICE NO :
+                %span.pull-right #AA-454-4113-00
+            %div
+              .font-md
+                %strong INVOICE DATE :
+                %span.pull-right
+                  %i.fa.fa-calendar
+                  15/02/13
+            %br
+              .well.well-sm.bg-color-darken.txt-color-white.no-border
+                .fa-lg
+                  Total Due :
+                  %span.pull-right 4,972 USD**
+              %br
+                %br
+        %table.table.table-hover
+          %thead
+            %tr
+              %th.text-center QTY
+              %th ITEM
+              %th DESCRIPTION
+              %th PRICE
+              %th SUBTOTAL
+          %tbody
+            %tr
+              %td.text-center
+                %strong 1
+              %td
+                %a{:href => "javascript:void(0);"} Print and Web Logo Design
+              %td Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam xplicabo.
+              %td $1,300.00
+              %td $1,300.00
+            %tr
+              %td.text-center
+                %strong 1
+              %td
+                %a{:href => "javascript:void(0);"} SEO Management
+              %td Sit voluptatem accusantium doloremque laudantium inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              %td $1,400.00
+              %td $1,400.00
+            %tr
+              %td.text-center
+                %strong 1
+              %td
+                %a{:href => "javascript:void(0);"} Backend Support and Upgrade
+              %td Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              %td $1,700.00
+              %td $1,700.00
+            %tr
+              %td{:colspan => "4"} Total
+              %td
+                %strong $4,400.00
+            %tr
+              %td{:colspan => "4"} HST/GST
+              %td
+                %strong 13%
+        .invoice-footer
+          .row
+            .col-sm-7
+              .payment-methods
+                %h5 Payment Methods
+                %img{:alt => "paypal", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/paypal.png", :width => "64"}
+                  %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
+                    %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
+                      %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
+            .col-sm-5
+              .invoice-sum-total.pull-right
+                %h3
+                  %strong
+                    Total:
+                    %span.text-success $4,972 USD
+          .row
+            .col-sm-12
+              %p.note **To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.
