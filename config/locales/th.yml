@@ -115,6 +115,7 @@ th:
       add: 'Add'
       buy: 'buy'
   page_title:
+    invoices: 'Invoices'
     customers: 'Customers'
     add_customer: 'Add Customer'
     edit_customer: 'Edit Customer'

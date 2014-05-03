@@ -84,8 +84,8 @@ Pagpos::Application.routes.draw do
       get 'store/users' => 'users#user'
       get 'store/packages' => 'packages#index'
       get 'store/statistics' => 'statistics#index'
-      get 'store/invoices' => 'invoices#index'
-      get 'store/invoices/:id' => 'invoices#show'
+      get 'store/invoices' => 'pag_invoices#index'
+      get 'store/invoices/:id' => 'pag_invoices#show', as: 'store_invoice'
     end
 
   end

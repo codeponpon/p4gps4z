@@ -41,7 +41,7 @@
           $checkout_form.find('#campaign_price').val($package_price);
           $checkout_form.find('#currency').val('THB');
           $checkout_form.find('#quantity').val(1);
-          $checkout_form.find('#payment_transaction_description').val("#{current_user.id} Order "+ $current_package_id +" at #{DateTime.now}");
+          $checkout_form.find('#payment_transaction_description').val("#{current_user.name} Order "+ $package_name +" at #{DateTime.now}");
         });
       });
     } );
