@@ -86,6 +86,10 @@ gem 'azure'
 # SMS Gateway
 gem 'twilio-ruby'
 
+gem 'money'
+gem 'google_currency'
+gem 'psych'
+
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end

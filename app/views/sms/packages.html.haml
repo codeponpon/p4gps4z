@@ -13,7 +13,8 @@
                 = c.credit
                 %span.subscript= c.unit.upcase
               %h1
-                #{c.currency_symbold}#{c.price}
+                #{c.currency_symbold}
+                %span.panel-price= c.price.to_i
                 %span.subscript= c.currency.upcase
           .panel-footer.no-padding.text-align-center
             = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block buy_package", "data-target" => "#myModal", "data-toggle" => "modal", "data-package-id" => c.id
@@ -27,11 +28,20 @@
         show: false
       });
       $('.buy_package').on('click', function(){
+        $package_name = $(this).closest('.panel').find('.panel-title').text().trim();
+        $package_price = $(this).closest('.panel').find('.panel-price').text().trim();
         $current_package_id = $(this).data('package-id');
         $('#myModal').on('show.bs.modal', function(){
-          $buy_package_url = $(this).find('form#checkout-form').attr('action').replace($old_package_id, $current_package_id);
-          $(this).find('form#checkout-form').attr('action', $buy_package_url);
+          $checkout_form = $(this).find('form#checkout-form');
+          $buy_package_url = $checkout_form.attr('action').replace($old_package_id, $current_package_id);
+          $checkout_form.attr('action', $buy_package_url);
           $old_package_id = $current_package_id;
+
+          $checkout_form.find('#campaign_name').val($package_name);
+          $checkout_form.find('#campaign_price').val($package_price);
+          $checkout_form.find('#currency').val('THB');
+          $checkout_form.find('#quantity').val(1);
+          $checkout_form.find('#payment_transaction_description').val("#{current_user.id} Order "+ $current_package_id +" at #{DateTime.now}");
         });
       });
     } );

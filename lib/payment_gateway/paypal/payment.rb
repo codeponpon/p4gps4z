@@ -4,8 +4,9 @@ include PayPal::SDK::REST
 module PaypalPayment
   # Build Payment object
   def self.with_credit_card(params={})
-    params[:intent] = "sale" unless params[:intent].present?
+    params[:intent]       = "sale" unless params[:intent].present?
     params[:country_code] = "TH" unless params[:country_code].present?
+    params[:quantity]     = params[:quantity].present? ? params[:quantity].to_i : 1
 
     @payment = Payment.new({
       :intent => params[:intent],
@@ -19,13 +20,16 @@ module PaypalPayment
             :expire_year => params[:expire_year],
             :cvv2 => params[:cvv2],
             :first_name => params[:first_name],
-            :last_name => params[:last_name],
-            :billing_address => {
-              :line1 => params[:line1],
-              :city => params[:city],
-              :state => params[:state],
-              :postal_code => params[:postal_code],
-              :country_code => params[:country_code] }}}]},
+            :last_name => params[:last_name]
+            # :billing_address => {
+            #   :line1 => params[:line1],
+            #   :city => params[:city],
+            #   :state => params[:state],
+            #   :postal_code => params[:postal_code],
+            #   :country_code => params[:country_code] }
+          }
+        }]
+      },
       :transactions => [{
         :item_list => {
           :items => [{
@@ -33,9 +37,11 @@ module PaypalPayment
             :sku => params[:campaign_name],
             :price => params[:campaign_price],
             :currency => params[:currency],
-            :quantity => params[:quantity] }]},
+            :quantity => params[:quantity]
+          }]
+        },
         :amount => {
-          :total => params[:total],
+          :total => params[:campaign_price],
           :currency => params[:currency] },
         :description => params[:payment_transaction_description] }]})
 
