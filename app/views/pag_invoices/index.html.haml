@@ -1,0 +1,47 @@
+.row
+  .col-lg-12
+    / /.panel-heading
+    .panel-body
+      .inbox-checkbox-triggered
+        .btn-group.pull-right
+          = link_to raw("<i class='glyphicon glyphicon-plus'></i> #{t('backend.add')}"), store_campaigns_url, class: 'btn btn-primary'
+      .table-responsive
+        %table#dataTables.table.table-striped.table-hover.dataTable
+          %thead
+            %tr
+              %th Payment Code
+              %th Description
+              %th{width: 200} Created
+              %th{width: 100}
+          %tbody
+            - @invoices.each_with_index do |u, i|
+              %tr{class: (i%2==0) ? 'odd' : 'even'}
+                %td=u.payment_code
+                %td=u.description
+                %td=u.created_at.strftime('%e %b %Y %H:%m:%S%p')
+                %td
+                  .btn-group.display-inline.pull-right.text-align-left.hidden-tablet
+                    %button.btn.btn-default.txt-color-blue.dropdown-toggle{"data-toggle" => "dropdown"}
+                      %i.fa.fa-cog.fa-lg
+                    %ul.dropdown-menu.dropdown-menu-xs.pull-right
+                      %li
+                        %a{href: "javascript:void(0);"}
+                          %i.fa.fa-pencil.fa-lg.fa-fw.txt-color-greenLight
+                          = succeed "iew" do
+                            %u V
+                      %li.divider
+                      %li
+                        %a{href: "javascript:void(0);"}
+                          %i.fa.fa-times.fa-lg.fa-fw.txt-color-red
+                          = succeed "elete" do
+                            %u D
+                      %li.divider
+        / /.table-responsive
+      / /.panel-body
+      = will_paginate @invoices, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), renderer: BootstrapPagination::Rails
+    / /.panel
+  / /.col-lg-12
+= content_for :stylesheets do
+  = stylesheet_link_tag 'dataTable.bootstrap'
+= content_for :javascripts do
+  = javascript_include_tag 'jquery.dataTables', 'dataTable.bootstrap'
