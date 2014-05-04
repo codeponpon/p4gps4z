@@ -76,16 +76,17 @@ Pagpos::Application.routes.draw do
       get 'store/customers' => 'users#customer'
       get 'store/add_customer' => 'users#add_customer'
       get 'store/customer/:id' => 'users#detail_customer', as: 'store_customer'
+      delete 'store/customer/:id' => 'users#destroy_customer'
       get 'store/customer/:id' => 'users#edit_customer', as: 'store_edit_customer'
       post 'store/customer' => 'users#create_customer'
-       patch 'store/customer/:id' => 'users#update_customer'
-      delete 'store/customer/:id' => 'users#destroy_customer'
+      patch 'store/customer/:id' => 'users#update_customer'
 
       get 'store/users' => 'users#user'
       get 'store/packages' => 'packages#index'
       get 'store/statistics' => 'statistics#index'
       get 'store/invoices' => 'pag_invoices#index'
-      get 'store/invoices/:id' => 'pag_invoices#show', as: 'store_invoice'
+      get 'store/invoices/:payment_code' => 'pag_invoices#show', as: 'store_invoice'
+      delete 'store/invoices/:payment_code' => 'pag_invoices#destroy'
     end
 
   end

@@ -8,5 +8,17 @@ class PagInvoicesController < ApplicationController
   end
 
   def show
+    @invoice = PagInvoice.where(payment_code: params[:payment_code])
+  end
+
+  def destroy
+    invoice = PagInvoice.where(payment_code: params[:payment_code]).first
+    if invoice.destroy
+      flash[:success] = "#{params[:payment_code]} deleted successfull"
+      return redirect_to store_invoices_url
+    else
+      flat[:error] = "#{params[:payment_code]} has something went wrong"
+      return redirect_to store_invoices_url
+    end
   end
 end

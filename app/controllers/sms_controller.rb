@@ -47,7 +47,7 @@ class SmsController < ApplicationController
           cu.save
           return redirect_to store_invoice_url(result.id)
         else
-          # Save fail
+          # Save invoice fail
         end
       end
     end
