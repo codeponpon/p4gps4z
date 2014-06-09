@@ -115,7 +115,8 @@ th:
       add: 'Add'
       buy: 'buy'
   page_title:
-    invoices: 'Invoices'
+    invoice: "Invoice"
+    invoice_code: "%{payment_code}"
     customers: 'Customers'
     add_customer: 'Add Customer'
     edit_customer: 'Edit Customer'
