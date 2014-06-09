@@ -61,34 +61,13 @@
               %td.text-center
                 %strong 1
               %td
-                %a{:href => "javascript:void(0);"} Print and Web Logo Design
-              %td Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam xplicabo.
-              %td $1,300.00
-              %td $1,300.00
-            %tr
-              %td.text-center
-                %strong 1
+                = @invoice.payment_code
               %td
-                %a{:href => "javascript:void(0);"} SEO Management
-              %td Sit voluptatem accusantium doloremque laudantium inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-              %td $1,400.00
-              %td $1,400.00
-            %tr
-              %td.text-center
-                %strong 1
+                = @invoice.description
               %td
-                %a{:href => "javascript:void(0);"} Backend Support and Upgrade
-              %td Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-              %td $1,700.00
-              %td $1,700.00
-            %tr
-              %td{:colspan => "4"} Total
+                = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
               %td
-                %strong $4,400.00
-            %tr
-              %td{:colspan => "4"} HST/GST
-              %td
-                %strong 13%
+                = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
         .invoice-footer
           .row
             .col-sm-7
@@ -103,7 +82,9 @@
                 %h3
                   %strong
                     Total:
-                    %span.text-success $4,972 USD
+                    %span.text-success
+                      = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
+                      THB
           .row
             .col-sm-12
               %p.note **To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.

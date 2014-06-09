@@ -44,6 +44,7 @@ class SmsController < ApplicationController
           cu = current_user.campaigns_users.new
           cu.campaign_id = @campaign.id
           cu.payment_gateway = params[:type]
+          cu.payment_code = result.id
           cu.save
           return redirect_to store_invoice_url(result.id)
         else

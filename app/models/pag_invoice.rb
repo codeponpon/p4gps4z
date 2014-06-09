@@ -5,4 +5,5 @@ class PagInvoice
 
   field :payment_code, type: String
   field :description, type: String
+
 end

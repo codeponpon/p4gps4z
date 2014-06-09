@@ -9,7 +9,7 @@ class PagInvoicesController < ApplicationController
 
   def show
     @page_title = I18n.t('page_title.invoice_code', payment_code: params[:payment_code])
-    @invoice = PagInvoice.where(payment_code: params[:payment_code])
+    @invoice = PagInvoice.where(payment_code: params[:payment_code]).first
   end
 
   def destroy
