@@ -34,18 +34,20 @@
             %div
               %div
                 %strong INVOICE NO :
-                %span.pull-right #AA-454-4113-00
+                %span.pull-right=@invoice.id
             %div
               .font-md
                 %strong INVOICE DATE :
                 %span.pull-right
                   %i.fa.fa-calendar
-                  15/02/13
+                  =@invoice.created_at.strftime('%d/%m/%Y')
             %br
               .well.well-sm.bg-color-darken.txt-color-white.no-border
                 .fa-lg
                   Total Due :
-                  %span.pull-right 4,972 USD**
+                  %span.pull-right
+                    = @price
+                    THB
               %br
                 %br
         %table.table.table-hover
@@ -65,9 +67,9 @@
               %td
                 = @invoice.description
               %td
-                = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
+                = @price
               %td
-                = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
+                = @price
         .invoice-footer
           .row
             .col-sm-7
@@ -83,7 +85,7 @@
                   %strong
                     Total:
                     %span.text-success
-                      = @invoice.user.campaigns_users.where(payment_code: @invoice.payment_code).first.campaign.price
+                      = @price
                       THB
           .row
             .col-sm-12
