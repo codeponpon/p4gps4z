@@ -1,7 +1,7 @@
 .row.print
   .padding-10
     %br
-    .pull-left
+    .pull-left.hide
       %img{:alt => "invoice icon", :height => "32", :src => "http://192.241.236.31/test4.smartadmin/img/logo-blacknwhite.png", :width => "150"}
         %address
           %br
@@ -14,12 +14,12 @@
                   %abbr{:title => "Phone"} P:
                   (123) 456-7890
     .pull-right
-      %h1.font-400 invoice
+      %h1.font-400= params[:payment_code]
     .clearfix
     %br
       %br
         .row
-          .col-sm-9
+          .col-sm-9.hide
             %h4.semi-bold Rogers, Inc.
             %address
               %strong Mr. Simon Hedger
@@ -30,7 +30,7 @@
                   %br
                     %abbr{:title => "Phone"} P:
                     (467) 143-4317
-          .col-sm-3
+          .col-sm-3.pull-right
             %div
               %div
                 %strong INVOICE NO :
@@ -75,10 +75,10 @@
             .col-sm-7
               .payment-methods
                 %h5 Payment Methods
-                %img{:alt => "paypal", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/paypal.png", :width => "64"}
-                  %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
-                    %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
-                      %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
+                %img{:height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/#{@invoice_type}.png", :width => "64"}
+                -# %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
+                -# %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
+                -# %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
             .col-sm-5
               .invoice-sum-total.pull-right
                 %h3
