@@ -128,3 +128,6 @@ th:
   text:
     package:
       payment_info: 'Payment Information'
+    get_free_package:
+      description: 'FREE'
+      gateway: 'PAGPOS'

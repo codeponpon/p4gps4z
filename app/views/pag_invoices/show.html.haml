@@ -71,22 +71,23 @@
               %td
                 = @price
         .invoice-footer
-          .row
-            .col-sm-7
-              .payment-methods
-                %h5 Payment Methods
-                %img{:height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/#{@invoice_type}.png", :width => "64"}
-                -# %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
-                -# %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
-                -# %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
-            .col-sm-5
-              .invoice-sum-total.pull-right
-                %h3
-                  %strong
-                    Total:
-                    %span.text-success
-                      = @price
-                      THB
-          .row
-            .col-sm-12
-              %p.note **To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.
+          - unless @invoice_type.downcase.eql?('pagpos')
+            .row
+              .col-sm-7
+                .payment-methods
+                  %h5 Payment Methods
+                  %img{:height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/#{@invoice_type}.png", :width => "64"}
+                  -# %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
+                  -# %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
+                  -# %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
+              .col-sm-5
+                .invoice-sum-total.pull-right
+                  %h3
+                    %strong
+                      Total:
+                      %span.text-success
+                        = @price
+                        THB
+            .row
+              .col-sm-12
+                %p.note **To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.

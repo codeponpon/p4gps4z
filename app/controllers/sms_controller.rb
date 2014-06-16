@@ -25,7 +25,12 @@ class SmsController < ApplicationController
 
   def packages
     @page_title = I18n.t('page_title.campaigns')
-    @campaigns  = Campaign.all
+    @got_lite   = current_user.campaigns_users.where(payment_gateway: 'PAGPOS').count > 0
+    if @got_lite
+      @campaigns  = Campaign.where(:name.ne => "lite")
+    else
+      @campaigns  = Campaign.all
+    end
   end
 
   def buy_package
@@ -48,9 +53,33 @@ class SmsController < ApplicationController
           cu.save
           return redirect_to store_invoice_url(result.id)
         else
-          # Save invoice fail
+          flat[:error] = 'Has something went wrong'
+          return redirect_to :packages
         end
       end
+    end
+  end
+
+  def get_free_package
+    if current_user.campaigns_users.where(payment_gateway: 'PAGPOS').count == 0
+      campaign = Campaign.where(id: params[:id]).first
+      invoice = current_user.pag_invoices.new
+      invoice.payment_code = "GOTFREE_#{DateTime.now.to_i}_#{params[:id]}"
+      invoice.description  = I18n.t('text.get_free_package.description')
+      if invoice.save
+        cu = current_user.campaigns_users.new
+        cu.campaign_id = campaign.id
+        cu.payment_gateway = I18n.t('text.get_free_package.gateway')
+        cu.payment_code = invoice.payment_code
+        cu.save
+        return redirect_to store_invoice_url(invoice.payment_code)
+      else
+        flat[:error] = 'Has something went wrong'
+        return redirect_to :packages
+      end
+    else
+      flat[:error] = 'You got free already'
+      return redirect_to :packages
     end
   end
 

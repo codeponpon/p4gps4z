@@ -66,6 +66,7 @@ Pagpos::Application.routes.draw do
 
       get 'store/sms/packages' => 'sms#packages', as: 'store_campaigns'
       post 'store/sms/packages/(:id)/buy' => 'sms#buy_package', as: 'store_buy_package'
+      get 'store/sms/packages/get_free_package' => 'sms#get_free_package', as: 'store_get_free_package'
       # post 'store/sms/packages/(:id)/paid' => 'sms#paid_package', as: 'store_paid_package'
       get 'store/sms/(:filter)' => 'sms#index', as: 'store_sms'
       get 'store/newsletters' => 'newsletters#index'

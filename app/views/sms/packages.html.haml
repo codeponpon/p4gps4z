@@ -1,23 +1,28 @@
 .row
   - @campaigns.each do |c|
-    - unless c.name.eql?('lite')
-      .col-xs-12.col-sm-6.col-md-3
-        %div{class: "panel panel-#{c.color} pricing-big"}
-          = image_tag "ribbon.png", class: 'ribbon' if c.popular
-          .panel-heading
-            %h3.panel-title
-              = c.name
-          .panel-body.no-padding.text-align-center
-            .the-price
-              %h1
-                = c.credit
-                %span.subscript= c.unit.upcase
-              %h1
-                #{c.currency_symbold}
-                %span.panel-price= c.price.to_i
-                %span.subscript= c.currency.upcase
-          .panel-footer.no-padding.text-align-center
-            = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block buy_package", "data-target" => "#myModal", "data-toggle" => "modal", "data-package-id" => c.id
+    - if @got_lite
+      - box_class = "col-xs-12 col-sm-6 col-md-3"
+    - else
+      - box_class = "col-xs-12 col-sm-4 col-md-2"
+    %div{class: "#{box_class}"}
+      %div{class: "panel panel-#{c.color} pricing-big"}
+        = image_tag "ribbon.png", class: 'ribbon' if c.popular
+        .panel-heading
+          %h3.panel-title
+            = c.name
+        .panel-body.no-padding.text-align-center
+          .the-price
+            %h1
+              = c.credit
+              %span.subscript= c.unit.upcase
+            %h1
+              #{c.currency_symbold}
+              %span.panel-price= c.price.to_i
+              %span.subscript= c.currency.upcase
+        .panel-footer.no-padding.text-align-center
+          - buy_btn = c.price.to_i == 0 ? 'free_package' : 'buy_package'
+          - model_toggle = c.price.to_i == 0 ? '' : 'modal'
+          = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block #{buy_btn}", "data-target" => "#myModal", "data-toggle" => "#{model_toggle}", "data-package-id" => c.id
 = render "shared/modalbox_credit_card_form"
 = content_for :javascripts do
   :javascript
@@ -26,6 +31,10 @@
       $('#myModal').modal({
         backdrop: true,
         show: false
+      });
+      $('.free_package').on('click', function(){
+        $current_package_id = $(this).data('package-id');
+        window.location.href = "#{store_get_free_package_path}?id="+$current_package_id;
       });
       $('.buy_package').on('click', function(){
         $package_name = $(this).closest('.panel').find('.panel-title').text().trim();
