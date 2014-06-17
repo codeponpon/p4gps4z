@@ -7,7 +7,7 @@ class Ability
     # a signed-in user can do everything
     if user.has_role? :god
       can :manage, :all
-    if user.has_role? :admin
+    elsif user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :merchant
     elsif user.has_role? :marketer
