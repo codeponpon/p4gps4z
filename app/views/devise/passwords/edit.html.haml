@@ -1,13 +1,20 @@
-.row
-  .small-6.large-centered.columns
-    %h2 Change your password
-    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-      = f.error_notification
-      = f.input :reset_password_token, :as => :hidden
-      = f.full_error :reset_password_token
-      .form-inputs
-        = f.input :password, :label => "New password", :required => true, :autofocus => true
-        = f.input :password_confirmation, :label => "Confirm your new password", :required => true
-      .form-actions
-        = f.button :submit, "Change my password"
-    = render "devise/shared/links"
+.container
+  .row
+    .col-md-4.col-md-offset-4
+      .login-panel.panel.panel-default
+        .panel-heading
+          = image_tag('logos.png', width: 250)
+        .panel-body
+          = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+            = f.error_notification
+            = render "shared/flash_message_backend", flash: flash
+            = f.input :reset_password_token, :as => :hidden
+            %h2 Change your password
+            %fieldset
+              = f.full_error :reset_password_token
+              .form-groups
+                = f.input :password, :label => "New password", :required => true, :autofocus => true, :input_html => { :class => 'form-control' }
+              .form-groups
+                = f.input :password_confirmation, :label => "Confirm your new password", :required => true, :input_html => { :class => 'form-control' }
+              %br
+              = f.button :submit, "Change my password", :class => 'btn btn-lg btn-block btn-primary'

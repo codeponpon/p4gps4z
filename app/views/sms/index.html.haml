@@ -1,0 +1,26 @@
+.row
+  .col-lg-4
+    .panel.panel-default
+      .panel-heading.customer-header
+        %span.pull-right
+          %ul.nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.fa.fa-cog.fa-fw
+                %i.fa.fa-caret-down
+              = menu_builder :day, :divider, :week, :divider, :month, :divider, :year, {id: '', class: 'dropdown-menu'}
+
+        %span.pull-left
+          SMS Analytics
+      .panel-body
+        .col-lg-12
+          %ul.list
+            %li.info.text-align-center
+              = link_to "ADD CREDIT", store_campaigns_url, class: "btn btn-success btn-lg"
+            %li.info.text-align-center
+              %h2.text-align-center
+                Sent/Credit
+                %span.text-primary="#{@credit_used}/#{@credit}"
+  / /.col-lg-12
+= content_for :javascripts do
+  = javascript_include_tag 'charts'

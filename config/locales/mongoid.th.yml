@@ -1,5 +1,5 @@
 th:
-  mongoid: 
+  mongoid:
     errors:
       models:
         tracking:
@@ -12,14 +12,20 @@ th:
               blank: 'กรุณาป้อนรหัสผ่านปัจจับันก่อน'
             password:
               too_short: 'รหัสผ่านไม่ถูกต้อง'
+              blank: 'กรุณากรอกรหัสผ่านให้ถูกต้อง'
             password_confirmation:
               confirmation: 'กรุณาป้อนรหัสผ่านอีกครั้ง'
             phone_no:
               blank: 'กรุณาป้อนหมายเลขโทรศัพท์เมื่อท่านต้องการแจ้งเตือนผ่าน SMS'
               wrong_length: 'ความยาวของหมายเลขโทรศัพท์ไม่ถูกต้อง'
               invalid: 'หมายเลขโทรศัพท์ไม่ถูกต้อง'
+            email:
+              blank: 'กรุณากรอกอีเมลให้ถูกต้อง'
+              taken: 'อีเมล์นี้มีการลงทะเบียนในระบบแล้ว'
       messages:
         unknown_attribute:
           message: 'unknown attribute %{message}'
           summary: 'unknown attribute %{summary}'
           resolution: 'unknown attribute %{resolution}'
+        document_not_found:
+          message: 'Record not found %{message}'

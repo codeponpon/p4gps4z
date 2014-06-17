@@ -4,7 +4,7 @@ class Tracking
   has_many :packages, dependent: :destroy
   belongs_to :user
   validates :code, presence: true, uniqueness: {:scope => :user_id}, format: { with: /\A[E|C|R|L][A-Z][0-9]{9}[0-9A-Z]{2}\Z/ }, length: { is: 13 }
-  
+
   field :code, type: String
   field :description, type: String
   field :status, type: String, default: TrackingStatus.default_status
@@ -53,7 +53,7 @@ class Tracking
   def has_new_package_record?
     if self.prev_packages_count < self.packages.count
       return true
-    end 
+    end
     return false
   end
 end

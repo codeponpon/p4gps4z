@@ -1,5 +1,5 @@
 class TrackingsController < ApplicationController
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   before_filter :require_user
   before_filter :require_tracking_code, except: :new
 
@@ -21,14 +21,14 @@ class TrackingsController < ApplicationController
           signature: package.signature
         }
       end
-      
+
       result = {
-        success: true, 
-        data: response, 
+        success: true,
+        data: response,
         code: @tracking.code,
         status: @tracking.status,
         craeted_at: @tracking.created_at,
-        updated_at: @tracking.updated_at 
+        updated_at: @tracking.updated_at
       }
       # return render status: 200, message: 'OK', json: result
     else
@@ -42,16 +42,17 @@ class TrackingsController < ApplicationController
     @tracking = @user.trackings.new(code: @code)
     if @tracking.save
       flash[:notice] = "Add tracking code successfully"
-      redirect_to :action => "new"
+      redirect_to request.referer
       # return render :status => 200, message: 'OK', :json => { success: true, message: "Add tracking code successfully"}
     else
-      render :action => "new"
+      flash[:error] = @tracking.errors.full_messages
+      redirect_to request.referer
       # return render :status => 400, message: 'Bad request', :json => { success: false, errors: @track.errors.full_messages[0]}
     end
   end
 
   def destroy
-    tracking = @user.trackings.where(code: @code).first    
+    tracking = @user.trackings.where(code: @code).first
     tracking.packages.destroy_all
     status = false;
     if tracking.packages.blank?

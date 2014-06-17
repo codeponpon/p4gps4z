@@ -37,11 +37,11 @@ $default-font-size: 13px;
 .top-bar ul > li.has-dropdown a { padding-right: 33.75px; }
 .top-bar ul > li.has-dropdown a:after { content: ""; display: block; width: 0; height: 0; border: solid 5px; border-color: #4d4d4d transparent transparent transparent; margin-right: 15px; margin-top: -2.5px; position: absolute; right: 0; top: 50%; }
 .top-bar ul > li.has-dropdown .dropdown {
-  margin: 0; 
-  padding: 0; 
-  position: absolute; 
-  visibility: hidden; 
-  z-index: 99; 
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  z-index: 99;
   background: white;
   border: 1px solid #d9d9d9;
   top: 39px;
@@ -52,8 +52,8 @@ $default-font-size: 13px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 .top-bar ul > li.has-dropdown .dropdown li {
-  line-height: 1; 
-  min-width: 100%; 
+  line-height: 1;
+  min-width: 100%;
   display: block;
   font-size: 13px;
   font-weight: bold;
@@ -215,8 +215,8 @@ h1,h2,h3,h4 {font-family:'Open Sans Condensed',sans-serif; font-weight: normal; 
 .heading_supersize {font-size: 128px; text-align:center; font-weight: normal; line-height: 150px; margin:0 0 10px; color: $pagpos-main-color/* #212121 */;}
 .heading_largesize {font-size: 34px; font-weight: normal;}
 
-.dropcap_red, 
-.dropcap_black {  
+.dropcap_red,
+.dropcap_black {
             border-radius: 100px 100px 100px 100px;
             display: block;
       float: left;
@@ -252,12 +252,12 @@ dl.tabs dd.active a {background: #fff;}
 .nav-bar > li > a:first-child {font-size: 16px; text-transform: uppercase; padding: 0 25px;}
 .nav-bar > li:last-child {border: 0; box-shadow: none;}
 .nav-bar > li.active:hover { background: #000; cursor: default; }
-.nav-bar > li:hover { background: #eeeeee; color: #000;         
+.nav-bar > li:hover { background: #eeeeee; color: #000;
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
         -ms-transition: all .2s ease-in-out;
         -o-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out; 
+        transition: all .2s ease-in-out;
 }
 
 .nav-bar > li > a { color: #4d4d4d;}
@@ -273,21 +273,21 @@ dl.tabs dd.active a {background: #fff;}
 
 ul.flyout li, .nav-bar li ul li { border-left: 0}
 ul.flyout li a, .nav-bar li ul li a { background: #FAFAFA; color:#666; border: 0; font-size: 16px;}
-ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #fff; border: 0;         
+ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #fff; border: 0;
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
         -ms-transition: all .2s ease-in-out;
         -o-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out; 
+        transition: all .2s ease-in-out;
     }
-    
+
 /* nav bar vertical */
 
 
 .nav-bar.vertical > li {border:0;}
 
 .nav-bar.vertical > li:last-child {border:0;}
-    
+
 /* gallery menu */
 
 .gallery-nav-bar {list-style:none; text-align: center; padding-top:10px; font-family: 'Open Sans Condensed',sans-serif; letter-spacing: 2px; text-transform: uppercase;}
@@ -300,11 +300,11 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
 .gallery-nav-bar li a:hover {background: #C02702; color: #FFF; padding: 3px 12px; border-radius: 3px;}
 
 
-.footer {text-align:center; padding: 50px 0 25px; font-size: 11px;}
+.footer {text-align:center; padding: 50px 0 25px; font-size: 13px;}
 .footer .large-10.columns { padding-top: 20px; text-align: left; }
 .footer .large-10.columns ul.footer_menu { padding: 0; margin: 0; }
 .footer .large-10.columns ul.footer_menu li:first-child { margin-right: 20px;}
-.footer .large-10.columns ul.footer_menu li { list-style: none; float: left; margin-right: 20px;}
+.footer .large-10.columns ul.footer_menu li { list-style: none; float: left; margin-right: 15px;}
 
 /*-------------------------------------------------------------------------------------------------*/
 /* Masonry
@@ -346,7 +346,7 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
 
 .rtl .box {
   float: right;
-  text-align: right; 
+  text-align: right;
   direction: rtl;
 }
 
@@ -454,7 +454,7 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
 
 .mi-slider ul li:hover {
   opacity: 0.7;
-} 
+}
 
 .mi-slider nav {
   position: relative;
@@ -473,7 +473,7 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-family:'Open Sans Condensed',sans-serif; font-weight: normal; 
+  font-family:'Open Sans Condensed',sans-serif; font-weight: normal;
   font-size: 16px;
   padding: 40px 30px 30px 34px;
   position: relative;
@@ -670,15 +670,15 @@ ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #151515; color: #f
 .alpha-version { background: url(<%= image_path('alpha.gif') %>); }
 .beta-version { background: url(<%= image_path('beta.gif') %>); }
 
-.alpha-version, 
+.alpha-version,
 .beta-version {
-  position:absolute; 
-  right:0px; 
-  top:0px; 
-  margin:0px; 
+  position:absolute;
+  right:0px;
+  top:0px;
+  margin:0px;
   padding:0px;
   border: none;
-  width: 150px; 
+  width: 150px;
   height: 150px;
   z-index: 1000;
 }

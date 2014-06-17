@@ -7,9 +7,9 @@
           = f.error_notification
           = render "shared/flash_message", flash: flash
           .row.collapse
-            .large-10.columns   
+            .large-10.columns
               = f.input :code, placeholder: t('trackings.placeholder_tracking_id'), required: true, focus: true, value: '', label: false
-            .large-2.columns        
+            .large-2.columns
               = f.input :token, :as => :hidden, input_html: { value: @user._id }
               = f.submit t('trackings.add_btn'), class: "medium button center"
       .large-3.columns &nbsp;
@@ -23,13 +23,13 @@
           %tr
             %th{width: "140"}= t('trackings.tracking_code')
             %th{width: "100"}= t('trackins.status')
-            %th{width: "200"} 
+            %th{width: "200"}
         %tbody
         - @user.trackings.each do |t|
           / Prevent show record when input invalid tracking code
           - unless t.new_record?
             %tr
-              %td 
+              %td
                 = t.code
               %td
                 - status = t.status == 'done' ? 'success' : t.status == 'pending' ? 'secondary' : 'alert'
@@ -38,4 +38,4 @@
                 = link_to t("trackings.details_btn"), tracking_path(t.code, @user.id), class: 'button', disabled: status == 'alert' ? true : false
                 = link_to t("trackings.delete_btn"), tracking_path(t.code, @user.id), class: 'button', method: :delete, :confirm => t('trackings.delete_confirmation')
     .large-3.columns
-      &nbsp;  
+      &nbsp;

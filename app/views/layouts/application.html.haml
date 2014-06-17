@@ -6,20 +6,23 @@
 / [if gt IE 8]><!
 %html.no-js{lang: "en"}
   / <![endif]
-  %head  
+  %head
     %meta{charset: "utf-8"}/
     / Uncomment to make IE8 render like IE7
     / <meta http-equiv="X-UA-Compatible" content="IE=7" />
     / Set the viewport width to device width for mobile
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
-    %title= content_for?(:title) ? yield(:title) : "PAGPOS - Package position"
+    %meta{content: "title", property: "og:title"}/
+    %meta{content: "description", property: "og:description"}/
+    %meta{content: "/assets/logos.png", property: "og:image"}/
+    %title=page_title
     = stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
     = javascript_include_tag "application", "vendor/custom.modernizr"
     = csrf_meta_tags
   %body
     / ######################## Main Menu ########################
     = render 'shared/navbar'
-    
+
     / ######################## Content ########################
     = yield
 

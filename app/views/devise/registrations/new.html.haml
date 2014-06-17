@@ -1,13 +1,25 @@
-.row
-  .small-6.large-centered.columns
-    %h2= t('signup.title')
-    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.input :email, :required => true, :autofocus => true
-        = f.input :password, :required => true
-        = f.input :password_confirmation, :required => true
-        = f.hidden_field :time_zone, value: DateTime.now.zone.to_i
-      .form-actions
-        = f.button :submit, t('signup.submit_btn')
-    = render "devise/shared/links"
+.container
+  .row
+    .col-md-4.col-md-offset-4
+      .login-panel.panel.panel-default
+        .panel-heading
+          = image_tag('logos.png', width: 250)
+        .panel-body
+          = simple_form_for(resource, :as => resource_name, :url => store_register_path, :defaults => {:wrapper_html => {:class => 'form-group'}}) do |f|
+            = devise_error_messages!
+            = f.error_notification
+            %h2.text-center=t('signup.title')
+            %fieldset
+              .form-group
+                = f.input :email, :required => true, :autofocus => true, :input_html => { :class => 'form-control' }
+              .form-group
+                = f.input :password, :required => true, :input_html => { :class => 'form-control' }
+              .form-group
+                = f.input :password_confirmation, :required => true, :input_html => { :class => 'form-control' }
+              = f.hidden_field :time_zone, value: DateTime.now.zone.to_i
+
+              = f.button :submit, t('signup.submit_btn'), :class => 'btn btn-lg btn-block btn-primary'
+              %br
+              %p.signup.center-block.text-center
+                = t("signin.description")
+                = link_to t("signin.title"), store_login_url, class: 'text-primary'

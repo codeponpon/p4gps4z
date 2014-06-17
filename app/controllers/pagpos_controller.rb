@@ -5,6 +5,7 @@ class PagposController < ApplicationController
   before_filter :sabud_blob
 
   def new
+    return redirect_to trackings_url if current_user.present?
     @tracking = Tracking.new
   end
 
@@ -54,19 +55,19 @@ class PagposController < ApplicationController
         if index > 0
           tracking[index] = Hash.new({})
           tr.css('td').each_with_index do |td,i|
-            if i == 0 
+            if i == 0
               tracking[index][:process_at] = td.content.squish
             end
             if i == 1
               tracking[index][:department] = td.content.squish
             end
-            if i == 2 
+            if i == 2
               tracking[index][:status] = td.content.squish
             end
-            if i == 3 
+            if i == 3
               tracking[index][:description] = td.content.squish
             end
-            if i == 4 
+            if i == 4
               tracking[index][:reciever] = td.content.squish
             end
           end
@@ -106,7 +107,7 @@ class PagposController < ApplicationController
             pac.department = process.last[:department]
             pac.description = process.last[:description]
             pac.status = process.last[:status]
-            pac.reciever = process.last[:reciever].strip unless process.last[:reciever] 
+            pac.reciever = process.last[:reciever].strip unless process.last[:reciever]
             if !process.last[:reciever].blank? && signature_url.present?
               # pac.image = Image.new(attachment: URI.parse(signature_url))
               upload = UrlUpload.new(signature_url)

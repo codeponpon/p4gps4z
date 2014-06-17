@@ -8,6 +8,9 @@ gem 'rails', '4.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# Use Bootstrap sass 3
+gem 'bootstrap-sass', '~> 3.1.1'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -21,7 +24,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -34,7 +37,7 @@ gem 'nokogiri'
 gem 'sidekiq'
 gem 'redis'
 
-gem 'resque', require: 'resque/server'  
+gem 'resque', require: 'resque/server'
 gem 'whenever', :require => false
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
@@ -52,6 +55,8 @@ gem 'xmpp4r_facebook'
 
 # gem 'aws-sdk', '~> 1.3.4'
 
+gem 'paypal-sdk-rest'
+
   # bundle exec rake doc:rails generates the API under doc/api.
 
 # Use ActiveModel has_secure_password
@@ -61,7 +66,7 @@ gem 'xmpp4r_facebook'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 2.15.4', group: :development  
+gem 'capistrano', '~> 2.15.4', group: :development
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
@@ -72,7 +77,7 @@ gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
 gem 'figaro'
 gem 'haml-rails'
 gem 'mongoid', '~> 4', :github=>"mongoid/mongoid"
-gem 'rolify'
+gem "rolify", "~> 3.4.0"
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'zurb-foundation'
 
@@ -81,9 +86,15 @@ gem 'azure'
 # SMS Gateway
 gem 'twilio-ruby'
 
+gem 'money'
+gem 'google_currency'
+gem 'psych'
+
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end
+gem "will_paginate_mongoid"
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'better_errors'

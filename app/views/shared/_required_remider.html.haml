@@ -1,0 +1,28 @@
+= content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+      if($('#user_reminder_by').val() == 'sms'){
+        $('#user_phone_no').attr('required', 'required');
+        $('#user_phone_no, .user_phone_no').addClass('required');
+      }
+      else if($('#user_reminder_by').val() == 'email'){
+        $('#user_email').attr('required', 'required');
+        $('#user_email').addClass('required')
+      }
+      $('#user_reminder_by').on('change', function(){
+        if($(this).val() == 'sms'){
+          $('#user_phone_no').attr('required', true);
+          $('#user_phone_no, .user_phone_no').addClass('required');
+
+          $('#user_email').attr('required', false);
+          $('.user_email, #user_email').removeClass('required');
+        }
+        else if($(this).val() == 'email'){
+          $('#user_email').attr('required', 'required');
+          $('.user_email, #user_email').addClass('required');
+
+          $('#user_phone_no').attr('required', false);
+          $('#user_phone_no, .user_phone_no').removeClass('required');
+        }
+      });
+    });

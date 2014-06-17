@@ -95,7 +95,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '538377d715191987998a701cac81a14ea6e1765731602086fab02a089d610eb4b3ae964726373d93de33220e91430d73b01f02af3e839a4ee839e98f881704a9'
+  config.pepper = '538377d715191987998a701cac81a14ea6e1765731602086fab02a089d610eb4b3ae964726373d93de33220e91430d73b01f02af3e839a4ee839e98f881704a9'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -103,7 +103,7 @@ Devise.setup do |config|
   # able to access the website for two days without confirming his account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
-  # config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = 1.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -111,7 +111,7 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  config.confirm_within = 1.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -124,10 +124,10 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 4.weeks
 
   # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = false
+  config.extend_remember_period = true
 
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.
@@ -234,6 +234,9 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -252,13 +255,13 @@ Devise.setup do |config|
   # PAGPOSDEV
   require "omniauth-facebook"
   # Production
-  config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
-  
+  # config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+
   # Staging
-  # config.omniauth :facebook, "531645936919748", "bcabdbc513e0160fecdd305b031d2377", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}    
-  
+  # config.omniauth :facebook, "531645936919748", "bcabdbc513e0160fecdd305b031d2377", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+
   # Development
-  # config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+  config.omniauth :facebook, "404858089640403", "2875a833b9129f278103c4ee112f284d", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
   # require "omniauth-google-oauth2"
   # config.omniauth :google_oauth2, "872969710494.apps.googleusercontent.com", "EIB1LGGJGdapLbgVrWuLTCxm", { access_type: "offline", approval_prompt: "" }

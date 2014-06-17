@@ -1,0 +1,93 @@
+.row.print
+  .padding-10
+    %br
+    .pull-left.hide
+      %img{:alt => "invoice icon", :height => "32", :src => "http://192.241.236.31/test4.smartadmin/img/logo-blacknwhite.png", :width => "150"}
+        %address
+          %br
+            %strong SmartAdmin, Inc.
+            %br
+              231 Ajax Rd,
+              %br
+                Detroit MI - 48212, USA
+                %br
+                  %abbr{:title => "Phone"} P:
+                  (123) 456-7890
+    .pull-right
+      %h1.font-400= params[:payment_code]
+    .clearfix
+    %br
+      %br
+        .row
+          .col-sm-9.hide
+            %h4.semi-bold Rogers, Inc.
+            %address
+              %strong Mr. Simon Hedger
+              %br
+                342 Mirlington Road,
+                %br
+                  Calfornia, CA 431464
+                  %br
+                    %abbr{:title => "Phone"} P:
+                    (467) 143-4317
+          .col-sm-3.pull-right
+            %div
+              %div
+                %strong INVOICE NO :
+                %span.pull-right=@invoice.id
+            %div
+              .font-md
+                %strong INVOICE DATE :
+                %span.pull-right
+                  %i.fa.fa-calendar
+                  =@invoice.created_at.strftime('%d/%m/%Y')
+            %br
+              .well.well-sm.bg-color-darken.txt-color-white.no-border
+                .fa-lg
+                  Total Due :
+                  %span.pull-right
+                    = @price
+                    THB
+              %br
+                %br
+        %table.table.table-hover
+          %thead
+            %tr
+              %th.text-center QTY
+              %th ITEM
+              %th DESCRIPTION
+              %th PRICE
+              %th SUBTOTAL
+          %tbody
+            %tr
+              %td.text-center
+                %strong 1
+              %td
+                = @invoice.payment_code
+              %td
+                = @invoice.description
+              %td
+                = @price
+              %td
+                = @price
+        .invoice-footer
+          - unless @invoice_type.downcase.eql?('pagpos')
+            .row
+              .col-sm-7
+                .payment-methods
+                  %h5 Payment Methods
+                  %img{:height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/#{@invoice_type}.png", :width => "64"}
+                  -# %img{:alt => "american express", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/americanexpress.png", :width => "64"}
+                  -# %img{:alt => "mastercard", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/mastercard.png", :width => "64"}
+                  -# %img{:alt => "visa", :height => "64", :src => "http://192.241.236.31/test4.smartadmin/img/invoice/visa.png", :width => "64"}
+              .col-sm-5
+                .invoice-sum-total.pull-right
+                  %h3
+                    %strong
+                      Total:
+                      %span.text-success
+                        = @price
+                        THB
+            .row
+              .col-sm-12
+                %p.note **To avoid any excess penalty charges, please make payments within 30 days of the due date. There will be a 2% interest charge per month on all late invoices.
