@@ -253,9 +253,9 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # PAGPOSDEV
-  require "omniauth-facebook"
+  # require "omniauth-facebook"
   # Production
-  # config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
+  config.omniauth :facebook, "447458482037332", "36902a68349819cbe1b42fc9e8b63ae8", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
 
   # Staging
   # config.omniauth :facebook, "531645936919748", "bcabdbc513e0160fecdd305b031d2377", {:scope => 'email, publish_actions, user_friends, xmpp_login, sms'}
