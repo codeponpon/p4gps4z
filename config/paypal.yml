@@ -27,3 +27,5 @@ development:
 production:
   <<: *default
   mode: live
+  client_id: ATRPvxCqdlPqrKAnJyUaTqcEyNxH-iocZHyHCzzZPvyhW2OeP_Qat2gImJ-k
+  client_secret: EH3t5xC0X-dJdpGApF3e2--mTWtUftNAJ63q8HaC3rWPNXNcFW0mtlIBSC-6
