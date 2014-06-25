@@ -23,7 +23,11 @@
           - buy_btn = c.price.to_i == 0 ? 'free_package' : 'buy_package'
           - model_toggle = c.price.to_i == 0 ? '' : 'modal'
           = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block #{buy_btn}", "data-target" => "#myModal", "data-toggle" => "#{model_toggle}", "data-package-id" => c.id
-= render "shared/modalbox_credit_card_form"
+- if Rails.env.eql?('development')
+  = render "shared/modalbox_credit_card_form_dev"
+- else
+  = render "shared/modalbox_credit_card_form"
+
 = content_for :javascripts do
   :javascript
     $(document).ready( function() {
