@@ -8,13 +8,13 @@ test: &default
   mode: sandbox
 
   # Credentials for Classic APIs
-  app_id: PAGPOSPayment
-  username: work-2009-facilitator_api1.windowslive.com
-  password: 1397581357
-  signature: AhsCG3FDWgTA7NVkA7zEeldLPt6PAdKXsBkDU1Id62FTuiLmX31CXRb5
+  # app_id: PAGPOSPayment
+  # username: work-2009-facilitator_api1.windowslive.com
+  # password: 1397581357
+  # signature: AhsCG3FDWgTA7NVkA7zEeldLPt6PAdKXsBkDU1Id62FTuiLmX31CXRb5
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  sandbox_email_address: work-2009-facilitator@windowslive.com
+  # sandbox_email_address: work-2009-facilitator@windowslive.com
 
   # # IP Address
   # ip_address: 127.0.0.1
