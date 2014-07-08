@@ -5,8 +5,11 @@
     - else
       - box_class = "col-xs-12 col-sm-4 col-md-2"
     %div{class: "#{box_class}"}
-      %div{class: "panel panel-#{c.color} pricing-big"}
-        = image_tag "ribbon.png", class: 'ribbon' if c.popular
+      %div{class: "panel panel-#{c.color} pricing-big price-box"}
+        - unless c.name.eql?('lite')
+          .modal-comming-soon
+            %span Comming soon.
+        =# image_tag "ribbon.png", class: 'ribbon' if c.popular
         .panel-heading
           %h3.panel-title
             = c.name
@@ -24,9 +27,9 @@
           - model_toggle = c.price.to_i == 0 ? '' : 'modal'
           = link_to t('backend.button.buy').upcase, '#', role: 'button', class: "btn bg-color-#{c.color} txt-color-white btn-block #{buy_btn}", "data-target" => "#myModal", "data-toggle" => "#{model_toggle}", "data-package-id" => c.id
 - if Rails.env.eql?('development')
-  = render "shared/modalbox_credit_card_form_dev"
+  = render "shared/modalbox_credit_card_form_commingsoon"
 - else
-  = render "shared/modalbox_credit_card_form"
+  = render "shared/modalbox_credit_card_form_commingsoon"
 
 = content_for :javascripts do
   :javascript
@@ -36,16 +39,18 @@
         backdrop: true,
         show: false
       });
-      $('.free_package').on('click', function(){
+      $('.free_package').on('click', function(e){
+        e.preventDefault();
         $current_package_id = $(this).data('package-id');
         window.location.href = "#{store_get_free_package_path}?id="+$current_package_id;
       });
-      $('.buy_package').on('click', function(){
+      $('.buy_package').on('click', function(e){
+        e.preventDefault();
         $package_name = $(this).closest('.panel').find('.panel-title').text().trim();
         $package_price = $(this).closest('.panel').find('.panel-price').text().trim();
         $current_package_id = $(this).data('package-id');
         $('#myModal').on('show.bs.modal', function(){
-          $checkout_form = $(this).find('form#checkout-form');
+          /*$checkout_form = $(this).find('form#checkout-form');
           $buy_package_url = $checkout_form.attr('action').replace($old_package_id, $current_package_id);
           $checkout_form.attr('action', $buy_package_url);
           $old_package_id = $current_package_id;
@@ -54,7 +59,7 @@
           $checkout_form.find('#campaign_price').val($package_price);
           $checkout_form.find('#currency').val('THB');
           $checkout_form.find('#quantity').val(1);
-          $checkout_form.find('#payment_transaction_description').val("#{current_user.name} Order "+ $package_name +" at #{DateTime.now}");
+          $checkout_form.find('#payment_transaction_description').val("#{current_user.name} Order "+ $package_name +" at #{DateTime.now}");*/
         });
       });
     } );

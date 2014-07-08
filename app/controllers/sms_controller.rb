@@ -1,4 +1,4 @@
-require 'payment_gateway/payment' #if Rails.env.production? || Rails.env.staging?
+# require 'payment_gateway/payment' #if Rails.env.production? || Rails.env.staging?
 require 'money'
 require 'money/bank/google_currency'
 

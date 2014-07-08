@@ -1,0 +1,10 @@
+.row
+  #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content.envelope
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4#myModalLabel.modal-title= t('text.package.payment_info')
+        .modal-body
+          .block-center.commingsoon
+            %span Comming soon.
