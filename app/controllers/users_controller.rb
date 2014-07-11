@@ -14,7 +14,6 @@ class UsersController < Devise::RegistrationsController
 
   def update
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    logger.debug(params[:user])
     update_result = if params[:user][:password].blank?
       params[:user].delete('current_password')
       resource.update_without_password(account_update_params)
@@ -38,17 +37,20 @@ class UsersController < Devise::RegistrationsController
   end
 
   def customer
+    params ||= {}
     @page_title = I18n.t('page_title.customers')
     page = params[:page].present? ? params[:page] : 1
     @users = current_user.customers.paginate(:page => page, :per_page => 20)
   end
 
   def user
+    params ||= {}
     page = params[:page].present? ? params[:page] : 1
     @users = User.paginate(:page => page, :per_page => 20)
   end
 
   def detail_customer
+    params ||= {}
     page = params[:page].present? ? params[:page] : 1
     @page_title = I18n.t('page_title.detail_customer')
     @user = User.where(_id: params[:id]).first
