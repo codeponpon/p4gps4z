@@ -6,7 +6,7 @@ require 'capistrano/ext/multistage'
 
 # Must be set for the password prompt
 # from git to work
-default_run_options[:pty] = true 
+default_run_options[:pty] = true
 
 set :application, "pagpos"
 set :scm, :git
@@ -46,10 +46,10 @@ set :default_environment, {
 set :normalize_asset_timestamps, false
 
 after "deploy:restart", "deploy:restart_workers"
- 
+
 def run_remote_rake(rake_cmd)
   rake_args = ENV['RAKE_ARGS'].to_s.split(',')
- 
+
   cmd = "cd #{fetch(:latest_release)} && bundle exec #{fetch(:rake, "rake")} RAILS_ENV=#{fetch(:rails_env, rails_env)} #{rake_cmd}"
   cmd += "['#{rake_args.join("','")}']" unless rake_args.empty?
   run cmd
@@ -61,7 +61,7 @@ namespace :deploy do
   task :restart_workers, :roles => :worker do
     run_remote_rake "resque:restart_workers"
   end
-  
+
   desc "Fix permissions"
   task :fix_permissions, :roles => [ :app, :db, :web ] do
     run "chmod +x #{release_path}/config/unicorn_init.sh"
@@ -97,7 +97,7 @@ namespace :deploy do
     run "cd #{current_path} && PIDFILE=./resque.pid BACKGROUND=yes COUNT=5 QUEUE=* bundle exec rake environment resque:workers"
   end
 
-  # task :remove_assets, roles: :app do 
+  # task :remove_assets, roles: :app do
   #   run "bundle exec rake assets:clean"
   # end
 
@@ -105,7 +105,17 @@ namespace :deploy do
     task :update_asset_mtimes, :roles => lambda { assets_role }, :except => { :no_release => true } do
     end
   end
-  
+
+  # ...lots of other code
+  namespace :bundle do
+
+    desc "run bundle install and ensure all gem requirements are met"
+    task :install do
+      run "cd #{current_path} && bundle install  --without=test --no-update-sources"
+    end
+
+  end
+
   # namespace :assets do
   #   desc "Precompile assets on local machine and upload them to the server."
   #   task :precompile, roles: :web, except: {no_release: true} do
@@ -116,6 +126,7 @@ namespace :deploy do
   #   end
   # end
 
+  before "deploy:restart", "bundle:install"
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy", "deploy:run_whenever"
