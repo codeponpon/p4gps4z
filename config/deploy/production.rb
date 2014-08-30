@@ -1,9 +1,9 @@
-server "pagpos.cloudapp.net", :web, :app, primary: true
-server "pagpos.cloudapp.net", :web, :app, :worker
+server "p4gp0s.cloudapp.net", :web, :app, primary: true
+server "p4gp0s.cloudapp.net", :web, :app, :worker
 # server "pagposdev.cloudapp.net", :db
 
-role :app, "pagpos.cloudapp.net" # add more servier "pagposx1.cloudapp.net", "pagposx2.cloudapp.net", "pagposx3.cloudapp.net"
-role :web, "pagpos.cloudapp.net"
+role :app, "p4gp0s.cloudapp.net" # add more servier "pagposx1.cloudapp.net", "pagposx2.cloudapp.net", "pagposx3.cloudapp.net"
+role :web, "p4gp0s.cloudapp.net"
 # make cap deploy:migrate working fine if in the same vm
 # role :db, "pagposdb.cloudapp.net", :primary => true
 

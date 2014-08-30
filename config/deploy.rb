@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-set :stages, [:production]
+set :stages, [:staging, :production]
 set :default_stage, "production"
 require 'capistrano/ext/multistage'
 
@@ -10,7 +10,7 @@ default_run_options[:pty] = true
 
 set :application, "pagpos"
 set :scm, :git
-set :use_sudo, false
+set :use_sudo, true
 set :user, "codeponpon"
 # set :repository, "git@github.com:codeponpon/p4gps4z.git"
 # set :branch, "master"
@@ -63,7 +63,7 @@ namespace :deploy do
   end
 
   desc "Fix permissions"
-  task :fix_permissions, :roles => [ :app, :db, :web ] do
+  task :fix_permissions, :roles => [ :app, :web ] do
     run "chmod +x #{release_path}/config/unicorn_init.sh"
   end
 
@@ -106,15 +106,6 @@ namespace :deploy do
     end
   end
 
-  namespace :bundle do
-
-    desc "run bundle install and ensure all gem requirements are met"
-    task :install do
-      run "cd #{current_path} && bundle install  --without=test --no-update-sources --no-deployment"
-    end
-
-  end
-
   # namespace :assets do
   #   desc "Precompile assets on local machine and upload them to the server."
   #   task :precompile, roles: :web, except: {no_release: true} do
@@ -125,7 +116,6 @@ namespace :deploy do
   #   end
   # end
 
-  before "deploy:restart", "bundle:install"
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy:finalize_update", "deploy:fix_permissions"
   after "deploy", "deploy:run_whenever"
