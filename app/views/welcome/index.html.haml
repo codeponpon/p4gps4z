@@ -1,22 +1,44 @@
-%header
-  %h1.heading_supersize
-    = image_tag('logo.png', width: 600)
-  %h2.welcome_text= t('pagpos.slogan')
-/ ######################## Section ########################
-%section.section_main
+/ Coming Soon
+.coming-soon
+  .inner-bg
+    .container
+      .row
+        .span12
+          %h2 We're Coming Soon
+          %p We are working very hard on the new version of our site. It will bring a lot of new features. Stay tuned!
+      .row
+        .large-4.columns
+          %h3
+            %span.dropcap_red.lsf-icon-dropcap{title: "present"}
+            = t('welcome_page.step_one')
+          %p= t('welcome_page.step_one_description')
+        .large-4.columns
+          %h3
+            %span.dropcap_black.lsf-icon-dropcap{title: "pin"}
+            = t('welcome_page.step_two')
+          %p= t('welcome_page.step_two_description')
+        .large-4.columns
+          %h3
+            %span.dropcap_black.lsf-icon-dropcap{title: "notify"}
+            = t('welcome_page.step_three')
+          %p= t('welcome_page.step_three_description')
+/ Content
+.container
   .row
-    .large-4.columns
-      %h3
-        %span.dropcap_red.lsf-icon-dropcap{title: "present"}
-        = t('welcome_page.step_one')
-      %p= t('welcome_page.step_one_description')
-    .large-4.columns
-      %h3
-        %span.dropcap_black.lsf-icon-dropcap{title: "pin"}
-        = t('welcome_page.step_two')
-      %p= t('welcome_page.step_two_description')
-    .large-4.columns
-      %h3
-        %span.dropcap_black.lsf-icon-dropcap{title: "notify"}
-        = t('welcome_page.step_three')
-      %p= t('welcome_page.step_three_description')
+    .span12.subscribe
+      %h3 Subscribe to our newsletter
+      %p Sign up now to our newsletter and you'll be one of the first to know when the site is ready:
+      %form.form-inline{:action => "assets/sendmail.php", :method => "post"}
+        %input{:name => "email", :placeholder => "Enter your email...", :type => "text"}
+          %button.btn{:type => "submit"} Subscribe
+      .success-message
+      .error-message
+  .row
+    .span12.social
+      %a.facebook{"data-original-title" => "Facebook", "data-placement" => "top", :href => "", :rel => "tooltip"}
+      %a.twitter{"data-original-title" => "Twitter", "data-placement" => "top", :href => "", :rel => "tooltip"}
+      %a.dribbble{"data-original-title" => "Dribbble", "data-placement" => "top", :href => "", :rel => "tooltip"}
+      %a.googleplus{"data-original-title" => "Google Plus", "data-placement" => "top", :href => "", :rel => "tooltip"}
+      %a.pinterest{"data-original-title" => "Pinterest", "data-placement" => "top", :href => "", :rel => "tooltip"}
+      %a.flickr{"data-original-title" => "Flickr", "data-placement" => "top", :href => "", :rel => "tooltip"}
+= javascript_include_tag "jquery.backstretch.min", "comingsoon"

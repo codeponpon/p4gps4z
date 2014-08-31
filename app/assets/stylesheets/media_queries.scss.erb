@@ -57,7 +57,7 @@
   .large-12 {
     position: relative;
     width: 100%;
-  }  
+  }
 }
 
 @media only screen and (min-width: 240px){
@@ -89,14 +89,28 @@
 
   header h1.heading_supersize { font-size: 100px; }
 
-  .footer .large-10.columns ul.footer_menu li { 
-    margin-right: 10px !important; 
+  .footer .large-10.columns ul.footer_menu li {
+    margin-right: 10px !important;
     float: none !important;
     text-align: center;
     font-size: 13px;
     padding-top: 10px;
   }
   .footer .bizspark_logo { width: 115px; margin: 50px auto 0;}
+
+  .subscribe form {
+    padding: 0 20px;
+  }
+
+  .subscribe form input {
+    width: 90%;
+  }
+
+  .subscribe form button {
+    width: 90%;
+    margin-top: 10px;
+  }
+
 }
 
 @media only screen and (min-width: 480px) and (max-width: 599px){
@@ -112,15 +126,15 @@
   .footer .large-10.columns ul.footer_menu li { margin-right: 10px !important;}
   .footer .bizspark_logo { width: 115px; margin: 50px auto 0;}
 }
-  
-@media only screen and (min-width: 600px) and (max-width: 767px){ 
-  @include default-block; 
+
+@media only screen and (min-width: 600px) and (max-width: 767px){
+  @include default-block;
 
   .footer .large-10.columns ul.footer_menu li { margin-right: 10px !important;}
 }
 
 @media only screen and (min-width: 768px){
-  
+
 }
 
 @media only screen and (min-width: 800px){
@@ -128,5 +142,5 @@
 }
 
 @media only screen and (min-width: 960px){
-  
+
 }
