@@ -1,7 +1,9 @@
 class WelcomeController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
   layout 'backend', only: [:templates]
+
   def index
+    @subscriber = Subscriber.new
   end
 
   def templates

@@ -21,7 +21,7 @@ th:
     profile: "โปรไฟล์"
     signout: "ออกจากระบบ"
     signin: "เข้าสู่ระบบ"
-    find_package: "หาตำแหน่งพัสดุ"
+    find_package: "เช็คสถานะพัสดุ"
     login_with_facebook: "เข้าระบบด้วย Facebook"
   shared_link:
     signin: "เข้าสู่ระบบ"
@@ -62,6 +62,10 @@ th:
       success: 'Delete success'
     update_customer:
       success: 'Delete success'
+  subscriber:
+    add_success: 'เพิ่มอีเมลเรียบร้อยแล้ว เราจะแจ้งผ่านทางอีเมลนี้เมื่อระบบพร้อมใช้งานนะค่ะ ;)'
+    add_fail: 'อีเมลไม่ถูกต้องหรือมีในระบบแล้ว'
+    email_hint: 'user@example.com'
   trackings:
     date_process: 'วันที่ดำเนินการ'
     status: 'สถานะพัสดุ'

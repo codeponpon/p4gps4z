@@ -50,7 +50,6 @@ class UsersController < Devise::RegistrationsController
   end
 
   def detail_customer
-    params ||= {}
     page = params[:page].present? ? params[:page] : 1
     @page_title = I18n.t('page_title.detail_customer')
     @user = User.where(_id: params[:id]).first
