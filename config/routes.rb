@@ -1,4 +1,5 @@
 Pagpos::Application.routes.draw do
+  post "subscriber/create" => "subscribers#create"
   get "store_metadatas/create"
   get "store_metadatas/update"
   get "newsletters/index"

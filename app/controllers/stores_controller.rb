@@ -33,7 +33,7 @@ class StoresController < Devise::RegistrationsController
     resource = build_resource(sign_up_params)
 
     if resource.save
-      resource.roles.create(name: 'merchant')
+      resource.roles.create(name: 'merchant', resource_type: 'merchant', resource_id: resource.id)
       # UserMailer.welcome(resource).deliver unless resource.invalid?
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?

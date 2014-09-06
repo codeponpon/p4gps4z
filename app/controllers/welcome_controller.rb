@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   layout 'backend', only: [:templates]
 
   def index
-
+    @subscriber = Subscriber.new
   end
 
   def templates

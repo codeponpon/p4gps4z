@@ -27,10 +27,12 @@
   .row
     .span12.subscribe
       %h3 Subscribe to our newsletter
-      %p Sign up now to our newsletter and you'll be one of the first to know when the site is ready:
-      %form.form-inline{:action => "assets/sendmail.php", :method => "post"}
-        %input{:name => "email", :placeholder => "Enter your email...", :type => "text"}
-          %button.btn{:type => "submit"} Subscribe
+      %p Sign up now to our newsletter and you'll be one of the first to know when the site is ready ;)
+      = simple_form_for(@subscriber, :url => subscriber_create_path, :html => { :method => :post, class: 'form-inline' }) do |f|
+        = f.error_notification
+        = render "shared/flash_message", flash: flash
+        %input{:name => "email", :placeholder => "#{t('subscriber.email_hint')}", :type => "text"}
+        %button.btn{:type => "submit"} Subscribe
       .success-message
       .error-message
   .row

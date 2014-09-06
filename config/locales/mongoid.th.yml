@@ -22,6 +22,11 @@ th:
             email:
               blank: 'กรุณากรอกอีเมลให้ถูกต้อง'
               taken: 'อีเมล์นี้มีการลงทะเบียนในระบบแล้ว'
+        subscriber:
+          attributes:
+            email:
+              blank: 'กรุณากรอกอีเมลให้ถูกต้อง'
+              taken: 'อีเมล์นี้มีการลงทะเบียนในระบบแล้ว'
       messages:
         unknown_attribute:
           message: 'unknown attribute %{message}'
