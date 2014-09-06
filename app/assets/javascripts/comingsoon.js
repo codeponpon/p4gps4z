@@ -5,13 +5,13 @@ jQuery(document).ready(function() {
         Background slideshow
     */
     $('.coming-soon').backstretch([
-      "assets/backgrounds/1.jpg"
-    , "assets/backgrounds/2.jpg"
-    , "assets/backgrounds/3.jpg"
-    , "assets/backgrounds/4.jpg"
-    , "assets/backgrounds/5.jpg"
-    , "assets/backgrounds/6.jpg"
-    , "assets/backgrounds/7.jpg"
+      "assets/1.jpg"
+    , "assets/2.jpg"
+    , "assets/3.jpg"
+    , "assets/4.jpg"
+    , "assets/5.jpg"
+    , "assets/6.jpg"
+    , "assets/7.jpg"
     ], {duration: 3000, fade: 750});
 
     /*
