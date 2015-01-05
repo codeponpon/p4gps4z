@@ -78,9 +78,9 @@ class UsersController < Devise::RegistrationsController
     @user = current_user.customers.new(customer_params)
     if @user.save
       flash[:success] = I18n.t('user.add_customer.success')
-      return redirect_to store_customers_url
+      return redirect_to store_customers_url(@user.id)
     else
-      render :add_customer
+      render action: :add_customer
     end
   end
 
