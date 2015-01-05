@@ -6,24 +6,24 @@
         = simple_form_for(@tracking, :url => pagpos_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
           = f.error_notification
           .row.collapse
-            .large-10.columns   
+            .large-10.columns
               = f.input :code, value: params[:id], required: true, focus: true, label: false
-            .large-2.columns        
+            .large-2.columns
               = f.hidden_field :status, value: 'guest'
               = f.submit t("trackings.add_btn"), class: "medium button center"
       .large-3.columns &nbsp;
-%section.section_main      
+%section.section_main
   .large-12.columns
     %table.tracking_details
       %thead
         %tr
           %th= t('trackings.date_process')
           %th= t('trackings.status')
-          %th 
+          %th
       %tbody
       - rows = @tracking.packages.count
       - reciever = @tracking.packages.map(&:reciever).reject(&:nil?).first
-      - @tracking.packages.each_with_index do |p, i| 
+      - @tracking.packages.each_with_index do |p, i|
         %tr
           %td
             = p.process_at.squish
