@@ -9,6 +9,11 @@ class PagposController < ApplicationController
     @tracking = Tracking.new
   end
 
+  def new2
+    return redirect_to trackings_url if current_user.present?
+    @tracking = Tracking.new
+  end
+
   def create
     qtracking = Tracking.where(code: params[:tracking][:code], status: TrackingStatus.guest).first
     if qtracking.blank?

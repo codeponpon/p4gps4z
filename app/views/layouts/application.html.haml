@@ -17,15 +17,21 @@
     %meta{content: "/assets/logos.png", property: "og:image"}/
     %title=page_title
     = stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
+    = stylesheet_link_tag    "ntemplate"
+    = yield :stylesheets
+
     = javascript_include_tag "application", "vendor/custom.modernizr"
+    = yield :javascripts
     = csrf_meta_tags
+
   %body
-    / ######################## Main Menu ########################
-    = render 'shared/navbar'
+    #wrapper
+      / ######################## Main Menu ########################
+      = render 'shared/navbar'
 
-    / ######################## Content ########################
-    = yield
+      / ######################## Content ########################
+      = yield
 
-    / ######################## Footer ########################
-    = render 'shared/footer'
-    / ######################## Scripts ########################
+      / ######################## Footer ########################
+      = render 'shared/footer'
+      / ######################## Scripts ########################

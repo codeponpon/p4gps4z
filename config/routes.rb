@@ -17,6 +17,8 @@ Pagpos::Application.routes.draw do
   post 'pagpos' => "pagpos#create"
   get 'pagpos/:code' => "pagpos#show" #, as: "pagpos_result"
 
+  get 'pagpos2' => "pagpos#new2"
+
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",
     :sessions => "sessions",

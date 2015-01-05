@@ -73,7 +73,7 @@ th:
     tracking_code: 'รหัสพัสดุ'
     details_btn: 'รายละเอียก'
     delete_btn: 'ลบ'
-    placeholder_tracking_id: 'รหัสพัสดุ'
+    placeholder_tracking_id: 'Tracking Code'
     add_btn: 'ค้นหา'
     track_btn: 'เพิ่ม'
     delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
@@ -94,7 +94,7 @@ th:
       term_of_use: 'นโยบายการใช้งาน'
       bug_report: 'แจ้งปัญหาการใช้งาน'
       contact: 'ติดต่อ PAGPOS'
-      store: 'Store'
+      store: 'Business'
   backend:
     menu:
       dashboard: 'Dashboard'

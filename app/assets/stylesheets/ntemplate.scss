@@ -1,0 +1,31 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  background: white;
+}
+#wrapper{
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+#body {
+  display: block;
+}
+.logo {
+  height: 231px;
+  margin-top: 20px;
+
+  img {
+    position: absolute;
+    bottom: 0;
+  }
+}
+.tracking_code input {
+  font-size: 19px;
+}
+footer {
+  bottom: 0;
+  font-size: 10pt;
+  position: absolute;
+  width: 100%;
+}
