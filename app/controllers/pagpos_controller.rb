@@ -3,9 +3,16 @@ require 'azure/azure_sdk' if Rails.env.production? || Rails.env.staging?
 class PagposController < ApplicationController
 
   before_filter :sabud_blob
+  layout 'template2'
 
   def new
     return redirect_to trackings_url if current_user.present?
+    @tracking = Tracking.new
+  end
+
+  def new2
+    # Comment out if trackings_url template is done
+    # return redirect_to trackings_url if current_user.present?
     @tracking = Tracking.new
   end
 

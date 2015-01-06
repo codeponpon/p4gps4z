@@ -1,0 +1,25 @@
+/ Coming Soon
+.coming-soon
+  .inner-bg
+    .container
+      .row
+        .span12
+          %h2 We're Coming Soon
+          %p We are working very hard on the new version of our site. It will bring a lot of new features. Stay tuned!
+      .row
+        .large-4.columns
+          %h3
+            %span.dropcap_red.lsf-icon-dropcap{title: "present"}
+            = t('welcome_page.step_one')
+          %p= t('welcome_page.step_one_description')
+        .large-4.columns
+          %h3
+            %span.dropcap_black.lsf-icon-dropcap{title: "pin"}
+            = t('welcome_page.step_two')
+          %p= t('welcome_page.step_two_description')
+        .large-4.columns
+          %h3
+            %span.dropcap_black.lsf-icon-dropcap{title: "notify"}
+            = t('welcome_page.step_three')
+          %p= t('welcome_page.step_three_description')
+= javascript_include_tag "jquery.backstretch.min", "comingsoon"

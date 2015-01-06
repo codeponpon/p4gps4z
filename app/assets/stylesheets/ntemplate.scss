@@ -1,0 +1,47 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  background: white;
+}
+#wrapper{
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+#body {
+  display: block;
+}
+.logo {
+  height: 231px;
+  margin-top: 20px;
+
+  img {
+    position: absolute;
+    bottom: 0;
+  }
+}
+.tracking_code input {
+  font-size: 19px;
+}
+
+.coming-soon {
+  height: 800px;
+
+  .inner-bg {
+    height: 800px;
+    padding: 210px 0 60px 0;
+  }
+}
+
+.medium.button {
+  font-size: 16px;
+  height: 44px;
+  padding: 0 10px;
+}
+
+footer {
+  bottom: 0;
+  font-size: 10pt;
+  position: absolute;
+  width: 100%;
+}
