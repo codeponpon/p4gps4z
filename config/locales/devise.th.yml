@@ -52,7 +52,7 @@ th:
     stores:
       user:
         updated: 'Update successfull'
-        signed_up: 'ยินดีต้อนรับเข้าสู่หน้า Dashboard ท่านสมัครสมาชิกเรียบร้อยแล้ว'
+        signed_up: 'ยินดีต้อนรับเข้าสู่ PAGPOS ท่านสมัครสมาชิกเรียบร้อยแล้ว'
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

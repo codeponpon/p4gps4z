@@ -70,6 +70,7 @@ Pagpos::Application.routes.draw do
       get 'store/recovery_password' => 'stores#forgot_password'
 
       get 'store/profile' => 'stores#profile'
+      get 'store/profile/:user_id' => 'stores#profile', as: 'store_profile_with'
       patch 'store/profile' => 'stores#update_profile'
       get 'store/lists' => 'stores#list'
 
