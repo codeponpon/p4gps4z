@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 campaigns = [{
-              name: 'lite',
-              credit: 100,
+              name: 'gift',
+              credit: 50,
               unit: 'sms',
               price: 0,
               currency_symbold: '฿',

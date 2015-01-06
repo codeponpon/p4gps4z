@@ -17,6 +17,7 @@
     %meta{content: "/assets/logos.png", property: "og:image"}/
     %title=page_title
     = stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic", "media_queries"
+    = stylesheet_link_tag    "ntemplate"
     = yield :stylesheets
 
     = javascript_include_tag "application", "vendor/custom.modernizr"
@@ -26,7 +27,7 @@
   %body
     #wrapper
       / ######################## Main Menu ########################
-      = render 'shared/navbar'
+      = render 'shared/navbar2'
 
       / ######################## Content ########################
       = yield

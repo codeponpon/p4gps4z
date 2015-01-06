@@ -11,7 +11,10 @@ Pagpos::Application.routes.draw do
   post 'trackings' => 'trackings#create'
   delete 'tracking/:code/:token' => 'trackings#destroy'
 
-  get 'welcome' => "welcome#index"
+  # get 'welcome' => "welcome#index"
+  get 'welcome' => "pagpos#new2"
+
+  get 'about' => 'welcome#about'
 
   get 'pagpos' => "pagpos#new"
   post 'pagpos' => "pagpos#create"
@@ -36,7 +39,8 @@ Pagpos::Application.routes.draw do
 
   devise_scope :user do
     # root to: 'devise/sessions#new'
-    root to: 'welcome#index'
+    # root to: 'welcome#index'
+    root to: 'pagpos#new2'
     get 'users' => "users#index"
     put 'users/:id' => 'users#update', as: 'user_update'
     get 'user_profile' => 'users#edit'

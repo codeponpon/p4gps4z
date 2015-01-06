@@ -94,7 +94,7 @@ th:
       term_of_use: 'นโยบายการใช้งาน'
       bug_report: 'แจ้งปัญหาการใช้งาน'
       contact: 'ติดต่อ PAGPOS'
-      store: 'Business'
+      store: 'ธุรกิจ'
   backend:
     menu:
       dashboard: 'Dashboard'
@@ -118,6 +118,7 @@ th:
     button:
       add: 'Add'
       buy: 'buy'
+      try: 'try'
   page_title:
     invoices: "Invoices"
     invoice: "Invoice"
