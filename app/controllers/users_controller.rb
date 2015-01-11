@@ -69,13 +69,13 @@ class UsersController < Devise::RegistrationsController
   end
 
   def create_customer
-    email = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
     password = Devise.friendly_token
-    params[:user][:email] = email
+    params[:user][:email] = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
     params[:user][:password] = password
     params[:user][:password_confirmation] = password
 
     @user = current_user.customers.new(customer_params)
+
     if @user.save
       flash[:success] = I18n.t('user.add_customer.success')
       return redirect_to store_customers_url(@user.id)
@@ -85,8 +85,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update_customer
-    email = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
-    params[:user][:email] = email
+    params[:user][:email] = "#{params[:user][:phone_no]}@pagpos.com" if params[:user][:email].blank?
     update_result = User.where(_id: params[:id]).first
     if update_result.update_attributes(account_update_params)
       flash[:success] = I18n.t('user.update_customer.success')

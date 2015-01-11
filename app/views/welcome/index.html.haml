@@ -31,7 +31,7 @@
       = simple_form_for(@subscriber, :url => subscriber_create_path, :html => { :method => :post, class: 'form-inline' }) do |f|
         = f.error_notification
         = render "shared/flash_message", flash: flash
-        %input{:name => "email", :placeholder => "#{t('subscriber.email_hint')}", :type => "text"}
+        %input{:name => "email", :placeholder => "#{t('subscriber.email_hint')}", :type => "email", required: true}
         %button.btn{:type => "submit"} Subscribe
       .success-message
       .error-message

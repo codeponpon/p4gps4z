@@ -13,7 +13,7 @@ Pagpos::Application.routes.draw do
   post 'trackings' => 'trackings#create'
   delete 'tracking/:code/:token' => 'trackings#destroy'
 
-  # get 'welcome' => "welcome#index"
+  get 'subscriber' => "welcome#index"
   get 'welcome' => "pagpos#new2"
 
   get 'about' => 'welcome#about'

@@ -20,7 +20,7 @@ module ApplicationHelper
     rename_controller = request.path.split('/')[1]
     case name
     when 'dashboard'
-      link_name = "<i class='fa fa-dashboard fa-fw'></i> "
+      link_name = "<i class='fa fa-dashboard fa-fw'></i> " if current_user.has_any_role?(:admin, :god)
       link_url  = try("#{rename_controller}_dashboard_url")
     when 'stores'
       link_name = "<i class='fa fa-home fa-fw'></i> " if current_user.has_any_role?(:admin, :god)

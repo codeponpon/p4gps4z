@@ -61,7 +61,7 @@ th:
     destroy_customer:
       success: 'Delete success'
     update_customer:
-      success: 'Delete success'
+      success: 'Update success'
   subscriber:
     add_success: 'เพิ่มอีเมลเรียบร้อยแล้ว เราจะแจ้งผ่านทางอีเมลนี้เมื่อระบบพร้อมใช้งานนะค่ะ ;)'
     add_fail: 'อีเมลไม่ถูกต้องหรือมีในระบบแล้ว'
@@ -123,10 +123,10 @@ th:
     invoices: "Invoices"
     invoice: "Invoice"
     invoice_code: "%{payment_code}"
-    customers: 'Customers'
-    add_customer: 'Add Customer'
-    edit_customer: 'Edit Customer'
-    detail_customer: 'User Detail'
+    customers: 'ลูกค้า'
+    add_customer: 'เพิ่มลูกค้า'
+    edit_customer: 'แก้ไขข้อมูลลูกค้า'
+    detail_customer: 'รายละเอียดลูกค้า'
     packages: 'Packages'
     campaigns: 'SMS Packages'
     buy_package: 'Buy Package'
