@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if ((request.params['reset_password_token'].present? || ['sessions', 'passwords'].include?(request.params[:controller])) && resource.has_role?(:merchant))
-      return stores_root_url
+      return store_sms_url
     elsif(resource.roles.blank?)
       return root_url
     end
@@ -16,20 +16,20 @@ class ApplicationController < ActionController::Base
 
   def after_sign_up_path_for(resource)
     if resource.has_role?(:merchant)
-      stores_root_url
+      store_sms_url
     end
   end
 
   def after_inactive_sign_up_path_for(resource)
     if resource.has_role?(:merchant)
-      return redirect_to stores_root_url
+      return redirect_to store_sms_url
     else
       return redirect_to root_url
     end
   end
 
   def after_sign_out_path_for(resource)
-    root_url
+    store_login_url
   end
 
   def require_admin
