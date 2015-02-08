@@ -17,17 +17,18 @@ class PagposController < ApplicationController
   end
 
   def create
-    qtracking = Tracking.where(code: params[:tracking][:code], status: TrackingStatus.guest).first
+    tracking_code = params[:tracking][:code].strip
+    qtracking = Tracking.where(code: tracking_code, status: TrackingStatus.guest).first
     if qtracking.blank?
-      @tracking = Tracking.new(code: params[:tracking][:code], status: TrackingStatus.guest)
+      @tracking = Tracking.new(code: tracking_code, status: TrackingStatus.guest)
       if @tracking.save
         flash[:notice] = "Add tracking code successfully"
-        redirect_to action: "show", code: params[:tracking][:code]
+        redirect_to action: "show", code: tracking_code
       else
         render action: "new"
       end
     else
-      redirect_to action: 'show', code: params[:tracking][:code]
+      redirect_to action: 'show', code: tracking_code
     end
   end
 
