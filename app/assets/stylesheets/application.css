@@ -11,3 +11,8 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+/* --- Reset --- */
+a, object, embed, input::-moz-focus-inner  {
+   outline: 0;
+}
