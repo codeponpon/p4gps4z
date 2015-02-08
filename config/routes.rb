@@ -1,4 +1,6 @@
 Pagpos::Application.routes.draw do
+  get "statistics/index"
+  get "packages/index"
   post "subscriber/create" => "subscribers#create"
   get "store_metadatas/create"
   get "store_metadatas/update"
@@ -11,11 +13,16 @@ Pagpos::Application.routes.draw do
   post 'trackings' => 'trackings#create'
   delete 'tracking/:code/:token' => 'trackings#destroy'
 
-  get 'welcome' => "welcome#index"
+  get 'subscriber' => "welcome#index"
+  get 'welcome' => "pagpos#new2"
+
+  get 'about' => 'welcome#about'
 
   get 'pagpos' => "pagpos#new"
   post 'pagpos' => "pagpos#create"
   get 'pagpos/:code' => "pagpos#show" #, as: "pagpos_result"
+
+  get 'pagpos2' => "pagpos#new2"
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "omniauth_callbacks",
@@ -34,7 +41,8 @@ Pagpos::Application.routes.draw do
 
   devise_scope :user do
     # root to: 'devise/sessions#new'
-    root to: 'welcome#index'
+    # root to: 'welcome#index'
+    root to: 'pagpos#new2'
     get 'users' => "users#index"
     put 'users/:id' => 'users#update', as: 'user_update'
     get 'user_profile' => 'users#edit'
@@ -62,6 +70,7 @@ Pagpos::Application.routes.draw do
       get 'store/recovery_password' => 'stores#forgot_password'
 
       get 'store/profile' => 'stores#profile'
+      get 'store/profile/:user_id' => 'stores#profile', as: 'store_profile_with'
       patch 'store/profile' => 'stores#update_profile'
       get 'store/lists' => 'stores#list'
 

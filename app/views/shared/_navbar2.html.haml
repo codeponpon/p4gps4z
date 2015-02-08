@@ -14,6 +14,8 @@
               = link_to t('menu.signout'), destroy_user_session_path, method: :delete
           - if current_user.blank?
             %li
+              = link_to t("footer.menu.about"), about_url
+            %li
               = link_to t('menu.login_with_facebook'), user_omniauth_authorize_path(:facebook)
             -# %li
             -#   = link_to t('menu.signin'), new_user_session_path

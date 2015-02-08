@@ -27,7 +27,7 @@ class SmsController < ApplicationController
     @page_title = I18n.t('page_title.campaigns')
     @got_lite   = current_user.campaigns_users.where(payment_gateway: 'PAGPOS').count > 0
     if @got_lite
-      @campaigns  = Campaign.where(:name.ne => "lite")
+      @campaigns  = Campaign.where(:name.ne => "gift")
     else
       @campaigns  = Campaign.all
     end

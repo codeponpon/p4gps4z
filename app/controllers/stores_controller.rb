@@ -33,12 +33,16 @@ class StoresController < Devise::RegistrationsController
     resource = build_resource(sign_up_params)
 
     if resource.save
-      resource.roles.create(name: 'merchant', resource_type: 'merchant', resource_id: resource.id)
+      # resource.roles.create(name: 'merchant', resource_type: 'merchant', resource_id: resource.id)
+      resource.add_role :merchant
+
+      # Comment out if add UserMailer arleady
       # UserMailer.welcome(resource).deliver unless resource.invalid?
+
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
-        return redirect_to stores_root_path
+        return redirect_to store_profile_path
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
         expire_session_data_after_sign_in!
@@ -56,12 +60,14 @@ class StoresController < Devise::RegistrationsController
 
   def profile
     @page_title = 'Profile details'
-    @user = User.where(id: current_user.id).first
+    user_id = params[:user_id].present? ? params[:user_id] : current_user.id
+    @user = User.where(id: user_id).first
     @user.build_store_detail if @user.store_detail.blank?
   end
 
   def update_profile
-    @user = User.where(id: current_user.id).first
+    user_id = params[:user][:user_id].present? ? params[:user][:user_id] : current_user.id
+    @user = User.where(id: user_id).first
     update_result = if params[:user][:password].blank?
       params[:user].delete('current_password')
       @user.update_without_password(account_update_params)
@@ -71,10 +77,10 @@ class StoresController < Devise::RegistrationsController
     # debugger
     if update_result
       set_flash_message :success, :updated
-      sign_in resource_name, @user
-      render :profile
+      sign_in resource_name, current_user
+      redirect_to store_profile_with_path(user_id)
     else
-      clean_up_passwords @user
+      clean_up_passwords current_user
       render :profile
     end
   end

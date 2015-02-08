@@ -61,7 +61,7 @@ th:
     destroy_customer:
       success: 'Delete success'
     update_customer:
-      success: 'Delete success'
+      success: 'Update success'
   subscriber:
     add_success: 'เพิ่มอีเมลเรียบร้อยแล้ว เราจะแจ้งผ่านทางอีเมลนี้เมื่อระบบพร้อมใช้งานนะค่ะ ;)'
     add_fail: 'อีเมลไม่ถูกต้องหรือมีในระบบแล้ว'
@@ -75,14 +75,14 @@ th:
     tracking_code: 'รหัสพัสดุ'
     details_btn: 'รายละเอียก'
     delete_btn: 'ลบ'
-    placeholder_tracking_id: 'รหัสพัสดุ'
+    placeholder_tracking_id: 'Tracking Code'
     add_btn: 'ค้นหา'
     track_btn: 'เพิ่ม'
     delete_confirmation: 'คุณแน่ใจแล้วรึยังที่จะลบรายการนี้?'
   tracking_status:
     default_status: 'รอดำเนินการ'
     pending: 'ติดตามสถานะ'
-    ontheway: 'กำลังจัดส่ง'
+    ontheway: 'อยู่ระหว่างจัดส่ง'
     done: 'จัดส่งเรียบร้อยแล้ว'
     guest: 'ผู้ใช้ทั่วไป'
   package_status:
@@ -96,7 +96,7 @@ th:
       term_of_use: 'นโยบายการใช้งาน'
       bug_report: 'แจ้งปัญหาการใช้งาน'
       contact: 'ติดต่อ PAGPOS'
-      store: 'Store'
+      store: 'ธุรกิจ'
   backend:
     menu:
       dashboard: 'Dashboard'
@@ -120,14 +120,15 @@ th:
     button:
       add: 'Add'
       buy: 'buy'
+      try: 'try'
   page_title:
     invoices: "Invoices"
     invoice: "Invoice"
     invoice_code: "%{payment_code}"
-    customers: 'Customers'
-    add_customer: 'Add Customer'
-    edit_customer: 'Edit Customer'
-    detail_customer: 'User Detail'
+    customers: 'ลูกค้า'
+    add_customer: 'เพิ่มลูกค้า'
+    edit_customer: 'แก้ไขข้อมูลลูกค้า'
+    detail_customer: 'รายละเอียดลูกค้า'
     packages: 'Packages'
     campaigns: 'SMS Packages'
     buy_package: 'Buy Package'

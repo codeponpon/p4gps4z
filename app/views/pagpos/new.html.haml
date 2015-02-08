@@ -5,10 +5,9 @@
       .large-6.columns
         = simple_form_for(@tracking, :url => pagpos_path(@tracking), :html => { :method => :post, class: 'custom' }) do |f|
           = f.error_notification
-          = render "shared/flash_message", flash: flash
           .row.collapse
-            .large-10.columns   
+            .large-10.columns
               = f.input :code, placeholder: t('trackings.placeholder_tracking_id'), required: true, focus: true, label: false
-            .large-2.columns        
+            .large-2.columns
               = f.submit t('trackings.add_btn'), class: "medium button center"
       .large-3.columns &nbsp;

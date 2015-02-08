@@ -6,6 +6,7 @@ th:
           attributes:
             code:
               taken: 'มีรหัสนี้ในระบบแล้ว'
+              invalid: 'หมายเลขสำหรับตรวจสอบไม่ถูกต้อง'
         user:
           attributes:
             current_password:
