@@ -1335,18 +1335,27 @@ $default-float: left;
 @import 'foundation/general_foundicons';
 @import 'style';
 
-$backgroud-image: 'bg.png';
+$backgroud-image: "<%=image_path('pattern.jpg')%>";
 $pagpos-main-color: #F06B48;
+
+::-moz-selection { background: #e75967; color: #fff; text-shadow: none; }
+::selection { background: #e75967; color: #fff; text-shadow: none; }
 
 body{
   margin: 0;
   padding: 0;
   background: $pagpos-white-color url($backgroud-image);
+  font-family: 'Lato', Arial, sans-serif;
   font-size: 13px;
+  border-top: 2px solid #f06b48;
 }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, a{
   color: #555;
+}
+
+.top-bar {
+  background: $pagpos-white-color url($backgroud-image);
 }
 
 a:hover {
@@ -1432,7 +1441,7 @@ header form.custom input.medium.button{
 .center { text-align: center; margin: 0 auto; }
 
 .description {
-  font-family: 'Open Sans Condensed',sans-serif;
+  /*font-family: 'Open Sans Condensed',sans-serif;*/
   font-weight: normal;
   color: #333;
   margin: 0;

@@ -26,8 +26,10 @@
 .container
   .row
     .span12.subscribe
-      %h3 Subscribe to our newsletter
-      %p Sign up now to our newsletter and you'll be one of the first to know when the site is ready ;)
+      %h3
+        = t('subscriber.title')
+      %p
+        = t('subscriber.description')
       = simple_form_for(@subscriber, :url => subscriber_create_path, :html => { :method => :post, class: 'form-inline' }) do |f|
         = f.error_notification
         = render "shared/flash_message", flash: flash
