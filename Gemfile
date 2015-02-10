@@ -90,6 +90,8 @@ gem 'money'
 gem 'google_currency'
 gem 'psych'
 
+gem 'ahoy_matey'
+
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end
