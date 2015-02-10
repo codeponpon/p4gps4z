@@ -5,8 +5,6 @@
         = current_page?(root_url) ? raw('&nbsp;') : link_to(image_tag('logo.png', width: 175), root_path)
       .large-9.columns
         %ul#menu-header.nav-bar.right
-          %li
-            = link_to t("footer.menu.store"), store_login_url
           - unless current_user.blank?
             %li
               = link_to t('menu.profile'), user_profile_path
