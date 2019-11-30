@@ -167,7 +167,7 @@ GEM
       domain_name (~> 0.5)
     httpauth (0.2.0)
     hub (1.10.6)
-    i18n (0.6.5)
+    i18n (0.6.11)
     iron_core (1.0.1)
       rest (>= 2.2.0)
     iron_mq (4.0.3)
