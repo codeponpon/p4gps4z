@@ -166,7 +166,7 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httpauth (0.2.0)
-    hub (1.10.6)
+    hub (1.12.4)
     i18n (0.6.5)
     iron_core (1.0.1)
       rest (>= 2.2.0)
